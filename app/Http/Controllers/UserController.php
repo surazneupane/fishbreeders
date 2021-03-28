@@ -48,7 +48,7 @@ class UserController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
+    public function show(User $user) {
         //
     }
 
@@ -58,8 +58,10 @@ class UserController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
-        //
+    public function edit(User $user) {
+        $roles = Role::all();
+
+        return view('users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -69,8 +71,8 @@ class UserController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
-        //
+    public function update(Request $request, User $user) {
+        dd($request->all());
     }
 
     /**
@@ -79,7 +81,12 @@ class UserController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
-        //
+    public function destroy(User $user) {
+
+        $user->roles()->detach();
+        $user->delete();
+
+        return redirect()->back();
+
     }
 }
