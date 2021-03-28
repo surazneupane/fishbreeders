@@ -10,7 +10,7 @@
       <!-- This example requires Tailwind CSS v2.0+ -->
 
 
-      <div class="block mb-8">
+      <div class="block mb-10">
         <a href="{{ route('category.create') }}"
           class="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-xl shadow">{{ _('Add Category') }}</a>
       </div>

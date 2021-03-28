@@ -100,6 +100,7 @@
                                         </td>
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex items-center justify-center">
+                                            @can('user_access')
                                             @if(auth()->user()->id != $user->id && $user->id != 1)
                                             <a href="{{ route('users.edit', $user->id) }}"
                                                 class="text-indigo-600 hover:text-indigo-900 m-1">Edit</a>
@@ -116,6 +117,8 @@
 
 
                                             @endif
+                                            @endcan
+
                                         </td>
                                     </tr>
 
