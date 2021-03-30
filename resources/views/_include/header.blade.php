@@ -1,7 +1,7 @@
 <header>
     <div class="container py-lg-4 d-lg-flex justify-content-between align-items-center px-0">
         <div class="text-center">
-            <a href="#">
+            <a href="/">
                 @include('_include.logo')
             </a>
         </div>

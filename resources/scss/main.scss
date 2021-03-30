@@ -22,6 +22,7 @@
 
 $primary: #0074d1;
 $danger: #ff4136;
+
 @import "~bootstrap/scss/bootstrap";
 
 .nav-hover:hover {
@@ -81,4 +82,8 @@ $danger: #ff4136;
             }
         }
     }
+}
+
+.card-link:hover {
+    color: lighten($color: $primary, $amount: 10%) !important;
 }

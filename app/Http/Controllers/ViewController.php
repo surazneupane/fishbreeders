@@ -9,4 +9,9 @@ class ViewController extends Controller {
         $posts = Post::where('status', '1')->orderBy('created_at', 'desc')->get();
         return view('frontend.index', compact('posts'));
     }
+
+    public function post($slug) {
+        $post = Post::where('slug', $slug)->first();
+        return view('frontend.post', compact('post'));
+    }
 }

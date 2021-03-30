@@ -10880,3 +10880,7 @@ textarea.form-control-lg {
 .trending .trending1:nth-of-type(1) .card-body .text-muted {
   color: #fff !important;
 }
+
+.card-link:hover {
+  color: #0590ff !important;
+}
