@@ -25,6 +25,7 @@ Route::group(['middleware' => ['viewcontrol']], function () {
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified'], 'prefix' => 'admin'], function () {
+    Route::get('/', function () {return redirect(route('dashboard'));});
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('posts', PostController::class);
     Route::get('/category/{id}/create', [CategoryController::class, 'createSubCategory'])->name('category.subcategory.create');
