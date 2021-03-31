@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['viewcontrol']], function () {
     Route::get('/', [ViewController::class, 'index'])->name('home');
     Route::get('/posts/{slug}', [ViewController::class, 'post'])->name('post');
+    Route::get('/category/{slug}', [ViewController::class, 'category'])->name('category');
 });
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

@@ -83,8 +83,6 @@
             </div>
         </div>
     </section>
-
-
     <section class="row p-0 m-0 mt-5">
         <h3 class="px-2 alert alert-primary ">Trending News</h3>
         <div class="row m-0 w-100 p-0">
@@ -207,8 +205,6 @@
         </div>
 
     </section>
-
-
     <x-news-section title="International News" :posts="$posts" />
     <x-news-section title="Sport News" :posts="$posts" />
     <x-news-section title="Bussiness News" :posts="$posts" />
@@ -218,6 +214,5 @@
 
 
 @section('bottom')
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6063153697d13d3d"></script>
+
 @endsection

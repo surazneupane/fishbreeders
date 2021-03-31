@@ -23,7 +23,8 @@
             <ul class="nav d-none d-lg-flex">
                 @foreach ($headerCategories as $category )
                 <li class="nav-item ">
-                    <a href="#" class="nav-link nav-hover mx-1 text-white">{{ $category->title }}</a>
+                    <a href="{{ route('category', $category->slug) }}"
+                        class="nav-link nav-hover mx-1 text-white">{{ $category->title }}</a>
                 </li>
                 @endforeach
             </ul>
@@ -39,7 +40,8 @@
                         <ul class="nav">
                             @foreach ($categories as $category )
                             <li class="nav-item d-block w-100">
-                                <a href="#" class="nav-link mx-1 ">{{ $category->title }}</a>
+                                <a href="{{ route('category', $category->slug) }}"
+                                    class="nav-link  mx-1 ">{{ $category->title }}</a>
                             </li>
                             @endforeach
                         </ul>

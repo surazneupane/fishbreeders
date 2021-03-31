@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,5 +21,29 @@ class Post extends Model {
 
     public function getPostedDateAttribute() {
         return $this->created_at->diffForHumans();
+    }
+
+    public function getPreviousPostAttribute() {
+        try {
+            $post = Post::findOrFail($this->id - 1);
+            return $post;
+
+        } catch (Exception $e) {
+            return null;
+        }
+    }
+
+    public function getNextPostAttribute() {
+        try {
+            $post = Post::findOrFail($this->id + 1);
+            return $post;
+
+        } catch (Exception $e) {
+            return null;
+        }
+    }
+
+    public function getRelatedPostAttribute() {
+        return $this->categories()->first()->posts->except($this->id)->take(4);
     }
 }

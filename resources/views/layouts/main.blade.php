@@ -18,6 +18,10 @@
 
     @yield("content")
 
+
+    @include('_include.footer')
+
+
     <script src="/js/main.js"></script>
     @yield("bottom")
 </body>
