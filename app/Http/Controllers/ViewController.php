@@ -16,7 +16,14 @@ class ViewController extends Controller {
         $post = Post::where('slug', $slug)->first();
         abort_if($post == null, Response::HTTP_NOT_FOUND, 'Page Not Found');
         abort_if($post->status == '0', Response::HTTP_NOT_FOUND, 'Page Not Found');
-        $post->views++;
+
+        $expiresAt = now()->addHours(1);
+
+        views($post)
+            ->cooldown($expiresAt)
+            ->record();
+
+        $post->views = views($post)->count();
         $post->save();
         return view('frontend.post', compact('post'));
     }
