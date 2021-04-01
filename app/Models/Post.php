@@ -44,6 +44,6 @@ class Post extends Model {
     }
 
     public function getRelatedPostAttribute() {
-        return $this->categories()->first()->posts->except($this->id)->take(4);
+        return $this->categories()->first()->posts->except($this->id)->where('status', '1')->take(4);
     }
 }
