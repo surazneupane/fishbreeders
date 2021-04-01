@@ -1,12 +1,15 @@
 @extends('layouts.main')
 
-@section('content')
+@section('title', $category->seo_title)
 
-<div class="container py-4">
+@section('head')
+<meta name="description" content="{{ $category->seo_description }}" />
+@endsection
+@section('content') <div class="container py-4">
 
     <div class="row">
         <div class="col-lg-9">
-            <h3 class="alert alert-info">
+            <h3 class="alert alert-primary">
                 {{ $category->title }}
             </h3>
 

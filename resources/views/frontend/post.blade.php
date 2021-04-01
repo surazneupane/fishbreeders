@@ -1,5 +1,13 @@
 @extends('layouts.main')
 
+@section('title', $post->seo_title)
+
+@section('head')
+<meta name="description" content="{{ $post->seo_description }}" />
+<meta name="keywords" content="{{ $post->seo_keywords }}" />
+<meta name="author" content="{{ $post->author}}" />
+@endsection
+
 @section('content')
 
 <div class="container">

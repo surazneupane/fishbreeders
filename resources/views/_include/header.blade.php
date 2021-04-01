@@ -24,7 +24,8 @@
                 @foreach ($headerCategories as $category )
                 <li class="nav-item ">
                     <a href="{{ route('category', $category->slug) }}"
-                        class="nav-link nav-hover mx-1 text-white">{{ $category->title }}</a>
+                        class="nav-link nav-hover mx-1 text-white @if(request()->url() == route('category', $category->slug)) bg-danger @endif">
+                        {{ $category->title }}</a>
                 </li>
                 @endforeach
             </ul>
@@ -41,7 +42,7 @@
                             @foreach ($categories as $category )
                             <li class="nav-item d-block w-100">
                                 <a href="{{ route('category', $category->slug) }}"
-                                    class="nav-link  mx-1 ">{{ $category->title }}</a>
+                                    class="nav-link  mx-1 @if(request()->url() == route('category', $category->slug)) bg-danger text-white @endif ">{{ $category->title }}</a>
                             </li>
                             @endforeach
                         </ul>
