@@ -11,82 +11,84 @@
                 <div class=" w-100">
 
                     <div class="mt-5 md:mt-0 w-100">
+                        {{--                         
                         @if($errors->any())
                         <div class="block bg-red-300 text-red-700">
                             @foreach ($errors->all() as $error)
                             <div>{{ $error }}</div>
-                            @endforeach
-                        </div>
-                        @endif
-                        <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="shadow overflow-hidden sm:rounded-md">
-                                <div class="px-4 py-5 bg-white sm:p-6">
-                                    <div class="grid grid-cols-6 gap-6">
-                                        <div class="col-span-6 sm:col-span-6">
-                                            <label for="title"
-                                                class="block text-sm font-medium text-gray-700">{{ _('Question Title*') }}</label>
-                                            <input type="text" name="title" id="title" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
+                    @endforeach
+                </div>
+                @endif --}}
+
+                <form action="{{ route('questions.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="shadow overflow-hidden sm:rounded-md">
+                        <div class="px-4 py-5 bg-white sm:p-6">
+                            <div class="grid grid-cols-6 gap-6">
+                                <div class="col-span-6 sm:col-span-6">
+                                    <label for="title"
+                                        class="block text-sm font-medium text-gray-700">{{ _('Question Title*') }}</label>
+                                    <input type="text" name="title" id="title" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
                                                 @error('title')border-red-400 @enderror
                                                 " value="{{ old('title') }}">
-                                            @error('title')
-                                            <span class="text-sm text-red-500">
-                                                {{ $message }}
-                                            </span>
-                                            @enderror
-                                        </div>
+                                    @error('title')
+                                    <span class="text-sm text-red-500">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
+                                </div>
 
 
-                                        <div class="col-span-6 sm:col-span-6">
-                                            <label for="category"
-                                                class="block text-sm font-medium text-gray-700">{{ _('Question Categories*') }}</label>
-                                            <select type="text" name="category[]" id="category"
-                                                class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('category')border-red-400 @enderror "
-                                                multiple>
-                                                <option></option>
-                                                @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}">
-                                                    {{ $category->title }}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                            @error('category')
-                                            <span class="text-sm text-red-500">
-                                                {{ $message }}
-                                            </span>
-                                            @enderror
-                                        </div>
+                                <div class="col-span-6 sm:col-span-6">
+                                    <label for="category"
+                                        class="block text-sm font-medium text-gray-700">{{ _('Question Categories*') }}</label>
+                                    <select type="text" name="category[]" id="category"
+                                        class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('category')border-red-400 @enderror "
+                                        multiple>
+                                        <option></option>
+                                        @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">
+                                            {{ $category->title }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                    @error('category')
+                                    <span class="text-sm text-red-500">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
+                                </div>
 
-                                        <div class="col-span-6 sm:col-span-6">
-                                            <label for="content"
-                                                class="block text-sm font-medium text-gray-700">{{ _('Question Description*') }}
-                                                @error('description')
-                                                <span class="text-sm text-red-500">
-                                                    {{ $message }}
-                                                </span>
-                                                @enderror</label>
-                                            <textarea type="text" name="description" id="description" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
-                                                @error('content')border-red-400 @enderror
+                                <div class="col-span-6 sm:col-span-6">
+                                    <label for="content"
+                                        class="block text-sm font-medium text-gray-700">{{ _('Question Description*') }}
+                                        @error('description')
+                                        <span class="text-sm text-red-500">
+                                            {{ $message }}
+                                        </span>
+                                        @enderror</label>
+                                    <textarea type="text" name="description" id="description" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
+                                                @error('description')border-red-400 @enderror
                                                 " rows=10>{{ old('description') }}</textarea>
 
-                                        </div>
-
-
-                                    </div>
                                 </div>
 
-                                <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                                    <button type="submit"
-                                        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        Save
-                                    </button>
-                                </div>
+
                             </div>
-                        </form>
+                        </div>
+
+                        <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                            <button type="submit"
+                                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                Save
+                            </button>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
+    </div>
+    </div>
     </div>
     <script>
         tinymce.init({
