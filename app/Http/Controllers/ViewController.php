@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use CyrildeWit\EloquentViewable\Support\Period;
 use Illuminate\Http\Response;
 
 class ViewController extends Controller {
     public function index() {
-        $posts = Post::where('status', '1')->latest()->get();
-        return view('frontend.index', compact('posts'));
+        $posts        = Post::where('status', '1')->latest()->get();
+        $popularPosts = Post::orderByViews('asc', Period::pastDays(3))->where('status', '1')->get();
+        return view('frontend.index', compact('posts', 'popularPosts'));
     }
 
     public function post($slug) {
