@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreQuestionRequest;
 use App\Models\Category;
 use App\Models\Question;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class QuestionController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
@@ -35,6 +39,23 @@ class QuestionController extends Controller {
      */
     public function store(StoreQuestionRequest $request) {
         //
+      try{
+        $data = $request->except('category','_token');
+       $data['user_id'] = Auth::id();
+       $question = Question::create($data);
+       $tags = array();
+        foreach($request->category as $category)
+        {
+            $tags[]=$category;
+        }
+        $question->categories()->sync($tags);
+        return redirect()->route('forums.index')->with('success','Question Posted Sucessfully');
+    }
+    catch(Exception $e)
+    {
+        return redirect(route('forums.index'))->with('error',$e->getMessage());
+
+    }
     }
 
     /**
@@ -45,6 +66,8 @@ class QuestionController extends Controller {
      */
     public function show(Question $question) {
         //
+        $answers = $question->answers()->get();
+        return view('dashboard.forums.questions.show',compact('question','answers'));
     }
 
     /**
@@ -55,6 +78,9 @@ class QuestionController extends Controller {
      */
     public function edit($id) {
         //
+        $categories = Category::where('status', '1')->get();
+        $question = Question::findOrFail($id);
+        return view('dashboard.forums.questions.edit',compact('question','categories'));
     }
 
     /**
@@ -64,8 +90,26 @@ class QuestionController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
+    public function update(StoreQuestionRequest $request, $id) {
         //
+        $question = Question::findOrFail($id);
+          try{
+            $data = $request->except('category','_token');
+            $question->update($data);
+           
+           $tags = array();
+            foreach($request->category as $category)
+            {
+                $tags[]=$category;
+            }
+            $question->categories()->sync($tags);
+            return redirect()->route('forums.index')->with('success','Question Updated Sucessfully');
+        }
+        catch(Exception $e)
+        {
+            return redirect(route('forums.index'))->with('error',$e->getMessage());
+    
+        }
     }
 
     /**
@@ -76,5 +120,15 @@ class QuestionController extends Controller {
      */
     public function destroy($id) {
         //
+        try{
+        $question = Question::findOrFail($id);
+        $question -> delete();
+        return redirect()->back()->with('success','Question Deleted Sucessfully');
+        
+        }
+        catch(Exception $e)
+        {
+            return redirect()->back()->with('error',$e->getMessage());
+        }
     }
 }

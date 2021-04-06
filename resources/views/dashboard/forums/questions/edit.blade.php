@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Create New Question
+            Edit Question
         </h2>
     </x-slot>
 
@@ -11,24 +11,18 @@
                 <div class=" w-100">
 
                     <div class="mt-5 md:mt-0 w-100">
-                        {{--                         
-                        @if($errors->any())
-                        <div class="block bg-red-300 text-red-700">
-                            @foreach ($errors->all() as $error)
-                            <div>{{ $error }}</div>
-                    @endforeach
-                </div>
-                @endif --}}
+                    
 
-                <form action="{{ route('questions.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('questions.update',$question->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="title"
                                         class="block text-sm font-medium text-gray-700">{{ _('Question Title*') }}</label>
-                                    <input type="text" name="title" id="title" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
+                                    <input type="text" name="title" id="title" value="{{$question->title}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
                                                 @error('title')border-red-400 @enderror
                                                 " value="{{ old('title') }}">
                                     @error('title')
@@ -47,7 +41,7 @@
                                         multiple>
                                         <option></option>
                                         @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">
+                                        <option value="{{ $category->id }}" @if($question->categories->contains($category)) selected @endif>
                                             {{ $category->title }}
                                         </option>
                                         @endforeach
@@ -65,7 +59,7 @@
                                         </label>
                                     <textarea type="text" name="description" id="description" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
                                                 @error('description')border-red-400 @enderror
-                                                " rows=10>{{ old('description') }}</textarea>
+                                                " rows=10>{{$question->description}}</textarea>
                                                 @error('description')
                                         <span class="text-sm text-red-500">
                                             {{ $message }}

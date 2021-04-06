@@ -17,6 +17,11 @@ class Question extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class,'question_category');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
