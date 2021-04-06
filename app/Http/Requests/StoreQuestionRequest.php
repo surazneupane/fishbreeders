@@ -24,6 +24,7 @@ class StoreQuestionRequest extends FormRequest {
             //
             'title'       => 'required|string',
             'description' => 'required|string',
+            'category'    => 'required',
 
         ];
     }

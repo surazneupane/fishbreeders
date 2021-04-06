@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Create New Category') }}
+            {{ __('Update Site Info') }}
         </h2>
     </x-slot>
 
@@ -11,7 +11,7 @@
                 <div class="md:grid md:grid-cols-3 md:gap-6">
                     <div class="md:col-span-1">
                         <div class="px-4 sm:px-0">
-                            <h3 class="text-lg font-medium leading-6 text-gray-900">{{ _('New Category') }}</h3>
+                            <h3 class="text-lg font-medium leading-6 text-gray-900">{{ _('Update Information') }}</h3>
                             <p class="mt-1 text-sm text-gray-600">
                                 Edit Site Info
                             </p>

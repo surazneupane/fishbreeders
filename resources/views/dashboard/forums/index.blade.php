@@ -23,11 +23,11 @@
                                     <tr>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Question
+                                            Question Title
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            User
+                                            Created By
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -55,14 +55,16 @@
                                             {{ $question->title }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-gray-500">
-                                            {{ $question->user_id }}
+                                            {{ $question->user()->first()->name }}
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {{ $question->created_at }}
+                                            {{ $question->answers->count() }}
+                                          
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {{ $question->answers->count() }}
+                                            {{ $question->created_at }}
+                                       
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium ">
                                             <a href="{{ route('questions.show', $question->id) }}"
