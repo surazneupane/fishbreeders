@@ -6,45 +6,34 @@ use App\Http\Requests\StoreSiteInfoRequest;
 use App\Models\SiteInfo;
 use Exception;
 
-class SiteController extends Controller
-{
+class SiteController extends Controller {
     //
-    public function index()
-    {
+    public function index() {
         $siteInfo = SiteInfo::findOrFail(1);
-        return view('siteinfo.index',compact('siteInfo'));
+        return view('dashboard.siteinfo.index', compact('siteInfo'));
     }
 
-    public function store(StoreSiteInfoRequest $request)
-    {
-        try{
-        $siteInfo = SiteInfo::find(1);
-        $data                   = $request->except('banner', '_token');
-        if($request->banner)
-        {
-            $image_name             = time() . "-" . $request->banner->getClientOriginalName();
-            $images                 = $request->banner->storeAs('images', $image_name, 'public');
-            $data['banner'] = "/storage/" . $images;
-            
-       
+    public function store(StoreSiteInfoRequest $request) {
+        try {
+            $siteInfo = SiteInfo::find(1);
+            $data     = $request->except('banner', '_token');
+            if ($request->banner) {
+                $image_name     = time() . "-" . $request->banner->getClientOriginalName();
+                $images         = $request->banner->storeAs('images', $image_name, 'public');
+                $data['banner'] = "/storage/" . $images;
+
+            }
+            if ($siteInfo == null) {
+                SiteInfo::create($data);
+            } else {
+                $siteInfo->update($data);
+            }
+
+            return redirect()->back()->with('message', 'Site Info Updated Sucessfully');
+        } catch (Exception $e) {
+            return redirect()->back()->with('message', $e->getMessage());
 
         }
-        if($siteInfo == null)
-        {
-            SiteInfo::create($data);
-        }
-        else{
-            $siteInfo->update($data);
-        }
-
-        return redirect()->back()->with('message','Site Info Updated Sucessfully');
     }
-    catch(Exception $e)
-    {
-        return redirect()->back()->with('message',$e->getMessage());
-        
-    }
-}
-
 
 }
