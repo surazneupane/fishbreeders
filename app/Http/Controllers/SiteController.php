@@ -20,11 +20,19 @@ class SiteController extends Controller {
         try {
             $siteInfo = SiteInfo::find(1);
             $data     = $request->except('banner', '_token');
+            
             if ($request->banner) {
                 $image_name     = time() . "-" . $request->banner->getClientOriginalName();
                 $images         = $request->banner->storeAs('images', $image_name, 'public');
                 $data['banner'] = "/storage/" . $images;
 
+            }
+
+
+            if($request->logo){
+                $image_name     = time() . "-" . $request->logo->getClientOriginalName();
+                $images         = $request->logo->storeAs('images', $image_name, 'public');
+                $data['logo'] = "/storage/" . $images;
             }
             if ($siteInfo == null) {
                 SiteInfo::create($data);

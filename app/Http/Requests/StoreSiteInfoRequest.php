@@ -26,6 +26,7 @@ class StoreSiteInfoRequest extends FormRequest
         return [
             //
             'banner' => 'image|mimes:png,jpg,jpeg',
+            'logo'  => 'image|mimes:png,jpg,jpeg,svg',
             'banner_text' => 'required|string',
             'about_us'      => 'required|string',
         ];
