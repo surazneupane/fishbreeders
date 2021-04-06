@@ -9,7 +9,10 @@ use Exception;
 class SiteController extends Controller {
     //
     public function index() {
-        $siteInfo = SiteInfo::findOrFail(1);
+        $siteInfo = SiteInfo::find(1);
+        if (!$siteInfo) {
+            $siteInfo = new SiteInfo();
+        }
         return view('dashboard.siteinfo.index', compact('siteInfo'));
     }
 
