@@ -26,6 +26,9 @@
                         {{ __('Users') }}
                     </x-jet-nav-link>
                     @endcan
+                    <x-jet-nav-link href="{{ route('siteinfo.index') }}" :active="request()->routeIs('siteinfo.*')">
+                        {{ __('Site Info') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 

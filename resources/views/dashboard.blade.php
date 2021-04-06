@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-10">
-                <h1 class="pb-4 text-2xl capitalize text-gray-700 ">hello Nepal News Portal</h1>
+                <h1 class="pb-4 text-2xl capitalize text-gray-700 ">{{config('app.name')}} Portal</h1>
                 <hr class="border-2 w-100 mb-5 ">
 
                 <div class="md:grid md:grid-flow-col md:grid-rows-2 lg:grid-rows-1">
