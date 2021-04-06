@@ -20,7 +20,7 @@ class PostController extends Controller {
 
         $posts = Post::all();
 
-        return view('posts.index', compact('posts'));
+        return view('dashboard.posts.index', compact('posts'));
     }
 
     /**
@@ -30,7 +30,7 @@ class PostController extends Controller {
      */
     public function create() {
         $categories = Category::all();
-        return view('posts.create', compact('categories'));
+        return view('dashboard.posts.create', compact('categories'));
     }
 
     /**
@@ -59,7 +59,7 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show(Post $post) {
-        return view('posts.show', compact('post'));
+        return view('dashboard.posts.show', compact('post'));
     }
 
     /**
@@ -70,7 +70,7 @@ class PostController extends Controller {
      */
     public function edit(Post $post) {
         $categories = Category::all();
-        return view('posts.edit', compact('post', 'categories'));
+        return view('dashboard.posts.edit', compact('post', 'categories'));
     }
 
     /**

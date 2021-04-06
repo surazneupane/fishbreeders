@@ -20,7 +20,7 @@ class UserController extends Controller {
     public function index() {
         abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $users = User::all();
-        return view('users.index', compact('users'));
+        return view('dashboard.users.index', compact('users'));
     }
 
     /**
@@ -32,7 +32,7 @@ class UserController extends Controller {
         abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $roles = Role::all();
-        return view('users.create', compact('roles'));
+        return view('dashboard.users.create', compact('roles'));
     }
 
     /**
@@ -72,7 +72,7 @@ class UserController extends Controller {
         abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         abort_if($user->id == Auth::user()->id, Response::HTTP_FORBIDDEN, '403 Forbidden');
         $roles = Role::all();
-        return view('users.edit', compact('user', 'roles'));
+        return view('dashboard.users.edit', compact('user', 'roles'));
     }
 
     /**

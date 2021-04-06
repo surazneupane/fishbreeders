@@ -17,7 +17,7 @@ class CategoryController extends Controller {
 
         $categories = Category::where('parent_id', null)->get();
 
-        return view('categories.index', compact('categories'));
+        return view('dashboard.categories.index', compact('categories'));
     }
 
     /**
@@ -26,7 +26,7 @@ class CategoryController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view('categories.create');
+        return view('dashboard.categories.create');
     }
 
     /**
@@ -49,7 +49,7 @@ class CategoryController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show(Category $category) {
-        return view('categories.show', compact('category'));
+        return view('dashboard.categories.show', compact('category'));
     }
 
     /**
@@ -59,7 +59,7 @@ class CategoryController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit(Category $category) {
-        return view('categories.edit', compact('category'));
+        return view('dashboard.categories.edit', compact('category'));
     }
 
     /**
@@ -97,7 +97,7 @@ class CategoryController extends Controller {
 
     public function createSubCategory($id) {
         $category = Category::findOrFail($id);
-        return view('categories.sub.create', compact('category'));
+        return view('dashboard.categories.sub.create', compact('category'));
     }
 
     public function storeSubCategory($id, StoreCategoryRequest $request) {
