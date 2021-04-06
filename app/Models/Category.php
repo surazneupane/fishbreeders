@@ -18,4 +18,10 @@ class Category extends Model {
         return $this->belongsToMany(Post::class)->latest();
     }
 
+    public function questions()
+    {
+        return $this->belongsToMany(Question::class);
+
+    }
+
 }

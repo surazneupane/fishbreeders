@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSiteInfoRequest;
 use App\Models\SiteInfo;
-use Illuminate\Support\Facades\File as File;
+use Exception;
 
 class SiteController extends Controller
 {
@@ -17,6 +17,7 @@ class SiteController extends Controller
 
     public function store(StoreSiteInfoRequest $request)
     {
+        try{
         $siteInfo = SiteInfo::find(1);
         $data                   = $request->except('banner', '_token');
         if($request->banner)
@@ -38,5 +39,12 @@ class SiteController extends Controller
 
         return redirect()->back()->with('message','Site Info Updated Sucessfully');
     }
+    catch(Exception $e)
+    {
+        return redirect()->back()->with('message',$e->getMessage());
+        
+    }
+}
+
 
 }
