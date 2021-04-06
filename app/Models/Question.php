@@ -10,6 +10,17 @@ class Question extends Model
     protected $fillable = ['title','description','user_id'];
     use HasFactory;
 
+    // delete all answers when question is deleted
+    public static function boot()
+    {
+        parent::boot();
+        
+        static::deleting(function($question)
+        {
+            $question->answers()->delete();
+        });
+    }
+
     public function answers()
     {
         return $this->hasMany(Answer::class);
