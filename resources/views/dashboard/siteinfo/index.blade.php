@@ -31,8 +31,25 @@
                                 <div class="px-4 py-5 bg-white sm:p-6">
                                     <div class="grid grid-cols-6 gap-6">
                                         <div class="col-span-6 sm:col-span-6">
+                                            <label for="logo"
+                                                class="block text-sm font-medium text-gray-700">{{ _('Logo Image') }}</label>
+                                            <input type="file" name="logo" id="logo" autocomplete="given-name"
+                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
+                                                @error('logo')border-red-400 @enderror
+                                                " value="{{ old('logo') }}">
+                                            @error('logo')
+                                            <span class="text-sm text-red-500">
+                                                {{ $message }}
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-span-6">
+                                            Current Image:
+                                            <img src="{{$siteInfo->logo}}" width="70" style="border-radius: 50%">
+                                        </div>
+                                        <div class="col-span-6 sm:col-span-6">
                                             <label for="banner"
-                                                class="block text-sm font-medium text-gray-700">{{ _('Banner Image*') }}</label>
+                                                class="block text-sm font-medium text-gray-700">{{ _('Banner Image') }}</label>
                                             <input type="file" name="banner" id="banner" autocomplete="given-name"
                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
                                                 @error('banner')border-red-400 @enderror
