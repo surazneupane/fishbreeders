@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ForumController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewController;
@@ -35,6 +37,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified'], 'prefix' => 'admin']
     Route::post('/category/{id}/store', [CategoryController::class, 'storeSubCategory'])->name('category.subcategory.store');
     Route::resource('category', CategoryController::class);
     Route::resource('users', UserController::class);
-    Route::get('/siteinfo',[SiteController::class ,'index'])->name('siteinfo.index');
-    ROute::post('/siteinfo/store',[SiteController::class,'store'])->name('siteinfo.store');
+    Route::get('/siteinfo', [SiteController::class, 'index'])->name('siteinfo.index');
+    ROute::post('/siteinfo/store', [SiteController::class, 'store'])->name('siteinfo.store');
+    Route::get("/forums", [ForumController::class, 'index'])->name('forums.index');
+    Route::resource("/questions", QuestionController::class);
 });
