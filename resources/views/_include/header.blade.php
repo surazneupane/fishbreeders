@@ -13,6 +13,9 @@
                         <img src="{{$siteinfo->logo}}" alt="" class="img-fluid p-0 m-0" width="40" />
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('home')}}" class="nav-link text-capatlize text-white h-100">Home</a>
+                </li>
                 @forelse ($headerCategories as $category)
                     
              
@@ -25,13 +28,8 @@
                 {{-- <li class="nav-item">
                     <a href="#" class="nav-link text-capatlize text-white h-100">SaltWater Fish</a>
                 </li> --}}
-                <li class="nav-item">
-                    <a href="#" class="nav-link text-capatlize text-white h-100">Keeping & Breeding</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link text-capatlize text-white h-100">SaltWater Fish</a>
-                </li>
-
+               
+               
                 <li class="nav-item">
                     <a href="#" class="nav-link text-capatlize text-white h-100">
                         Aquarium
