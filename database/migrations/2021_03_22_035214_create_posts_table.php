@@ -20,15 +20,12 @@ class CreatePostsTable extends Migration {
             $table->string('featured_image')->nullable();
             $table->text('excerpt')->nullable();
             $table->string('author')->nullable();
-            $table->text('tag')->nullable();
             $table->string('status')->default('draft');
             $table->string('location')->nullable();
             $table->bigInteger('views')->default(0);
             $table->bigInteger('share')->default(0);
-            // * for SEO
-            $table->text('seo_title')->nullable();
-            $table->text('seo_description')->nullable();
-            $table->text('seo_keywords')->nullable();
+            $table->longText('refrence')->nullabel();
+           
             $table->foreignId('user_id')->constrained();
             $table->date('deleted_at')->nullable();
             $table->timestamps();

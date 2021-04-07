@@ -134,20 +134,22 @@
                                                 " rows=10>{{ $post->content }}</textarea>
 
                                         </div>
+                                       
                                         <div class="col-span-6 sm:col-span-6">
-                                            <label for="tag"
-                                                class="block text-sm font-medium text-gray-700">{{ _('Post Tag*') }}</label>
-                                            <input type="text" name="tag" id="tag"
-                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
-                                                                                                                                @error('tag')border-red-400 @enderror
-                                                                                                                                "
-                                                value="{{ $post->tag }}">
-                                            @error('tag')
-                                            <span class="text-sm text-red-500">
-                                                {{ $message }}
-                                            </span>
-                                            @enderror
+                                            <label for="refrence"
+                                                class="block text-sm font-medium text-gray-700">{{ _('Post Refrence*') }}
+                                                @error('refrence')
+                                                <span class="text-sm text-red-500">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror</label>
+                                            <textarea type="text" name="refrence" id="refrence" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
+                                                @error('refrence')border-red-400 @enderror
+                                                " rows=10>{{$post->refrence}}</textarea>
+
                                         </div>
+
+
                                         <div class="col-span-6 sm:col-span-6">
                                             <label for="status"
                                                 class="block text-sm font-medium text-gray-700">{{ _('Post Status*') }}</label>
@@ -166,45 +168,9 @@
                                             </span>
                                             @enderror
                                         </div>
-                                        <div class="col-span-6 sm:col-span-6">
-                                            <label for="seo_title"
-                                                class="block text-sm font-medium text-gray-700">{{ _('Seo Title*') }}</label>
-                                            <input type="text" name="seo_title" id="seo_title"
-                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
-                                                                                                                                @error('seo_title')border-red-400 @enderror
-                                                                                                                                " value="{{ $post->seo_title }}">
-                                            @error('seo_title')
-                                            <span class="text-sm text-red-500">
-                                                {{ $message }}
-                                            </span>
-                                            @enderror
-                                        </div>
-                                        <div class="col-span-6 sm:col-span-6">
-                                            <label for="seo_description"
-                                                class="block text-sm font-medium text-gray-700">{{ _('Seo Description*') }}</label>
-                                            <input type="text" name="seo_description" id="seo_description"
-                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
-                                                                                                                                @error('seo_description')border-red-400 @enderror
-                                                                                                                                " value="{{ $post->seo_description }}">
-                                            @error('seo_description')
-                                            <span class="text-sm text-red-500">
-                                                {{ $message }}
-                                            </span>
-                                            @enderror
-                                        </div>
-                                        <div class="col-span-6 sm:col-span-6">
-                                            <label for="seo_keywords"
-                                                class="block text-sm font-medium text-gray-700">{{ _('Seo Keywords*') }}</label>
-                                            <input type="text" name="seo_keywords" id="seo_keywords"
-                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
-                                                                                                                                @error('seo_keywords')border-red-400 @enderror
-                                                                                                                                " value="{{ $post->seo_keywords }}">
-                                            @error('seo_keywords')
-                                            <span class="text-sm text-red-500">
-                                                {{ $message }}
-                                            </span>
-                                            @enderror
-                                        </div>
+                                       
+                                       
+                                       
                                     </div>
                                 </div>
 
@@ -223,7 +189,7 @@
     </div>
     <script>
         tinymce.init({
-            selector: '#content',
+            selector: '#content,#refrence',
             plugins: 'lists, table code image',
             menubar: false,
             height: 800,

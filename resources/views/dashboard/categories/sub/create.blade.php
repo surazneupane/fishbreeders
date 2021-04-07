@@ -13,7 +13,7 @@
                         <div class="px-4 sm:px-0">
                             <h3 class="text-lg font-medium leading-6 text-gray-900">{{ _('New Sub-Category') }}</h3>
                             <p class="mt-1 text-sm text-gray-600">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, quo!
+                           Create Sub Category For :<strong> {{$category->title}} </strong>
                             </p>
                         </div>
                     </div>
@@ -47,13 +47,7 @@
                                             </span>
                                             @enderror
                                         </div>
-                                        <div class="col-span-6 sm:col-span-6 ">
-                                            <label for="code"
-                                                class="block text-sm font-medium text-gray-700">{{ _('Code') }}</label>
-                                            <input type="text" name="code" id="code" autocomplete="code"
-                                                value="{{ old('code') }}"
-                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                        </div>
+                                      
                                         {{-- <div class="col-span-6 sm:col-span-6">
                                             <label for="parent_id"
                                                 class="block text-sm font-medium text-gray-700">{{ _('Parent Category') }}</label>
@@ -110,21 +104,9 @@
                                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                             value="{{old('order')}}">
                                     </div>
-                                    <div class="col-span-6 sm:col-span-6">
-                                        <label for="seo_title"
-                                            class="block text-sm font-medium text-gray-700">{{ _('SEO Title') }}</label>
-                                        <input type="text" name="seo_title" id="seo_title"
-                                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                            value="{{old('seo_title')}}">
-                                    </div>
+                                  
 
-                                    <div class="col-span-6 sm:col-span-6 ">
-                                        <label for="seo_description"
-                                            class="block text-sm font-medium text-gray-700">{{ _('SEO Description') }}</label>
-                                        <input type="text" name="seo_description" id="seo_description"
-                                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                                            value="{{old('seo_description')}}">
-                                    </div>
+                                  
 
                                 </div>
                             </div>
