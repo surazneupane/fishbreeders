@@ -20,11 +20,11 @@
     <div class="row">
         <div class="col-lg-4">
             <div>
-                <h3 class="text-primary">Recent Articles</h3>
+                <h3 class="text-primary">Breeding Articles</h3>
                 <hr class="border-primary" style="border-top: 5px solid" />
             </div>
             <div class="px-2">
-                @foreach ($posts->take(5) as $post )
+                @foreach ($breedingPosts->take(5) as $post )
                 @include('_include.post-card-horizantal')
                 @endforeach
             </div>
@@ -59,43 +59,43 @@
     </div>
 </section>
 
+
 <section>
     <div class="container my-4">
         <div class="text-primary">
-            <h3>FAQs</h3>
+            <h3>Recent Articles</h3>
             <hr class="border-primary" style="border-top: 5px solid" />
         </div>
         <div class="d-flex justify-content-around">
+            @foreach ($posts->take(4) as $post )
+            @include('_include.post-card')
+            @endforeach
+        </div>
+    </div>
+</section>
+
+
+
+<section>
+    <div class="container my-4">
+        <div class="text-primary">
+            <h3>Recently Asked Questions</h3>
+            <hr class="border-primary" style="border-top: 5px solid" />
+        </div>
+        <div class="d-flex justify-content-around">
+            @foreach($questions as $question)
             <div class="card w-5 m-1">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">
-                        With supporting text below as a natural lead-in
-                        to additional content.
+                <div class="card-body" style="width: 30rem;">
+                    <h5 class="card-title">{{ $question->title }}</h5>
+                    <p class="card-text text-truncate">
+                        {{$question->description}}
                     </p>
-                    <a href="#" class="btn btn-primary">Button</a>
+
+                    <a href="#" class="btn btn-primary">View Answers</a>
                 </div>
             </div>
-            <div class="card w-5 m-1">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">
-                        With supporting text below as a natural lead-in
-                        to additional content.
-                    </p>
-                    <a href="#" class="btn btn-primary">Button</a>
-                </div>
-            </div>
-            <div class="card w-5 m-1">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">
-                        With supporting text below as a natural lead-in
-                        to additional content.
-                    </p>
-                    <a href="#" class="btn btn-primary">Button</a>
-                </div>
-            </div>
+            @endforeach
+
         </div>
     </div>
 </section>

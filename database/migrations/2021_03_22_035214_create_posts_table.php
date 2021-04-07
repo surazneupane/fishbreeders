@@ -24,8 +24,9 @@ class CreatePostsTable extends Migration {
             $table->string('location')->nullable();
             $table->bigInteger('views')->default(0);
             $table->bigInteger('share')->default(0);
-            $table->longText('refrence')->nullabel();
-           
+            $table->longText('refrence')->nullable();
+            $table->longText('breeding')->nullable();
+
             $table->foreignId('user_id')->constrained();
             $table->date('deleted_at')->nullable();
             $table->timestamps();

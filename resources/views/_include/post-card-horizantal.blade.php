@@ -12,7 +12,9 @@
                 </a>
                 <p class="card-text">
                     <small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
+                    <small class="text-muted">{{ $post->views}} Views</small>
                 </p>
+
             </div>
         </div>
     </div>

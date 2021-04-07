@@ -128,7 +128,7 @@
                                                 " rows=10>{{ old('content') }}</textarea>
 
                                         </div>
-                                       
+
 
                                         <div class="col-span-6 sm:col-span-6">
                                             <label for="refrence"
@@ -144,6 +144,22 @@
 
                                         </div>
 
+
+                                        <div class="col-span-6 sm:col-span-6">
+                                            <label for="breeding"
+                                                class="block text-sm font-medium text-gray-700">{{ _('Post Breeding') }}
+                                                @error('breeding')
+                                                <span class="text-sm text-red-500">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror</label>
+                                            <textarea type="text" name="breeding" id="breeding" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
+                                                @error('refrence')border-red-400 @enderror
+                                                " rows=10>{{ old('breeding') }}</textarea>
+
+                                        </div>
+
+
                                         <div class="col-span-6 sm:col-span-6">
                                             <label for="status"
                                                 class="block text-sm font-medium text-gray-700">{{ _('Post Status*') }}</label>
@@ -158,9 +174,9 @@
                                             </span>
                                             @enderror
                                         </div>
-                                      
-                                      
-                                       
+
+
+
                                     </div>
                                 </div>
 
@@ -179,8 +195,8 @@
     </div>
     <script>
         tinymce.init({
-            selector: '#content,#refrence',
-            plugins: 'lists, table code image',
+            selector: '#content,#refrence,#breeding',
+            plugins: 'lists, table code image link',
             menubar: false,
             height: 800,
             toolbar: [{
@@ -211,7 +227,7 @@
                 items: ['forecolor', 'backcolor']
             }, {
                 name: 'image',
-                items: ['image', 'code']
+                items: ['image', 'code', 'link']
             }],
             toolbar_mode: 'floating',
             /* without images_upload_url set, Upload tab won't show up*/

@@ -15,9 +15,9 @@
         <div class="col-lg-9 p-2">
 
             <div class="text-center my-5">
-                <small>
+                <div class="alert alert-secondary text-capitalize">
                     home > {{ $post->categories->first()->title }} > {{ $post->title }}
-                </small>
+                </div>
                 <h1 class=" text-center">{{ $post->title }}</h1>
                 <div>
                     <small>
@@ -56,8 +56,38 @@
                 {!! $post->content !!}
             </div>
 
+            <div>
+                <h3>References</h3>
+                <div>
+                    {!! $post->refrence !!}
+                </div>
+            </div>
 
+            @if($post->breeding)
+            <div>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    style="position: fixed; right: 50px; bottom: 50px;">
+                    Breeding
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Breeding</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                {!! $post->breeding !!}
+                            </div>
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
 
             <div>
                 <h3>Related Post</h3>
@@ -67,6 +97,10 @@
                     @endforeach
                 </div>
             </div>
+
+
+
+
         </div>
         <div class="col m-0 my-5 p-0">
         </div>

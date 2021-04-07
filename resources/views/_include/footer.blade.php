@@ -2,7 +2,7 @@
     <div class="" style="background-color: #120e43">
         <div class="container py-4">
             <div class="row">
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <h4 class="text-white border-light border-bottom py-2">
                         About Us
                     </h4>
@@ -12,53 +12,35 @@
                 </div>
                 <div class="col-lg-3">
                     <h4 class="text-white border-light border-bottom py-2">
-                        FreshWater Fish
+                        Site Links
                     </h4>
                     <ul class="nav d-flex flex-column">
+
+                        <li class="d-block">
+                            <a href="/" class="nav-link text-white">
+                                <small> Home </small>
+                            </a>
+                        </li>
+                        @foreach ($footerCategories as $category)
+                        <li class="d-block">
+                            <a href="{{ route('category', $category->slug) }}" class="nav-link text-white">
+                                <small>{{ $category->title }} </small>
+                            </a>
+                        </li>
+                        @endforeach
                         <li class="d-block">
                             <a href="#" class="nav-link text-white">
-                                <small> Guppies </small>
+                                <small> Aquarium Calculator</small>
                             </a>
                         </li>
                         <li class="d-block">
-                            <a href="#" class="nav-link text-white">
-                                <small>Mollies </small>
-                            </a>
-                        </li>
-                        <li class="d-block">
-                            <a href="#" class="nav-link text-white">
-                                <small> Goldfish</small>
+                            <a href="{{ route('forums') }}" class="nav-link text-white">
+                                <small> Forum </small>
                             </a>
                         </li>
                     </ul>
                 </div>
-                <div class="col-lg-3">
-                    <h4 class="text-white border-light border-bottom py-2">
-                        SaltWater Fish
-                    </h4>
-                    <ul class="nav d-flex flex-column">
-                        <li class="d-block">
-                            <a href="#" class="nav-link text-white">
-                                <small> Green Chromis </small>
-                            </a>
-                        </li>
-                        <li class="d-block">
-                            <a href="#" class="nav-link text-white">
-                                <small> Ocellaris Clownfish </small>
-                            </a>
-                        </li>
-                        <li class="d-block">
-                            <a href="#" class="nav-link text-white">
-                                <small> Yellowtail Damselfish </small>
-                            </a>
-                        </li>
-                        <li class="d-block">
-                            <a href="#" class="nav-link text-white">
-                                <small> Three Stripe Damselfish </small>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+
                 <div class="col-lg-3 d-flex justify-content-center align-items-center flex-column">
                     <p class="text-white">
                         <small>

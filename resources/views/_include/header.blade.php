@@ -40,10 +40,31 @@
             </ul>
             <ul class="nav">
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-capatlize text-white h-100">Forum</a>
+                    <a href="{{ route('forums') }}" class="nav-link text-capatlize text-white h-100">Forum</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-capatlize text-white h-100">Login</a>
+                    @if(Auth::user())
+
+                    <div class="dropdown">
+                        <button class="btn btn-transparent dropdown-toggle shadow-none text-white" type="button"
+                            id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="{{ Auth::user()->profile_photo_url }}" alt="" width="24"
+                                class="img-fluid rounded-circle">
+                            {{ Auth::user()->name }}
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="">
+                            <li>
+                                <form method="post" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button class="dropdown-item" type="submit">Logout</button>
+
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                    @else
+                    <a href="{{ route('ext-login') }}" class="nav-link text-capatlize text-white h-100">Login</a>
+                    @endif
                 </li>
             </ul>
         </div>

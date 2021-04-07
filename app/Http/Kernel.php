@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\AuthGates;
+use App\Http\Middleware\CheckAuth;
 use App\Http\Middleware\ViewControl;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -67,5 +68,6 @@ class Kernel extends HttpKernel {
         'verified'         => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
         'viewcontrol'      => ViewControl::class,
+        'checkauth'        => CheckAuth::class,
     ];
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
@@ -60,6 +61,35 @@ class DatabaseSeeder extends Seeder {
         $role->permissions()->attach($permission->id);
 
         $user->roles()->attach($role->id);
+
+        Role::create([
+            "name" => "user",
+        ]);
+        Category::create([
+            'title'          => 'FreshWater Fish',
+            'status'         => 1,
+            'show_in_header' => 1,
+            'show_in_footer' => 1,
+            'slug'           => 'fresh-water-fish',
+        ]
+        );
+
+        Category::create([
+            'title'          => 'SaltWater Fish',
+            'status'         => 1,
+            'show_in_header' => 1,
+            'show_in_footer' => 1,
+            'slug'           => 'salt-water-fish',
+        ]
+        );
+        Category::create([
+            'title'          => 'Breeding Articles',
+            'status'         => 1,
+            'show_in_header' => 1,
+            'show_in_footer' => 1,
+            'slug'           => 'breeding-articles',
+        ]
+        );
 
     }
 }
