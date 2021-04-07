@@ -38,7 +38,7 @@
                                     </small>
                                 </p>
                                 <div class="card-text">
-                                    <div class="d-flex align-items-center w-100">
+                                    {{-- <div class="d-flex align-items-center w-100">
                                         <img src="{{ $post->user->profile_photo_url }}" alt="" width="32"
                                             class="d-none d-md-block" style="clip-path: circle()">
                                         <div class="mx-md-2">
@@ -47,16 +47,14 @@
                                             </small>
                                         </div>
 
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <br>
                                 <small class="card-text"><small class="text-muted">{{ $post->postedDate }}</small><br>
                                     <small class="text-muted">
                                         {{ $post->views }} Views
                                     </small>
-                                    <small class="text-muted">
-                                        {{ $post->share }} Shares
-                                    </small></small>
+                                    </small>
                             </div>
                         </div>
                     </div>

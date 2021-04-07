@@ -9,8 +9,8 @@
         <h3>Most Popular</h3>
         <hr class="border-primary" style="border-top: 5px solid" />
     </div>
-    <div class="d-flex justify-content-between">
-        @foreach ($popularPosts as $post)
+    <div class="d-flex justify-content-around flex-wrap" style="flex-wrap: wrap">
+        @foreach ($popularPosts->take(4) as $post)
         @include('_include.post-card')
         @endforeach
     </div>
@@ -18,39 +18,39 @@
 
 <section class="container">
     <div class="row">
-        <div class="col-4">
+        <div class="col-lg-4">
             <div>
                 <h3 class="text-primary">Recent Articles</h3>
                 <hr class="border-primary" style="border-top: 5px solid" />
             </div>
             <div class="px-2">
-                @foreach ($posts as $post )
+                @foreach ($posts->take(5) as $post )
                 @include('_include.post-card-horizantal')
                 @endforeach
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-lg-4">
             <div>
                 <h3 class="text-primary">FreshWater Fish</h3>
                 <hr class="border-primary" style="border-top: 5px solid" />
             </div>
             <div class="px-2">
 
-                @foreach ($posts as $post )
+                @foreach ($freshWaterPosts->take(5) as $post )
                 @include('_include.post-card-horizantal')
                 @endforeach
 
 
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-lg-4">
             <div>
                 <h3 class="text-primary">SaltWater Fish</h3>
                 <hr class="border-primary" style="border-top: 5px solid" />
             </div>
             <div class="px-2">
 
-                @foreach ($posts as $post )
+                @foreach ($saltWaterPosts->take(5) as $post )
                 @include('_include.post-card-horizantal')
                 @endforeach
 

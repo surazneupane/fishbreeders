@@ -2,7 +2,7 @@
     <div class="" style="background-color: #120e43">
         <div class="container py-4">
             <div class="row">
-                <div class="col-3">
+                <div class="col-lg-3">
                     <h4 class="text-white border-light border-bottom py-2">
                         About Us
                     </h4>
@@ -10,7 +10,7 @@
                         {!! $siteinfo->about_us !!}
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-lg-3">
                     <h4 class="text-white border-light border-bottom py-2">
                         FreshWater Fish
                     </h4>
@@ -32,7 +32,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-3">
+                <div class="col-lg-3">
                     <h4 class="text-white border-light border-bottom py-2">
                         SaltWater Fish
                     </h4>
@@ -59,7 +59,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-3 d-flex justify-content-center align-items-center flex-column">
+                <div class="col-lg-3 d-flex justify-content-center align-items-center flex-column">
                     <p class="text-white">
                         <small>
                             If your want to give us a feedback then,

@@ -9,9 +9,11 @@ use Illuminate\Http\Response;
 
 class ViewController extends Controller {
     public function index() {
-        $posts        = Post::where('status', '1')->latest()->get();
-        $popularPosts = Post::orderByViews('asc', Period::pastDays(3))->where('status', '1')->get();
-        return view('frontend.index', compact('posts', 'popularPosts'));
+        $posts          = Post::where('status', '1')->latest()->get();
+        $popularPosts   = Post::orderByViews('asc', Period::pastDays(3))->where('status', '1')->get();
+        $saltWaterPosts = Category::where('title', 'saltwater fish')->first()->posts()->where('status', '1')->get();
+        $freshWaterPosts = Category::where('title', 'freshwater fish')->first()->posts()->where('status', '1')->get();
+        return view('frontend.index', compact('posts', 'popularPosts', 'saltWaterPosts', 'freshWaterPosts'));
     }
 
     public function post($slug) {

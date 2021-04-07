@@ -17,19 +17,17 @@
                     <a href="{{route('home')}}" class="nav-link text-capatlize text-white h-100">Home</a>
                 </li>
                 @forelse ($headerCategories as $category)
-                    
-             
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-capatlize text-white h-100">{{$category->title}}</a>
+                    <a href="
+                    {{ route('category', $category->slug) }}
+                    " class="nav-link text-capatlize text-white h-100">{{$category->title}}</a>
                 </li>
                 @empty
-                    
+
                 @endforelse
-                {{-- <li class="nav-item">
-                    <a href="#" class="nav-link text-capatlize text-white h-100">SaltWater Fish</a>
-                </li> --}}
-               
-               
+
+
+
                 <li class="nav-item">
                     <a href="#" class="nav-link text-capatlize text-white h-100">
                         Aquarium
