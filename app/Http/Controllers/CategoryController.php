@@ -72,12 +72,9 @@ class CategoryController extends Controller {
     public function update(UpdateCategoryRequest $request, Category $category) {
         $category->title           = $request->title;
         $category->slug            = $request->slug;
-        $category->code            = $request->code;
         $category->status          = $request->status;
         $category->show_in_header  = $request->show_in_header;
         $category->show_in_footer  = $request->show_in_footer;
-        $category->seo_title       = $request->seo_title;
-        $category->seo_description = $request->seo_description;
         $category->order           = $request->order;
         $category->save();
         return redirect()->back();

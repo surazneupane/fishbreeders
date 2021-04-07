@@ -12,7 +12,7 @@ class Post extends Model implements Viewable {
     use HasFactory;
     use InteractsWithViews;
 
-    protected $fillable = ['title', 'sub_title', 'slug', 'content', 'featured_image', 'excerpt', 'author', 'tag', 'status', 'location', 'views', 'share', 'seo_title', 'seo_description', 'seo_keywords', 'user_id', 'deleted_at'];
+    protected $fillable = ['title', 'sub_title', 'slug', 'content', 'featured_image', 'excerpt', 'author', 'tag', 'status', 'location', 'views', 'share', 'seo_title', 'seo_description', 'seo_keywords', 'user_id', 'deleted_at','refrence'];
 
     public function categories() {
         return $this->belongsToMany(Category::class);
