@@ -10,7 +10,7 @@
         <hr class="border-primary" style="border-top: 5px solid" />
     </div>
     <div class="d-flex justify-content-around flex-wrap" style="flex-wrap: wrap">
-        @foreach ($popularPosts->take(4) as $post)
+        @foreach ($popularPosts->take(6) as $post)
         @include('_include.post-card')
         @endforeach
     </div>
@@ -67,7 +67,7 @@
             <hr class="border-primary" style="border-top: 5px solid" />
         </div>
         <div class="d-flex justify-content-around">
-            @foreach ($posts->take(4) as $post )
+            @foreach ($posts->take(6) as $post )
             @include('_include.post-card')
             @endforeach
         </div>
@@ -82,12 +82,12 @@
             <h3>Recently Asked Questions</h3>
             <hr class="border-primary" style="border-top: 5px solid" />
         </div>
-        <div class="d-flex justify-content-around">
+        <div class="d-lg-flex justify-content-lg-around">
             @foreach($questions as $question)
-            <div class="card w-5 m-1">
-                <div class="card-body" style="width: 30rem;">
+            <div class="card w-5 m-1" style="width: 30rem;">
+                <div class="card-body">
                     <h5 class="card-title">{{ $question->title }}</h5>
-                    <p class="card-text text-truncate">
+                    <p class="card-text text-truncate w-100">
                         {{$question->description}}
                     </p>
 

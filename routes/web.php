@@ -29,12 +29,14 @@ Route::group(['middleware' => ['viewcontrol']], function () {
     Route::get('/', [ViewController::class, 'index'])->name('home');
     Route::get('/posts/{slug}', [ViewController::class, 'post'])->name('post');
     Route::get('/category/{slug}', [ViewController::class, 'category'])->name('category');
-    Route::get('/forums', [ViewController::class, 'forum'])->name('forums');
+
     Route::get('/user/login', [ViewController::class, 'login'])->name('ext-login');
     Route::get('/user/sign-up', [ViewController::class, 'register'])->name('ext-register');
     Route::post('/user/sign-up', [ViewController::class, 'registerUser'])->name('ext-register.user');
     Route::post('/user/login', [ViewController::class, 'loginUser'])->name('ext-login.user');
 
+    Route::get('/forums', [ViewController::class, 'forum'])->name('forums');
+    Route::get('/forums/{question}', [ViewController::class, 'singleForum'])->name('forums.show');
 });
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

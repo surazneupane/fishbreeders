@@ -13,9 +13,12 @@
 
                 <div class="card w-100 border-0">
                     <div class="card-body">
-                        <h5 class="card-title">
-                            {{ $forum->title }}
-                        </h5>
+                        <a href="{{ route('forums.show', $forum->id) }}"
+                            class=" text-decoration-none text-dark card-link  ">
+                            <h5 class="card-title">
+                                {{ $forum->title }}
+                            </h5>
+                        </a>
                         <p class="card-text text-truncate text-muted">
                             <small>
                                 {{ $forum->description }}
@@ -47,42 +50,7 @@
                 </div>
                 @endforeach
             </div>
-            <div class="col">
-                <div>
-                    <a href="#" class="btn btn-success w-100 mb-2">
-                        Create Question
-                    </a>
-                </div>
-                <div>
-                    <form method="get" action={{ route('forums') }}>
-                        <input value="{{ old('query') }}" type="text" name="query" class="m-0 form-control"
-                            placeholder="Search here..." />
-                        <div class="d-flex justify-content-end py-1">
-                            <button class="btn btn-primary m-0">
-                                Search
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                <div>
-                    <h5>Tags</h5>
-                    <ul class="list-unstyled px-2">
-                        <li>
-                            <a href="{{ route('forums') }}" class="btn btn-transparent text-capitalize w-100 bg-white">
-                                All
-                            </a>
-                        </li>
-                        @foreach ($categories as $category)
-                        <li>
-                            <a href="{{ route('forums',['name'=>$category->slug]) }}"
-                                class="btn btn-transparent text-capitalize w-100">
-                                {{ $category->title }}
-                            </a>
-                        </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
+            @include('_include.forum-sidebar')
         </div>
     </div>
 </section>

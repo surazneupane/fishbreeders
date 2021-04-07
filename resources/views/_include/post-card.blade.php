@@ -1,7 +1,7 @@
-<div class="card    p-0 px-1 py-2 mx-2 " style=" width: 18rem">
+<div class="card    p-0 px-1 py-2 mx-2 " style=" width: 24rem">
     <a href="{{ route('post', $post->slug) }}" class=" text-decoration-none text-white card-link">
         <img src="{{ $post->featured_image }}" class="card-img-top img-fluid " alt="..."
-            style="height: 160px;object-fit:cover; ">
+            style="height: 200px;object-fit:cover; ">
     </a>
     <div class="card-body p-1 p-md-2 text-center py-4" style="position: relative;">
         <div style="
