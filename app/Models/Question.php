@@ -35,4 +35,9 @@ class Question extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function votes()
+    {
+        return $this->morphMany(Vote::class,'vote');
+    }
 }
