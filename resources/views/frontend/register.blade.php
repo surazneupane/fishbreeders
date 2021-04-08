@@ -9,21 +9,21 @@
         <form action="{{ route('ext-register.user') }}" method="post">
             @csrf
             <div class="form-group my-3">
-                <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
+                <input value="{{old('name')}}" type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
                     placeholder="Full Name">
             </div>
 
             <div class="form-group my-3">
-                <input type="text" name="email" id="email" class="form-control @error('email') is-invalid @enderror"
+                <input value="{{old('email')}}" type="text" name="email" id="email" class="form-control @error('email') is-invalid @enderror"
                     placeholder="Email">
             </div>
 
             <div class="form-group my-3">
-                <input type="password" name="password" id="password"
+                <input value="{{old('password')}}" type="password" name="password" id="password"
                     class="form-control @error('password') is-invalid @enderror" placeholder="Password">
             </div>
             <div class="form-group my-3">
-                <input type="password" name="password-confirmation" id="password-confirmation"
+                <input  type="password" name="password-confirmation" id="password-confirmation"
                     class="form-control @error('password-confirmation') is-invalid @enderror"
                     placeholder="Confirm Password">
             </div>

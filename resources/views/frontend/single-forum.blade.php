@@ -50,11 +50,26 @@
                         <h5>
                             Give Your Answer
                         </h5>
-                        <form action="#">
+                        <form action="{{route('user.forum.giveans',$question->id)}}" method="POST">
+                            @csrf
+                            @if($errors->has('answer'))
+                            <label for="error"  class="alert alert-danger">{{$errors->first('answer')}}*</label>
+                            
+                            @endif
+
+                            @if(Session::has('error'))
+                            <label for="error"  class="alert alert-danger">{{Session::get('error')}}*</label>
+
+                            @endif
+                            
+                            @if(Session::has('success'))
+                            <label for="error"  class="alert alert-success">{{Session::get('success')}}*</label>
+
+                            @endif
                             <div class="form-group">
+                               
                                 <label for="answer">Answer</label>
-                                <textarea class="form-control" rows="5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit, amet.
-                                                                                        </textarea>
+                                <textarea name="answer" placeholder="Your Answer Here" class="form-control" rows="5"></textarea>
                             </div>
                             <div class="d-flex justify-content-end">
                                 <button class="btn btn-success my-2">Submit</button>
@@ -70,33 +85,24 @@
                         @endif
                     </div>
                     <h4 class="px-2">Answers</h4>
-                    @foreach(range(1,3) as $i)
-
+                    @foreach($answers as $answer)
                     <div class="card my-3">
                         <div class="card-header d-flex align-items-center justify-content-between">
                             <div>
-                                <img src="/static/images/person.png" alt="" width="40" height="40"
+                                <img src="{{$answer->user->profile_photo_url}}" alt="" width="40" height="40"
                                     class="img-fluid rounded-circle">
                                 <span class="px-2">
-                                    John Smith
+                                   {{$answer->user->name}}
                                 </span>
                             </div>
                             <div class="text-muted">
                                 {{-- answer created time --}}
-                                {{ $question->created_at }}
+                                {{ $answer->created_at->diffForHumans() }}
                             </div>
                         </div>
                         <div class="card-body">
                             <p class="card-text">
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit odio ipsa assumenda quasi
-                                rerum, temporibus maxime dignissimos voluptas asperiores, labore, placeat nihil cum.
-                                Ducimus dignissimos dolor neque inventore quae pariatur.
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit odio ipsa assumenda quasi
-                                rerum, temporibus maxime dignissimos voluptas asperiores, labore, placeat nihil cum.
-                                Ducimus dignissimos dolor neque inventore quae pariatur.
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit odio ipsa assumenda quasi
-                                rerum, temporibus maxime dignissimos voluptas asperiores, labore, placeat nihil cum.
-                                Ducimus dignissimos dolor neque inventore quae pariatur.
+                               {{$answer->description}}
                             </p>
                         </div>
                         <div class="card-footer text-muted">

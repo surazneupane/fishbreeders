@@ -38,4 +38,10 @@ class Question extends Model implements Viewable {
     {
         return $this->morphMany(Vote::class,'vote');
     }
+
+    public function notifications()
+    {
+        return $this->morphMany(Notifiaction::class,'notifiable');
+
+    }
 }

@@ -36,7 +36,9 @@ Route::group(['middleware' => ['viewcontrol']], function () {
     Route::post('/user/login', [ViewController::class, 'loginUser'])->name('ext-login.user');
 
     Route::get('/forums', [ViewController::class, 'forum'])->name('forums');
-    Route::get('/forums/{question}', [ViewController::class, 'singleForum'])->name('forums.show');
+    Route::get('/forums/{question}/answers', [ViewController::class, 'singleForum'])->name('forums.show');
+    Route::post('/forums/ask/question',[ViewController::class,'askQuestion'])->name('user.forum.ask');
+    Route::post('/forums/give/{question}/answer',[ViewController::class,'giveAnswer'])->name('user.forum.giveans');
 });
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

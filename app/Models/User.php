@@ -65,4 +65,11 @@ class User extends Authenticatable {
     public function roles() {
         return $this->belongsToMany(Role::class, "user_role");
     }
+
+    public function userNotification()
+    {
+        return $this->hasMany(Notifiaction::class,'notify_to')->orderBy('created_at','DESC')->take(5)->get();
+    }
+
+  
 }

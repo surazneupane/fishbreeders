@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreQuestionRequest;
 use App\Http\Requests\StoreUserExternalRequest;
+use App\Models\Answer;
 use App\Models\Category;
+use App\Models\Notifiaction;
 use App\Models\Post;
 use App\Models\Question;
 use App\Models\User;
 use CyrildeWit\EloquentViewable\Support\Period;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class ViewController extends Controller {
@@ -61,7 +66,8 @@ class ViewController extends Controller {
     }
 
     public function forum(Request $request) {
-
+        if((!empty($request->all())))
+        {
         if (isset($request->name)) {
 
             $forums = Category::where('slug', $request->name)->first()->questions;
@@ -69,8 +75,10 @@ class ViewController extends Controller {
         } else if ($request->query) {
             $forums = Question::where('title', 'like', '%' . $request['query'] . '%')->get();
 
-        } else {
-            $forums = Question::all();
+        }
+     } else {
+   
+            $forums = Question::orderBy('created_at','DESC')->get();
         }
 
         return view('frontend.forums', compact('forums'));
@@ -110,6 +118,67 @@ class ViewController extends Controller {
     public function singleForum(Question $question) {
         views($question)->record();
         $views = views($question)->count();
-        return view('frontend.single-forum', compact('question', 'views'));
+        $answers = $question->answers()->orderBy('created_at','DESC')->get();
+        return view('frontend.single-forum', compact('question', 'views','answers'));
+    }
+
+
+    public function askQuestion(StoreQuestionRequest $request)
+    {
+        try{
+            $data = $request->except('category','_token');
+           $data['user_id'] = Auth::id();
+           $question = Question::create($data);
+           $tags = array();
+            foreach($request->category as $category)
+            {
+                $tags[]=$category;
+            }
+            $question->categories()->sync($tags);
+            return redirect()->route('forums')->with('success','Question Posted Sucessfully');
+        }
+        catch(Exception $e)
+        {
+            return redirect(route('forums'))->with('error',$e->getMessage());
+    
+        }
+    }
+
+    public function giveAnswer(Request $request,$questionId)
+    {
+        $this->validate($request,[
+            'answer' =>'required',
+
+        ]);
+        try{
+            DB::beginTransaction();
+          $question = Question::findOrFail($questionId);
+          
+          $answer = new Answer();
+          $answer -> user_id = Auth::id();
+          $answer -> description = $request->answer;
+
+          $question ->answers()->save($answer);
+
+          if($question->user_id != Auth::id()){
+          $notification = new Notifiaction();
+
+          $notification->notify_to = $question -> user_id ;
+          $notification->notify_from = Auth::id();
+          $notification -> message = "Answered On Yor Question";
+          $question->notifications()->save($notification);
+          }
+          
+          DB::commit();
+          return redirect()->back()->with('success','Answer Posted Sucessfully');
+
+        }
+        catch(Exception $e)
+        {
+            dd($e);
+            DB::rollBack();
+          return redirect()->back()->with('error',$e->getMessage());
+
+        }
     }
 }

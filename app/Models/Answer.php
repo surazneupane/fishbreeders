@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Answer extends Model
 {
     use HasFactory;
-
+    protected $fillable = ['description','user_id'];
     public function question()
     {
         return $this->belongsTo(Question::class);
@@ -17,5 +17,10 @@ class Answer extends Model
     public function votes()
     {
         return $this->morphMany(Vote::class,'vote');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
