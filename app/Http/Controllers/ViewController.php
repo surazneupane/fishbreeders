@@ -66,19 +66,18 @@ class ViewController extends Controller {
     }
 
     public function forum(Request $request) {
-        if((!empty($request->all())))
-        {
-        if (isset($request->name)) {
+        if ((!empty($request->all()))) {
+            if (isset($request->name)) {
 
-            $forums = Category::where('slug', $request->name)->first()->questions;
+                $forums = Category::where('slug', $request->name)->first()->questions;
 
-        } else if ($request->query) {
-            $forums = Question::where('title', 'like', '%' . $request['query'] . '%')->get();
+            } else if ($request->query) {
+                $forums = Question::where('title', 'like', '%' . $request['query'] . '%')->get();
 
-        }
-     } else {
-   
-            $forums = Question::orderBy('created_at','DESC')->get();
+            }
+        } else {
+
+            $forums = Question::orderBy('created_at', 'DESC')->get();
         }
 
         return view('frontend.forums', compact('forums'));
@@ -90,7 +89,7 @@ class ViewController extends Controller {
         }
         $data             = $request->all();
         $data['password'] = Hash::make($data['password']);
-        $data['status']  = 1;
+        $data['status']   = 1;
         $user             = User::create($data);
 
         $user->roles()->attach(3);
@@ -108,7 +107,7 @@ class ViewController extends Controller {
         ]);
         $user = User::where('email', $request->email)->first();
         if ($user) {
-            if ($user->roles->contains(3) && Auth::attempt(['email' => $request->email, 'password' => $request->password,'status' => 1])) {
+            if ($user->roles->contains(3) && Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1])) {
                 return redirect()->route('home');
             }
         }
@@ -118,68 +117,66 @@ class ViewController extends Controller {
 
     public function singleForum(Question $question) {
         views($question)->record();
-        $views = views($question)->count();
-        $answers = $question->answers()->orderBy('created_at','DESC')->get();
-        return view('frontend.single-forum', compact('question', 'views','answers'));
+        $views   = views($question)->count();
+        $answers = $question->answers()->orderBy('created_at', 'DESC')->get();
+        return view('frontend.single-forum', compact('question', 'views', 'answers'));
     }
 
-
-    public function askQuestion(StoreQuestionRequest $request)
-    {
-        try{
-            $data = $request->except('category','_token');
-           $data['user_id'] = Auth::id();
-           $question = Question::create($data);
-           $tags = array();
-            foreach($request->category as $category)
-            {
-                $tags[]=$category;
+    public function askQuestion(StoreQuestionRequest $request) {
+        try {
+            $data            = $request->except('category', '_token');
+            $data['user_id'] = Auth::id();
+            $question        = Question::create($data);
+            $tags            = array();
+            foreach ($request->category as $category) {
+                $tags[] = $category;
             }
             $question->categories()->sync($tags);
-            return redirect()->route('forums')->with('success','Question Posted Sucessfully');
-        }
-        catch(Exception $e)
-        {
-            return redirect(route('forums'))->with('error',$e->getMessage());
-    
+            return redirect()->route('forums')->with('success', 'Question Posted Sucessfully');
+        } catch (Exception $e) {
+            return redirect(route('forums'))->with('error', $e->getMessage());
+
         }
     }
 
-    public function giveAnswer(Request $request,$questionId)
-    {
-        $this->validate($request,[
-            'answer' =>'required',
+    public function giveAnswer(Request $request, $questionId) {
+        $this->validate($request, [
+            'answer' => 'required',
 
         ]);
-        try{
+        try {
             DB::beginTransaction();
-          $question = Question::findOrFail($questionId);
-          
-          $answer = new Answer();
-          $answer -> user_id = Auth::id();
-          $answer -> description = $request->answer;
+            $question = Question::findOrFail($questionId);
 
-          $question ->answers()->save($answer);
+            $answer              = new Answer();
+            $answer->user_id     = Auth::id();
+            $answer->description = $request->answer;
 
-          if($question->user_id != Auth::id()){
-          $notification = new Notifiaction();
+            $question->answers()->save($answer);
 
-          $notification->notify_to = $question -> user_id ;
-          $notification->notify_from = Auth::id();
-          $notification -> message = "Answered On Yor Question";
-          $question->notifications()->save($notification);
-          }
-          
-          DB::commit();
-          return redirect()->back()->with('success','Answer Posted Sucessfully');
+            if ($question->user_id != Auth::id()) {
+                $notification = new Notifiaction();
 
-        }
-        catch(Exception $e)
-        {
+                $notification->notify_to   = $question->user_id;
+                $notification->notify_from = Auth::id();
+                $notification->message     = "Answered On Yor Question";
+                $question->notifications()->save($notification);
+            }
+
+            DB::commit();
+            return redirect()->back()->with('success', 'Answer Posted Sucessfully');
+
+        } catch (Exception $e) {
             dd($e);
             DB::rollBack();
-          return redirect()->back()->with('error',$e->getMessage());
+            return redirect()->back()->with('error', $e->getMessage());
 
         }
     }
+
+    public function profile() {
+        $user = Auth::user();
+        return view('frontend.profile', compact('user'));
+    }
+
 }
