@@ -91,7 +91,7 @@
                         {{$question->description}}
                     </p>
 
-                    <a href="#" class="btn btn-primary">View Answers</a>
+                    <a href="{{route('forums.show',$question->id)}}" class="btn btn-primary">View Answers</a>
                 </div>
             </div>
             @endforeach
