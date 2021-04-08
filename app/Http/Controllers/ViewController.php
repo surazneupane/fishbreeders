@@ -174,9 +174,21 @@ class ViewController extends Controller {
         }
     }
 
+
     public function profile() {
         $user = Auth::user();
         return view('frontend.profile', compact('user'));
+    }
+
+
+    public function deleteANswer($id)
+    {
+       $answer=Answer::findOrFail($id);
+        $associatedNotification = $answer->question()->first()->notifications()->first();
+        $associatedNotification ->delete();
+      
+        $answer->delete();
+        return redirect()->back()->with('success','Answer Deleted Sucessfully');
     }
 
 }
