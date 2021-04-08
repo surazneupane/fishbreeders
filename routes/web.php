@@ -44,7 +44,12 @@ Route::group(['middleware' => ['viewcontrol']], function () {
     Route::post('/forums/ask/question', [ViewController::class, 'askQuestion'])->name('user.forum.ask');
     Route::post('/forums/give/{question}/answer', [ViewController::class, 'giveAnswer'])->name('user.forum.giveans');
 
+    Route::get('/questions/view',[ViewController::class,'myQuestions'])->name('ext-user.myquest');
+    Route::post('/question/{id}/delete',[ViewController::class,'deleteQuestion'])->name('ext-user.myquesdel');
+    Route::post('/question/{id}/edit',[ViewController::class,'editQuestion'])->name('ext-user.myquesedit');
+
     Route::get('/profile', [ViewController::class, 'profile'])->name('ext-user.profile');
+    Route::post('/profile/{id}/update',[ViewController::class,'updateProfile'])->name('ext-user.profileupdate');
 
     Route::post('/forums/ask/question',[ViewController::class,'askQuestion'])->name('user.forum.ask');
     Route::post('/forums/give/{question}/answer',[ViewController::class,'giveAnswer'])->name('user.forum.giveans');

@@ -87,7 +87,7 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                             <li>
-                                <a href="#" class="dropdown-item">My Questions</a>
+                                <a href="{{route('ext-user.myquest')}}" class="dropdown-item">My Questions</a>
                             </li>
                             <li>
                                 <a href="{{ route('ext-user.profile') }}" class="dropdown-item">Profile Setting</a>

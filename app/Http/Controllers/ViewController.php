@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreQuestionRequest;
 use App\Http\Requests\StoreUserExternalRequest;
+use App\Http\Requests\UpdateExternalUserRequest;
 use App\Models\Answer;
 use App\Models\Category;
 use App\Models\Notifiaction;
@@ -116,6 +117,7 @@ class ViewController extends Controller {
     }
 
     public function singleForum(Question $question) {
+        
         views($question)->record();
         $views   = views($question)->count();
         $answers = $question->answers()->orderBy('created_at', 'DESC')->get();
@@ -123,6 +125,9 @@ class ViewController extends Controller {
     }
 
     public function askQuestion(StoreQuestionRequest $request) {
+        if (!Auth::user()) {
+            return redirect()->route('home');
+        }
         try {
             $data            = $request->except('category', '_token');
             $data['user_id'] = Auth::id();
@@ -140,6 +145,9 @@ class ViewController extends Controller {
     }
 
     public function giveAnswer(Request $request, $questionId) {
+        if (!Auth::user()) {
+            return redirect()->route('home');
+        }
         $this->validate($request, [
             'answer' => 'required',
 
@@ -176,13 +184,38 @@ class ViewController extends Controller {
 
 
     public function profile() {
+        if (!Auth::user()) {
+            return redirect()->route('home');
+        }
         $user = Auth::user();
         return view('frontend.profile', compact('user'));
     }
 
+    public function updateProfile(UpdateExternalUserRequest $request,$id)
+    {
+        if (!Auth::user()) {
+            return redirect()->route('home');
+        }
+        $user = User::findOrFail($id);
+        $user-> name = $request->name ;
+        $user ->password = Hash::make($request->password);
+
+        if ($request->profile_photo) {
+            $image_name             = time() . "-" . $request->profile_photo->getClientOriginalName();
+            $images                 = $request->profile_photo->storeAs('images', $image_name, 'public');
+            $user->profile_photo_url = "/storage/" . $images;
+        }
+
+        $user->update();
+        return redirect()->back()->with('message','Updated Sucessfully');
+        
+    }
 
     public function deleteANswer($id)
     {
+        if (!Auth::user()) {
+            return redirect()->route('home');
+        }
        $answer=Answer::findOrFail($id);
         $associatedNotification = $answer->question()->first()->notifications()->first();
         $associatedNotification ->delete();
@@ -191,4 +224,41 @@ class ViewController extends Controller {
         return redirect()->back()->with('success','Answer Deleted Sucessfully');
     }
 
-}
+        public function myQuestions()
+        {
+            if (!Auth::user()) {
+                return redirect()->route('home');
+            }
+            $questions = Auth::user()->questions()->get();
+            return view('frontend.myquestions',compact('questions'));
+        }
+
+        public function deleteQuestion($id)
+        {
+            if (!Auth::user()) {
+                return redirect()->route('home');
+            }
+           $question = Question::findOrFail($id);
+           $question->answers()->delete();
+           $question->delete();
+           return redirect()->back()->with('success','Question Deleted Sucessfully');
+        }
+
+        public function editQuestion(Request $request,$id)
+        {
+            if (!Auth::user()) {
+                return redirect()->route('home');
+            }
+            $question = Question::findOrFail($id);
+            $question -> title = $request->title;
+            $question->description = $request->description;
+            $tags = [];
+            foreach ($request->category as $category) {
+                $tags[] = $category;
+            }
+            $question->categories()->sync($tags);
+            $question->update();
+            return redirect()->back()->with('success','Updated Sucessfully');
+
+        }
+    }

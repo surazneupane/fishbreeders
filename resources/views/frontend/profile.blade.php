@@ -18,9 +18,8 @@
                         <img src="{{ $user->profile_photo_url }}" alt="" width="70" class="img-fluid rounded-circle">
                     </div>
                 </div>
-                <form action="#" method="post" class="form mb-5">
+                <form action="{{route('ext-user.profileupdate',$user->id)}}" method="post" class="form mb-5">
                     @csrf
-                    @method('put')
                     <div class=" form-group py-2">
                         <label for="profile_photo">
                             Profile Photo
@@ -31,20 +30,20 @@
                         <label for="name">
                             Name
                         </label>
-                        <input type="text" name="name" id="name" class="form-control" value="{{ $user->name }}">
+                        <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ $user->name }}">
                     </div>
                     <div class="form-group py-2">
                         <label for="password">
                             Password
                         </label>
-                        <input type="password" name="password" id="password" class="form-control">
+                        <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror">
                     </div>
                     <div class="form-group py-2">
                         <label for="password-confirmation">
                             Confirm Password
                         </label>
                         <input type="password" name="password-confirmation" id="password-confirmation"
-                            class="form-control">
+                            class="form-control @error('password-confirmation') is-invalid @enderror">
                     </div>
                     <div class="py-2 d-flex justify-content-end align-items-center">
                         <button type="submit" class="btn btn-success">Update</button>
