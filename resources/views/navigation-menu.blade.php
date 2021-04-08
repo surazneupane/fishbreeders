@@ -25,7 +25,6 @@
                     <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
                         {{ __('Users') }}
                     </x-jet-nav-link>
-                    @endcan
                     <x-jet-nav-link href="{{ route('siteinfo.index') }}" :active="request()->routeIs('siteinfo.*')">
                         {{ __('Site Info') }}
                     </x-jet-nav-link>
@@ -33,9 +32,11 @@
                         {{ __('Forums') }}
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ route('admin.showfeedback') }}" :active="request()->routeIs('admin.showfeedback')">
+                    <x-jet-nav-link href="{{ route('admin.showfeedback') }}"
+                        :active="request()->routeIs('admin.showfeedback')">
                         {{ __('Feedbacks') }}
                     </x-jet-nav-link>
+                    @endcan
                 </div>
             </div>
 

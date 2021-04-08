@@ -17,7 +17,7 @@
                             {{ $question->created_at->diffForHumans()}}
                         </small>
                         <small style=" border-left: 2px solid #999; border-right: 2px solid #999;" class="px-2 mx-2">
-                            Asked by {{ $question->user->name}}
+                            Asked by {{ $question->user->name ?? "unkown"}}
                         </small>
                         <small>
                             Viewed {{ $views }}
@@ -53,23 +53,24 @@
                         <form action="{{route('user.forum.giveans',$question->id)}}" method="POST">
                             @csrf
                             @if($errors->has('answer'))
-                            <label for="error"  class="alert alert-danger">{{$errors->first('answer')}}*</label>
-                            
+                            <label for="error" class="alert alert-danger">{{$errors->first('answer')}}*</label>
+
                             @endif
 
                             @if(Session::has('error'))
-                            <label for="error"  class="alert alert-danger">{{Session::get('error')}}*</label>
+                            <label for="error" class="alert alert-danger">{{Session::get('error')}}*</label>
 
                             @endif
-                            
+
                             @if(Session::has('success'))
-                            <label for="error"  class="alert alert-success">{{Session::get('success')}}*</label>
+                            <label for="error" class="alert alert-success">{{Session::get('success')}}*</label>
 
                             @endif
                             <div class="form-group">
-                               
+
                                 <label for="answer">Answer</label>
-                                <textarea name="answer" placeholder="Your Answer Here" class="form-control" rows="5"></textarea>
+                                <textarea name="answer" placeholder="Your Answer Here" class="form-control"
+                                    rows="5"></textarea>
                             </div>
                             <div class="d-flex justify-content-end">
                                 <button class="btn btn-success my-2">Submit</button>
@@ -89,10 +90,12 @@
                     <div class="card my-3">
                         <div class="card-header d-flex align-items-center justify-content-between">
                             <div>
+                                @isset($answer->user->name)
                                 <img src="{{$answer->user->profile_photo_url}}" alt="" width="40" height="40"
                                     class="img-fluid rounded-circle">
+                                @endisset
                                 <span class="px-2">
-                                   {{$answer->user->name}}
+                                    {{$answer->user->name ?? "unknown"}}
                                 </span>
                             </div>
                             <div class="text-muted">
@@ -102,7 +105,7 @@
                         </div>
                         <div class="card-body">
                             <p class="card-text">
-                               {{$answer->description}}
+                                {{$answer->description}}
                             </p>
                         </div>
                         <div class="card-footer text-muted">
@@ -116,14 +119,15 @@
                                     <small class="text-primary">3</small>
                                 </button>
                                 @if(Auth::id() == $answer->user_id || Auth::id() == $question->user_id)
-                                <form onsubmit="return deleteAnswer();" action="{{route('user.forum.deleteans',$answer->id)}}" method="POST">
+                                <form onsubmit="return deleteAnswer();"
+                                    action="{{route('user.forum.deleteans',$answer->id)}}" method="POST">
                                     @csrf
-                                <button class="btn text-primary shadow-none" type="submit">Delete 
-                            </button>
-                        </form>
+                                    <button class="btn text-primary shadow-none" type="submit">Delete
+                                    </button>
+                                </form>
 
-                        @endif
-                               
+                                @endif
+
 
                             </div>
                         </div>
@@ -138,12 +142,12 @@
 </section>
 
 <script type="text/javascript">
- function   deleteAnswer()
+    function   deleteAnswer()
     {
       return  confirm('Are You Sure?');
     }
     
-    </script>
+</script>
 
 
 @endsection

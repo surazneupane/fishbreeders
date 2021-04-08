@@ -26,11 +26,13 @@
                         </p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <img src="{{ $forum->user->profile_photo_url }}" alt="" class="rounded-circle"
+                                @isset($forum->user->name)
+                            <img src="{{ $forum->user->profile_photo_url }}" alt="" class="rounded-circle"
                                     width="35" />
                                 <small class="text-capitalize">
                                     {{ $forum->user->name }}
                                 </small>
+                                @endisset
                                 <small class="text-muted">
                                     {{ $forum->created_at->diffForHumans() }}
                                 </small>
@@ -49,6 +51,11 @@
                     </div>
                 </div>
                 @endforeach
+
+                <div class="my-4">
+                    {{ $forums->links('pagination::bootstrap-4') }}
+                </div>
+
             </div>
             @include('_include.forum-sidebar')
         </div>

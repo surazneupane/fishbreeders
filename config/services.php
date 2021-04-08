@@ -36,7 +36,7 @@ return [
         'redirect'      => env('APP_URL') . '/oauth/facebook/callback',
     ],
 
-    'gmail'    => [
+    'google'   => [
         'client_id'     => env('GMAIL_CLIENT_ID'),
         'client_secret' => env('GMAIL_CLIENT_SECRET'),
         'redirect'      => env('APP_URL') . '/oauth/google/callback',

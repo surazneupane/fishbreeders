@@ -80,10 +80,10 @@
                                                 class="block text-sm font-medium text-gray-700">{{ _('Status') }}</label>
                                             <select id="status" name="status" autocomplete="status"
                                                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                                <option value="0" {{ $user->status == "0" ? 'selected': '' }}>NO
+                                                <option value="0" {{ $user->status == "0" ? 'selected': '' }}>In-Active
                                                 </option>
                                                 <option value="1" {{ $user->status == "1" ? 'selected': '' }}>
-                                                    YES
+                                                    Active
                                                 </option>
                                             </select>
                                             @error('status')

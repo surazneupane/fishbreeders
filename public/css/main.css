@@ -10920,3 +10920,7 @@ textarea.form-control-lg {
 .card:hover .img-card-link::after {
   opacity: 1;
 }
+
+.notification::-webkit-scrollbar {
+  display: none;
+}

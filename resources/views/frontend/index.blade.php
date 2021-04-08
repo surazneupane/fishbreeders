@@ -24,7 +24,7 @@
                 <hr class="border-primary" style="border-top: 5px solid" />
             </div>
             <div class="px-2">
-                @foreach ($breedingPosts->take(5) as $post )
+                @foreach ($breedingPosts->take(4) as $post )
                 @include('_include.post-card-horizantal')
                 @endforeach
             </div>
@@ -36,7 +36,7 @@
             </div>
             <div class="px-2">
 
-                @foreach ($freshWaterPosts->take(5) as $post )
+                @foreach ($freshWaterPosts->take(4) as $post )
                 @include('_include.post-card-horizantal')
                 @endforeach
 
@@ -50,7 +50,7 @@
             </div>
             <div class="px-2">
 
-                @foreach ($saltWaterPosts->take(5) as $post )
+                @foreach ($saltWaterPosts->take(4) as $post )
                 @include('_include.post-card-horizantal')
                 @endforeach
 

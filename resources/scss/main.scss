@@ -126,3 +126,8 @@ $danger: #ff4136;
         }
     }
 }
+.notification {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}

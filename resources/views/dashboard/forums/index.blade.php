@@ -55,16 +55,15 @@
                                             {{ $question->title }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-gray-500">
-                                            {{ $question->user()->first()->name }}
+                                            {{ $question->user->name ?? "" }}
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {{ $question->answers->count() }}
-                                          
+
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {{ $question->created_at }}
-                                       
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium ">
                                             <a href="{{ route('questions.show', $question->id) }}"

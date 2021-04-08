@@ -69,16 +69,14 @@ class ViewController extends Controller {
     public function forum(Request $request) {
         if ((!empty($request->all()))) {
             if (isset($request->name)) {
-
-                $forums = Category::where('slug', $request->name)->first()->questions;
-
+                $forums = Category::where('slug', $request->name)->first()->questions()->paginate(10);
             } else if ($request->query) {
-                $forums = Question::where('title', 'like', '%' . $request['query'] . '%')->get();
+                $forums = Question::where('title', 'like', '%' . $request['query'] . '%')->paginate(10);
 
             }
         } else {
 
-            $forums = Question::orderBy('created_at', 'DESC')->get();
+            $forums = Question::latest()->paginate(10);
         }
 
         return view('frontend.forums', compact('forums'));
