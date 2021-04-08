@@ -115,6 +115,15 @@
                                         </svg></span>
                                     <small class="text-primary">3</small>
                                 </button>
+                                @if(Auth::id() == $answer->user_id || Auth::id() == $question->user_id)
+                                <form onsubmit="return deleteAnswer();" action="{{route('user.forum.deleteans',$answer->id)}}" method="POST">
+                                    @csrf
+                                <button class="btn text-primary shadow-none" type="submit">Delete 
+                            </button>
+                        </form>
+
+                        @endif
+                               
 
                             </div>
                         </div>
@@ -127,6 +136,14 @@
         </div>
     </div>
 </section>
+
+<script type="text/javascript">
+ function   deleteAnswer()
+    {
+      return  confirm('Are You Sure?');
+    }
+    
+    </script>
 
 
 @endsection

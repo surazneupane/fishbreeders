@@ -182,4 +182,15 @@ class ViewController extends Controller {
 
         }
     }
+
+
+    public function deleteANswer($id)
+    {
+       $answer=Answer::findOrFail($id);
+        $associatedNotification = $answer->question()->first()->notifications()->first();
+        $associatedNotification ->delete();
+      
+        $answer->delete();
+        return redirect()->back()->with('success','Answer Deleted Sucessfully');
+    }
 }

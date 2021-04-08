@@ -32,6 +32,10 @@
                     <x-jet-nav-link href="{{ route('forums.index') }}" :active="request()->routeIs('forums.*')">
                         {{ __('Forums') }}
                     </x-jet-nav-link>
+
+                    <x-jet-nav-link href="{{ route('admin.showfeedback') }}" :active="request()->routeIs('admin.showfeedback')">
+                        {{ __('Feedbacks') }}
+                    </x-jet-nav-link>
                 </div>
             </div>
 
