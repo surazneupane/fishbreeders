@@ -71,5 +71,9 @@ class User extends Authenticatable {
         return $this->hasMany(Notifiaction::class,'notify_to')->orderBy('created_at','DESC')->take(5)->get();
     }
 
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
   
 }
