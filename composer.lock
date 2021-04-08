@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1cc6a8197eea0ab2188ad328e027cca5",
+    "content-hash": "651d15268857cac4085e8e0778270732",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2032,16 +2032,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v2.4.0",
+            "version": "v2.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "8055af7730938cd607616fde122825ed960a9b71"
+                "reference": "2495387841a3eb03ac62b2c984ccd2574303285b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/8055af7730938cd607616fde122825ed960a9b71",
-                "reference": "8055af7730938cd607616fde122825ed960a9b71",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/2495387841a3eb03ac62b2c984ccd2574303285b",
+                "reference": "2495387841a3eb03ac62b2c984ccd2574303285b",
                 "shasum": ""
             },
             "require": {
@@ -2092,7 +2092,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v2.4.0"
+                "source": "https://github.com/livewire/livewire/tree/v2.4.2"
             },
             "funding": [
                 {
@@ -2100,7 +2100,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-02-23T17:44:50+00:00"
+            "time": "2021-04-04T15:46:50+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
