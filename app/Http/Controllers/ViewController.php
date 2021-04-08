@@ -90,6 +90,7 @@ class ViewController extends Controller {
         }
         $data             = $request->all();
         $data['password'] = Hash::make($data['password']);
+        $data['status']  = 1;
         $user             = User::create($data);
 
         $user->roles()->attach(3);
@@ -107,7 +108,7 @@ class ViewController extends Controller {
         ]);
         $user = User::where('email', $request->email)->first();
         if ($user) {
-            if ($user->roles->contains(3) && Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            if ($user->roles->contains(3) && Auth::attempt(['email' => $request->email, 'password' => $request->password,'status' => 1])) {
                 return redirect()->route('home');
             }
         }

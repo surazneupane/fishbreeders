@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller {
     /**
@@ -88,6 +89,7 @@ class UserController extends Controller {
         } else {
             $user->fill($request->except(['_token', 'role']));
         }
+        $user->password = Hash::make($request->password);
         $user->save();
         $user->roles()->detach();
         $user->roles()->attach($request->role);
