@@ -98,13 +98,18 @@ class ViewController extends Controller {
             'password' => 'required',
         ]);
         $user = User::where('email', $request->email)->first();
-        if($user)
-        {
-        if ($user->roles->contains(3) && Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->route('home');
+        if ($user) {
+            if ($user->roles->contains(3) && Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+                return redirect()->route('home');
+            }
         }
-    }
 
         return redirect()->back()->with('error', 'Invalid Email Or Password');
+    }
+
+    public function singleForum(Question $question) {
+        views($question)->record();
+        $views = views($question)->count();
+        return view('frontend.single-forum', compact('question', 'views'));
     }
 }

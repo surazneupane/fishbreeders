@@ -62,15 +62,15 @@
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="content"
                                         class="block text-sm font-medium text-gray-700">{{ _('Question Description*') }}
-                                        </label>
+                                    </label>
                                     <textarea type="text" name="description" id="description" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
                                                 @error('description')border-red-400 @enderror
                                                 " rows=10>{{ old('description') }}</textarea>
-                                                @error('description')
-                                        <span class="text-sm text-red-500">
-                                            {{ $message }}
-                                        </span>
-                                        @enderror
+                                    @error('description')
+                                    <span class="text-sm text-red-500">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
 
                                 </div>
 
