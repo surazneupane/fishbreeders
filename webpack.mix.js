@@ -25,4 +25,4 @@ if (mix.inProduction()) {
     mix.version();
 }
 
-mix.browserSync("laradash.test");
+// mix.browserSync("laradash.test");

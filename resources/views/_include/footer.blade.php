@@ -1,7 +1,7 @@
 <section>
     <div class="" style="background-color: #120e43">
         <div class="container py-4">
-            <div class="row">
+            <div class="row d-lg-flex justify-content-between">
                 <div class="col-lg-4">
                     <h4 class="text-white border-light border-bottom py-2">
                         About Us
@@ -47,7 +47,8 @@
                             If your want to give us a feedback then,
                         </small>
                     </p>
-                    <button class="btn btn-light btn-lg rounded-pill px-5 py-2" data-bs-toggle="modal" data-bs-target="#feedbackmodal">
+                    <button class="btn btn-light btn-lg rounded-pill px-5 py-2" data-bs-toggle="modal"
+                        data-bs-target="#feedbackmodal">
                         Click here &rarr;
                     </button>
                 </div>

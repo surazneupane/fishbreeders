@@ -66,7 +66,7 @@
             <h3>Recent Articles</h3>
             <hr class="border-primary" style="border-top: 5px solid" />
         </div>
-        <div class="d-flex justify-content-around">
+        <div class="d-flex justify-content-around flex-wrap">
             @foreach ($posts->take(6) as $post )
             @include('_include.post-card')
             @endforeach

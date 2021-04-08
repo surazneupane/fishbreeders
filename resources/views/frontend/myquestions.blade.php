@@ -38,14 +38,16 @@
                                     {{ $forum->answers->count() }} Answers
                                 </small>
 
-                                <button class="text-primary" data-bs-toggle="modal" data-bs-target="#editquestionmodal{{$forum->id}}"> 
-                                   Edit
+                                <button class="text-primary" data-bs-toggle="modal"
+                                    data-bs-target="#editquestionmodal{{$forum->id}}">
+                                    Edit
                                 </button>
-                                <form onsubmit="return deleteques();" method="POST" action="{{route('ext-user.myquesdel',$forum->id)}}" style="display: inline">
-                               @csrf
+                                <form onsubmit="return deleteques();" method="POST"
+                                    action="{{route('ext-user.myquesdel',$forum->id)}}" style="display: inline">
+                                    @csrf
                                     <button class="text-danger">
-                                    Delete
-                                </button>
+                                        Delete
+                                    </button>
                                 </form>
                             </div>
                             <div class="d-flex">
@@ -57,52 +59,58 @@
                             </div>
 
 
-                            
+
                         </div>
                     </div>
                 </div>
 
-{{-- Edit Modal --}}
-<div class="modal fade " id="editquestionmodal{{$forum->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Question</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="{{route('ext-user.myquesedit',$forum->id)}}" method="POST">
-                    @csrf
-                    <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" class="form-control" value="{{$forum->title}}" name="title" id="title" required>
-                    </div>
-                    <div class="form-group py-3">
-                        <label for="category">Category</label>
-                        <div>
-                            <select name="category[]" id="category" class="form-control" required multiple>
-                                <option></option>
-                                @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" @if($forum->categories->contains($category)) selected @endif>
-                                    {{ $category->title }}
-                                </option>
-                                @endforeach
-                            </select>
+                {{-- Edit Modal --}}
+                <div class="modal fade " id="editquestionmodal{{$forum->id}}" tabindex="-1"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Edit Question</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{route('ext-user.myquesedit',$forum->id)}}" method="POST">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="title">Title</label>
+                                        <input type="text" class="form-control" value="{{$forum->title}}" name="title"
+                                            id="title" required>
+                                    </div>
+                                    <div class="form-group py-3">
+                                        <label for="category">Category</label>
+                                        <div>
+                                            <select name="category[]" id="category" class="form-control" required
+                                                multiple>
+                                                <option></option>
+                                                @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}" @if($forum->
+                                                    categories->contains($category)) selected @endif>
+                                                    {{ $category->title }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description">Description</label>
+                                        <textarea class="form-control" name="description" id="description" rows="5"
+                                            required>{{$forum->description}}</textarea>
+                                    </div>
+                                    <div class="d-flex justify-content-end align-items-center">
+                                        <button type="submit" class="btn btn-success my-2">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <textarea class="form-control"  name="description" id="description" rows="5" required>{{$forum->description}}</textarea>
-                    </div>
-                    <div class="d-flex justify-content-end align-items-center">
-                        <button type="submit" class="btn btn-success my-2">Submit</button>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-    </div>
-</div>
+                </div>
 
 
                 @endforeach
@@ -112,8 +120,7 @@
 </section>
 
 <script type="text/javascript">
-
-function deleteques()
+    function deleteques()
 {
     return confirm('Are You Sure To Delete This Question');
 }

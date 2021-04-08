@@ -10884,3 +10884,39 @@ textarea.form-control-lg {
 .card-link:hover {
   color: #0590ff !important;
 }
+
+.img-card-link {
+  position: relative;
+}
+.img-card-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #383cc170;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.img-card-link::after {
+  content: "Read More";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: #000;
+}
+
+.card:hover .img-card-link::before {
+  opacity: 1;
+}
+.card:hover .img-card-link::after {
+  opacity: 1;
+}

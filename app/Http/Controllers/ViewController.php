@@ -227,7 +227,7 @@ class ViewController extends Controller {
         if (!Auth::user()) {
             return redirect()->route('home');
         }
-        $questions = Auth::user()->questions()->get();
+        $questions = Auth::user()->questions;
         return view('frontend.myquestions', compact('questions'));
     }
 
