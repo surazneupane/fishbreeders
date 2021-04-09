@@ -45,6 +45,7 @@ class PostController extends Controller {
         $data                   = $request->except('category', '_token', 'featured_image');
         $data['featured_image'] = "/storage/" . $images;
         $data['user_id']        = Auth::user()->id;
+        $data['sub_title']      = "";
         $post                   = Post::create($data);
         foreach ($request->category as $category) {
             $post->categories()->attach($category);
@@ -87,7 +88,9 @@ class PostController extends Controller {
             $images                 = $request->featured_image->storeAs('images', $image_name, 'public');
             $data['featured_image'] = "/storage/" . $images;
             $data['user_id']        = Auth::user()->id;
+
         }
+          $data['sub_title']   = "";
         $post->fill($data);
         $post->save();
         $post->categories()->detach();

@@ -18,9 +18,13 @@
             </h3>
 
             <div class="d-flex flex-wrap justify-content-around">
-                @foreach ($posts as $post )
+                @forelse ($posts as $post )
                 @include('_include.post-card')
-                @endforeach
+                @empty
+                <h4 class="text-muted my-2">
+                    Sorry! No Results Found.
+                </h4>
+                @endforelse
             </div>
         </div>
     </div>

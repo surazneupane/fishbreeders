@@ -1,6 +1,6 @@
 <div>
     <button class=" btn text-primary shadow-none
-    @if($item->votes()->where('user_id',Auth::id())->first()->vote_count == 1) bg-primary text-white @endif
+    @if($item->votes()->where('user_id',Auth::id())->first() && $item->votes()->where('user_id',Auth::id())->first()->vote_count == 1) bg-primary text-white @endif
     " wire:click="liked" @if(!Auth::check()) disabled @endif @if($item->votes()->where('user_id',Auth::id())->first())
         @endif>Like <span>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -12,9 +12,11 @@
             {{ $likes }}
         </small>
     </button>
-    <button class="btn text-danger shadow-none
+    <button
+        class="btn text-danger shadow-none
     
-    @if($item->votes()->where('user_id',Auth::id())->first()->vote_count == -1) bg-danger text-white @endif" wire:click="disliked" @if(!Auth::check()) disabled @endif>Dislike
+    @if( $item->votes()->where('user_id',Auth::id())->first() && $item->votes()->where('user_id',Auth::id())->first()->vote_count == -1) bg-danger text-white @endif"
+        wire:click="disliked" @if(!Auth::check()) disabled @endif>Dislike
         <span>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-hand-thumbs-down" viewBox="0 0 16 16">

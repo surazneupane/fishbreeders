@@ -23,7 +23,6 @@ class StorePostRequest extends FormRequest {
     public function rules() {
         return [
             "title"          => "required",
-            "sub_title"      => "required",
             "slug"           => "required|unique:posts,slug",
             "excerpt"        => "required",
             "featured_image" => "required|image|mimes:png,jpg,jpeg,gif,svg|max:2048",

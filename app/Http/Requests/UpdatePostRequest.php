@@ -22,7 +22,6 @@ class UpdatePostRequest extends FormRequest {
     public function rules() {
         return [
             "title"          => "required",
-            "sub_title"      => "required",
             "slug"           => "required|unique:posts,slug," . $this->id,
             "excerpt"        => "required",
             "featured_image" => "image|mimes:png,jpg,jpeg,gif,svg|max:2048",

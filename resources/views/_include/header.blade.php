@@ -10,6 +10,7 @@
 
 
                 @if(Auth::user())
+
                 <?php $notifications = Auth::user()->userNotification()  ?>
                 <li class="nav-item d-flex align-items-center">
                     <div class="dropdown d-flex align-items-center">
@@ -33,7 +34,7 @@
                                 Notifications</h6>
                             @forelse ($notifications as $notification)
                             {{-- <div @if($notification->status == 0) style="background-color:#d4d2cd" @endif> --}}
-
+                                
                             <hr class="my-0">
                             <div @if($notification->status == 0) style="background-color:#ffe6e6" @endif >
                                 <p class="text-muted w-100  p-2">

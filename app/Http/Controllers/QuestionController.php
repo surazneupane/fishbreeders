@@ -123,6 +123,7 @@ class QuestionController extends Controller {
         try{
         $question = Question::findOrFail($id);
         $question -> categories()->detach();
+        $question->notifications()->delete();
         $question -> delete();
         return redirect()->back()->with('success','Question Deleted Sucessfully');
         

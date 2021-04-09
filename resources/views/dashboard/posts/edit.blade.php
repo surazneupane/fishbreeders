@@ -38,18 +38,7 @@
                                             </span>
                                             @enderror
                                         </div>
-                                        <div class="col-span-6 sm:col-span-6">
-                                            <label for="sub_title"
-                                                class="block text-sm font-medium text-gray-700">{{ _('Post Sub-Title*') }}</label>
-                                            <input type="text" name="sub_title" id="sub_title" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
-                                                @error('sub_title')border-red-400 @enderror
-                                                " value="{{ $post->sub_title }}">
-                                            @error('sub_title')
-                                            <span class="text-sm text-red-500">
-                                                {{ $message }}
-                                            </span>
-                                            @enderror
-                                        </div>
+                                        
                                         <div class="col-span-6 sm:col-span-6">
                                             <label for="slug"
                                                 class="block text-sm font-medium text-gray-700">{{ _('Post Slug*') }}</label>
