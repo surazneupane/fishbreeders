@@ -29,7 +29,7 @@
                 </div>
                 <div class="p-2  mb-4 bg-white">
                     <div class="d-flex align-items-center justify-content-between">
-                        <livewire:react-action :item="$question" likes="3" dislikes="1" />
+                        <livewire:react-action :item="$question" likes="{{$question->votes()->where('vote_count',1)->count()}}" dislikes="{{$question->votes()->where('vote_count',-1)->count()}}" />
                         <div class="text-muted">
                             {{ $question->answers->count() }} Answers
                         </div>
@@ -103,7 +103,7 @@
                         </div>
                         <div class="card-footer text-muted">
                             <div class="d-flex align-items-center justify-content-between">
-                                <livewire:react-action :item="$answer" likes="3" dislikes="1" />
+                                <livewire:react-action :item="$answer" likes="{{$answer->votes()->where('vote_count',1)->count()}}" dislikes="{{$answer->votes()->where('vote_count',-1)->count()}}" />
                                 @if(Auth::id() == $answer->user_id || Auth::id() == $question->user_id)
                                 <form onsubmit="return deleteAnswer();"
                                     action="{{route('user.forum.deleteans',$answer->id)}}" method="POST">
