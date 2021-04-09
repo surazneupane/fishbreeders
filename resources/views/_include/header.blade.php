@@ -18,7 +18,7 @@
                             aria-expanded="false">
                             <div class="bg-primary text-white"
                                 style="font-size: .8rem; position: absolute;top: -10px; right:10px; z-index: inherit;  clip-path: circle(); padding:5px">
-                                <span>{{ $notifications->count() }}</span>
+                                <span>{{ $notifications->where('status',0)->count() }}</span>
                             </div>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-bell" viewBox="0 0 16 16">
@@ -35,13 +35,14 @@
                             {{-- <div @if($notification->status == 0) style="background-color:#d4d2cd" @endif> --}}
 
                             <hr class="my-0">
-                            <p class="text-muted w-100  p-2">
+                            <div @if($notification->status == 0) style="background-color:#ffe6e6" @endif >
+                            <p class="text-muted w-100  p-2" >
                                 <strong> {{$notification->notificationFrom->name}} {{$notification->message}}
                                 </strong>
-                                <a href="{{route('forums.show',$notification->notifiable_id)}}">
+                                <a href="{{route('notification.show',$notification->id)}}">
                                     ({{$notification->notifiable->title}}) </a>
                             </p>
-
+                            </div>
 
                             {{-- </div> --}}
 

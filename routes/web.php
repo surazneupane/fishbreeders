@@ -55,6 +55,8 @@ Route::group(['middleware' => ['viewcontrol']], function () {
     Route::post('/forums/give/{question}/answer',[ViewController::class,'giveAnswer'])->name('user.forum.giveans');
     Route::post('/forums/answer/{id}/delete',[ViewController::class,'deleteANswer'])->name('user.forum.deleteans');
 
+    Route::get('/notification/{id}/show', [ViewController::class, 'notificationShow'])->name('notification.show');
+
 });
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

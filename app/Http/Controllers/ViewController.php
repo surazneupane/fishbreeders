@@ -214,9 +214,18 @@ class ViewController extends Controller {
             return redirect()->route('home');
         }
         $answer                 = Answer::findOrFail($id);
-        $associatedNotification = $answer->question()->first()->notifications()->first();
-        $associatedNotification->delete();
+        $question = $answer->question()->first();
+        if(Auth::id() == $question->user_id)
+        {
+        $associatedNotification = $question->notifications()->where('notify_to',Auth::id())->where('notify_from',$answer->user_id)->first();
 
+        }
+        else{
+        $associatedNotification = $question->notifications()->where('notify_to',$question->user_id)->where('notify_from',Auth::id())->first();
+        }
+        if(!empty($associatedNotification)){
+        $associatedNotification->delete();
+        }
         $answer->delete();
         return redirect()->back()->with('success', 'Answer Deleted Sucessfully');
     }
@@ -235,6 +244,7 @@ class ViewController extends Controller {
         }
         $question = Question::findOrFail($id);
         $question->answers()->delete();
+        $question->notifications()->where('notifiable_id',$question->id)->delete();
         $question->delete();
         return redirect()->back()->with('success', 'Question Deleted Sucessfully');
     }
@@ -253,6 +263,17 @@ class ViewController extends Controller {
         $question->categories()->sync($tags);
         $question->update();
         return redirect()->back()->with('success', 'Updated Sucessfully');
+
+    }
+
+
+    public function notificationShow($notiId)
+    {
+        $notification = Notifiaction::findOrFail($notiId);
+        $notification->status = 1;
+        $question = Question::findOrFail($notification->notifiable_id);
+        $notification ->update();
+        return $this->singleForum($question);
 
     }
 }
