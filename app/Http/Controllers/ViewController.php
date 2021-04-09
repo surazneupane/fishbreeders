@@ -115,7 +115,9 @@ class ViewController extends Controller {
     }
 
     public function singleForum(Question $question) {
-
+        if (!Auth::user()) {
+            return redirect()->route('home');
+        }
         views($question)->record();
         $views   = views($question)->count();
         $answers = $question->answers()->orderBy('created_at', 'DESC')->get();
