@@ -34,7 +34,7 @@
                                 Notifications</h6>
                             @forelse ($notifications as $notification)
                             {{-- <div @if($notification->status == 0) style="background-color:#d4d2cd" @endif> --}}
-                                
+
                             <hr class="my-0">
                             <div @if($notification->status == 0) style="background-color:#ffe6e6" @endif >
                                 <p class="text-muted w-100  p-2">
@@ -124,8 +124,8 @@
 
                 @endforelse
                 <li class="nav-item">
-                    <a href="#"
-                        class="nav-link text-capatlize text-white h-100 nav-hover @if(request()->routeIs('aquarium')) bg-danger @endif">
+                    <a href="{{ route('calculator') }}"
+                        class="nav-link text-capatlize text-white h-100 nav-hover @if(request()->routeIs('calculator')) bg-danger @endif">
                         Aquarium
                     </a>
                 </li>
