@@ -36,12 +36,12 @@
 
                             <hr class="my-0">
                             <div @if($notification->status == 0) style="background-color:#ffe6e6" @endif >
-                            <p class="text-muted w-100  p-2" >
-                                <strong> {{$notification->notificationFrom->name}} {{$notification->message}}
-                                </strong>
-                                <a href="{{route('notification.show',$notification->id)}}">
-                                    ({{$notification->notifiable->title}}) </a>
-                            </p>
+                                <p class="text-muted w-100  p-2">
+                                    <strong> {{$notification->notificationFrom->name}} {{$notification->message}}
+                                    </strong>
+                                    <a href="{{route('notification.show',$notification->id)}}">
+                                        ({{$notification->notifiable->title}}) </a>
+                                </p>
                             </div>
 
                             {{-- </div> --}}
@@ -137,6 +137,12 @@
                 <li class="nav-item  " style="margin-left: auto">
                     <a href="{{ route('forums') }}"
                         class="nav-link text-capatlize text-white nav-hover  h-100  @if(request()->routeIs('forums')) bg-danger @endif ">Forum</a>
+                </li>
+                <li class="nav-item">
+                    <form action="{{ route('search') }}" class="d-flex">
+                        <input type="text" name="search" placeholder="Search Here..." id="search"
+                            class="form-control shadow-none" value="{{$search ?? ""}}">
+                    </form>
                 </li>
             </ul>
 

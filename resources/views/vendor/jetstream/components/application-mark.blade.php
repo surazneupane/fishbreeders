@@ -7,4 +7,4 @@
   fill="#6875F5" />
 </svg> --}}
 
-@include('_include.logo', ['width' => '150'])
+@include('_include.logo', ['width' => '50'])

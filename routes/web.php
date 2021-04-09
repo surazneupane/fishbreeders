@@ -25,11 +25,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/oauth/{driver}', [SocialiteAuthController::class, 'redirectToProvider'])->name('oauth');
 Route::get('/oauth/{driver}/callback', [SocialiteAuthController::class, 'handleProviderCallback'])->name('oauth.callback');
-ROute::post('/feedback/add',[FeedbackController::class,'addFeedback'])->name('user.addFeedback');
-
+ROute::post('/feedback/add', [FeedbackController::class, 'addFeedback'])->name('user.addFeedback');
 
 Route::group(['middleware' => ['viewcontrol']], function () {
     Route::get('/', [ViewController::class, 'index'])->name('home');
+    Route::get('/posts/search', [ViewController::class, 'search'])->name('search');
     Route::get('/posts/{slug}', [ViewController::class, 'post'])->name('post');
     Route::get('/category/{slug}', [ViewController::class, 'category'])->name('category');
 
@@ -44,16 +44,16 @@ Route::group(['middleware' => ['viewcontrol']], function () {
     Route::post('/forums/ask/question', [ViewController::class, 'askQuestion'])->name('user.forum.ask');
     Route::post('/forums/give/{question}/answer', [ViewController::class, 'giveAnswer'])->name('user.forum.giveans');
 
-    Route::get('/questions/view',[ViewController::class,'myQuestions'])->name('ext-user.myquest');
-    Route::post('/question/{id}/delete',[ViewController::class,'deleteQuestion'])->name('ext-user.myquesdel');
-    Route::post('/question/{id}/edit',[ViewController::class,'editQuestion'])->name('ext-user.myquesedit');
+    Route::get('/questions/view', [ViewController::class, 'myQuestions'])->name('ext-user.myquest');
+    Route::post('/question/{id}/delete', [ViewController::class, 'deleteQuestion'])->name('ext-user.myquesdel');
+    Route::post('/question/{id}/edit', [ViewController::class, 'editQuestion'])->name('ext-user.myquesedit');
 
     Route::get('/profile', [ViewController::class, 'profile'])->name('ext-user.profile');
-    Route::post('/profile/{id}/update',[ViewController::class,'updateProfile'])->name('ext-user.profileupdate');
+    Route::post('/profile/{id}/update', [ViewController::class, 'updateProfile'])->name('ext-user.profileupdate');
 
-    Route::post('/forums/ask/question',[ViewController::class,'askQuestion'])->name('user.forum.ask');
-    Route::post('/forums/give/{question}/answer',[ViewController::class,'giveAnswer'])->name('user.forum.giveans');
-    Route::post('/forums/answer/{id}/delete',[ViewController::class,'deleteANswer'])->name('user.forum.deleteans');
+    Route::post('/forums/ask/question', [ViewController::class, 'askQuestion'])->name('user.forum.ask');
+    Route::post('/forums/give/{question}/answer', [ViewController::class, 'giveAnswer'])->name('user.forum.giveans');
+    Route::post('/forums/answer/{id}/delete', [ViewController::class, 'deleteANswer'])->name('user.forum.deleteans');
 
     Route::get('/notification/{id}/show', [ViewController::class, 'notificationShow'])->name('notification.show');
 
@@ -73,8 +73,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'checkauth'], 'prefix
     ROute::post('/siteinfo/store', [SiteController::class, 'store'])->name('siteinfo.store');
     Route::get("/forums", [ForumController::class, 'index'])->name('forums.index');
     Route::resource("/questions", QuestionController::class);
-    Route::get('/feedback',[FeedbackController::class,'showFeedbacks'])->name('admin.showfeedback');
-    Route::post('/feedback/{id}/delete',[FeedbackController::class,'deleteFeedback'])->name('admin.delete.feedback');
-
+    Route::get('/feedback', [FeedbackController::class, 'showFeedbacks'])->name('admin.showfeedback');
+    Route::post('/feedback/{id}/delete', [FeedbackController::class, 'deleteFeedback'])->name('admin.delete.feedback');
 
 });
