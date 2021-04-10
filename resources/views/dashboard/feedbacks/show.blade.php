@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ $feedback->title }} - {{ __('Question Detail') }}
             </h2>
-            <a href="" class="px-2 py-1 bg-gray-500 text-white rounded hover:bg-gray-800"> Go
+            <a href="{{route('admin.showfeedback')}}" class="px-2 py-1 bg-gray-500 text-white rounded hover:bg-gray-800"> Go
                 Back</a>
         </div>
     </x-slot>
@@ -15,7 +15,7 @@
                 <h1 class="pb-4 text-2xl capitalize text-gray-700 ">{{ $feedback->title }}</h1>
                 <hr class="border-2 w-100 mb-5 ">
                 <div class="text-sm my-4">
-                    <p>
+                    <p class="">
                         Description : {{ $feedback->feedback }}
                     </p>
                 <hr class="border-2 w-100 mb-5 ">
