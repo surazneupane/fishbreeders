@@ -32,9 +32,15 @@
                         {{ __('Forums') }}
                     </x-jet-nav-link>
 
+                    
+
                     <x-jet-nav-link href="{{ route('admin.showfeedback') }}"
                         :active="request()->routeIs('admin.showfeedback')">
                         {{ __('Feedbacks') }}
+                    </x-jet-nav-link>
+
+                    <x-jet-nav-link href="{{ route('fishes.index') }}" :active="request()->routeIs('fishes.*')">
+                        {{ __('Fishes') }}
                     </x-jet-nav-link>
                     @endcan
                 </div>

@@ -39,7 +39,7 @@
                 OR
             </h5>
             <div class="d-flex justify-content-around flex-column">
-                <a href=""
+                <a href="{{route('oauth', ['driver'=>'facebook'])}}"
                     class="btn btn-transparentw-100 d-flex justify-content-between border rounded-pill my-2 shadow-sm align-items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#3b5998" class="bi bi-facebook"
                         viewBox="0 0 16 16">
@@ -50,7 +50,7 @@
                         Sign Up with Facebook
                     </span>
                 </a>
-                <a href=""
+                <a href="{{route('oauth', ['driver'=>'google'])}}"
                     class="btn btn-transparent w-100 d-flex justify-content-between border rounded-pill my-2 shadow-sm align-items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 326667 333333" width="32" height="32"
                         shape-rendering="geometricPrecision" text-rendering="geometricPrecision"

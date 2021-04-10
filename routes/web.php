@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\FishController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\QuestionController;
@@ -78,4 +79,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'checkauth'], 'prefix
     Route::get('/feedback', [FeedbackController::class, 'showFeedbacks'])->name('admin.showfeedback');
     Route::post('/feedback/{id}/delete', [FeedbackController::class, 'deleteFeedback'])->name('admin.delete.feedback');
     Route::get('/feedback/{feedback}/view',[FeedbackController::class,'showFeedback'])->name('admin.showsinglefeedback');
+    Route::resource("/fishes", FishController::class);
+    Route::post('/fishes/copactibility/{id}/save',[FishController::class,'saveCompactibility'])->name('fish.savecompactibility');
+
 });

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Compactibility;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
@@ -91,5 +92,21 @@ class DatabaseSeeder extends Seeder {
         ]
         );
 
+
+        Compactibility::create(
+            [
+                'compactibility' => 'compactible',
+            ]
+        );
+        Compactibility::create(
+            [
+                'compactibility' => 'moderate',
+            ]
+        );
+        Compactibility::create(
+            [
+                'compactibility' => 'incompactible',
+            ]
+        );
     }
 }
