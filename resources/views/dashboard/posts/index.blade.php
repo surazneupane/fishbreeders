@@ -10,8 +10,7 @@
             <!-- This example requires Tailwind CSS v2.0+ -->
 
             <div class="block mb-10">
-                <a href="{{ route('posts.create') }}"
-                    class="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-xl shadow">Add Post</a>
+                <a href="{{ route('posts.create') }}" class="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-xl shadow">Add Post</a>
             </div>
 
             <div class="flex flex-col">
@@ -21,28 +20,20 @@
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-50">
                                     <tr>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Title
                                         </th>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Category
                                         </th>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Author
-                                        </th>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Status
                                         </th>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             created Date
                                         </th>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Views
                                         </th>
                                         <th scope="col" class="relative px-6 py-3">
@@ -67,9 +58,7 @@
                                             {{ $category->title }}@if (!$loop->last), @endif
                                             @endforeach
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-gray-500">
-                                            {{ $post->author }}
-                                        </td>
+
                                         <td class="px-6 py-4 whitespace-nowrap text-gray-500">
                                             @if ($post->status)
                                             <span class="text-sm text-green-900 bg-green-200 px-2 py-1 rounded-xl">
@@ -88,13 +77,9 @@
                                             {{ $post->views }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium ">
-                                            <a href="{{ route('posts.show', $post->id) }}"
-                                                class="text-blue-600 m-1 hover:text-blue-900">View</a>
-                                            <a href="{{ route('posts.edit', $post->id) }}"
-                                                class="text-indigo-600 m-1 hover:text-indigo-900">Edit</a>
-                                            <form action="{{ route('posts.destroy', $post->id) }}" class="inline"
-                                                method="post"
-                                                onsubmit="return confirm('Are you sure you want to delete this post?')">
+                                            <a href="{{ route('posts.show', $post->id) }}" class="text-blue-600 m-1 hover:text-blue-900">View</a>
+                                            <a href="{{ route('posts.edit', $post->id) }}" class="text-indigo-600 m-1 hover:text-indigo-900">Edit</a>
+                                            <form action="{{ route('posts.destroy', $post->id) }}" class="inline" method="post" onsubmit="return confirm('Are you sure you want to delete this post?')">
                                                 @csrf
                                                 @method('delete')
                                                 <button class="text-red-600 m-1 hover:text-red-900">

@@ -11,8 +11,8 @@
 @section('content')
 
 <div class="container">
-    <div class="row">
-        <div class="col-lg-9 p-2">
+    <div class="row ">
+        <div class="col-lg-9 p-2 mx-auto">
 
             <div class="text-center my-5">
                 <div class="alert alert-secondary text-capitalize">
@@ -24,8 +24,7 @@
                         Written by {{ $post->user->name}}
                     </small>
 
-                    <small class="border-right h-100 border-secondary mx-3"
-                        style="height: 10px; border-right: 2px solid #eee "></small>
+                    <small class="border-right h-100 border-secondary mx-3" style="height: 10px; border-right: 2px solid #eee "></small>
 
                     <small>
                         Published by {{date("F jS, Y", strtotime($post->created_at))}}
@@ -65,19 +64,16 @@
 
             @if($post->breeding)
             <div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                    style="position: fixed; right: 50px; bottom: 50px;">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="position: fixed; right: 50px; bottom: 50px;">
                     Breeding
                 </button>
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Breeding</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 {!! $post->breeding !!}
@@ -102,8 +98,7 @@
 
 
         </div>
-        <div class="col m-0 my-5 p-0">
-        </div>
+
     </div>
 </div>
 

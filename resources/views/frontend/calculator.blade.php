@@ -4,9 +4,17 @@
 
 <section>
     <div class="container py-5">
-        <h4>
+        <h3 class=" px-2
+            text-uppercase
+            text-center
+            my-2
+            py-3
+            text-white
+            
+            " style="background-color: #5DA3FA; letter-spacing:.1rem">
+
             Aquarium Calculator
-        </h4>
+        </h3>
         <form action="#" id="calculator-cuboid">
             <h5 class="pt-4">
                 For Cuboid Tank Volume
@@ -49,7 +57,7 @@
             </div>
         </form>
         <form action="#" id="calculator-cylinder">
-            <h5 class="pt-4">
+            <h5 class="pt-4 ">
                 For Cylinder Tank Volume
             </h5>
             <div class="row">

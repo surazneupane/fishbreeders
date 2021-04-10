@@ -10,8 +10,7 @@
             <!-- This example requires Tailwind CSS v2.0+ -->
 
             <div class="block mb-10">
-                <a href="{{ route('questions.create') }}"
-                    class="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-xl shadow">Add Question</a>
+                <a href="{{ route('questions.create') }}" class="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-xl shadow">Add Question</a>
             </div>
 
             <div class="flex flex-col">
@@ -21,20 +20,16 @@
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-50">
                                     <tr>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Question Title
                                         </th>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Created By
                                         </th>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Answers
                                         </th>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             created Date
                                         </th>
 
@@ -51,7 +46,7 @@
 
 
                                     <tr>
-                                        <td class="px-6 py-4 text-sm text-gray-900 w-96">
+                                        <td class="px-6 py-4 text-sm text-gray-900 w-96 max-w-sm truncate">
                                             {{ $question->title }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-gray-500">
@@ -66,13 +61,9 @@
                                             {{ $question->created_at }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium ">
-                                            <a href="{{ route('questions.show', $question->id) }}"
-                                                class="text-blue-600 m-1 hover:text-blue-900">View</a>
-                                            <a href="{{ route('questions.edit', $question->id) }}"
-                                                class="text-indigo-600 m-1 hover:text-indigo-900">Edit</a>
-                                            <form action="{{ route('questions.destroy', $question->id) }}"
-                                                class="inline" method="post"
-                                                onsubmit="return confirm('Are you sure you want to delete this Question?')">
+                                            <a href="{{ route('questions.show', $question->id) }}" class="text-blue-600 m-1 hover:text-blue-900">View</a>
+                                            <a href="{{ route('questions.edit', $question->id) }}" class="text-indigo-600 m-1 hover:text-indigo-900">Edit</a>
+                                            <form action="{{ route('questions.destroy', $question->id) }}" class="inline" method="post" onsubmit="return confirm('Are you sure you want to delete this Question?')">
                                                 @csrf
                                                 @method('delete')
                                                 <button class="text-red-600 m-1 hover:text-red-900">

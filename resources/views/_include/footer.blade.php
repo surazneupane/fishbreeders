@@ -47,8 +47,7 @@
                             If your want to give us a feedback then,
                         </small>
                     </p>
-                    <button class="btn btn-light btn-lg rounded-pill px-5 py-2" data-bs-toggle="modal"
-                        data-bs-target="#feedbackmodal">
+                    <button class="btn btn-light btn-lg rounded-pill px-5 py-2" data-bs-toggle="modal" data-bs-target="#feedbackmodal">
                         Click here &rarr;
                     </button>
                 </div>
@@ -71,7 +70,7 @@
 
 
 <div class="modal fade " id="feedbackmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-lg  modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Feedback</h5>
@@ -80,20 +79,20 @@
             <div class="modal-body">
                 <form action="{{route('user.addFeedback')}}" method="POST">
                     @csrf
-                    <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" class="form-control" name="title" id="title" required>
+                    <div class="mb-3">
+                        <label for="title" class="form-label ">Title</label>
+                        <input type="text" class="form-control" name="title" id="title" required placeholder="Feedback title">
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" name="email" id="email" required>
+                    <div class="mb-3">
+                        <label for="email" class="form-label ">Email</label>
+                        <input type="email" class="form-control" name="email" id="email" required placeholder="Email Address">
                     </div>
-                    <div class="form-group">
-                        <label for="feedback">Feedback</label>
-                        <textarea class="form-control" name="feedback" id="feedback" rows="5" required></textarea>
+                    <div class="mb-3">
+                        <label for="feedback" class="form-label ">Feedback</label>
+                        <textarea class="form-control" name="feedback" id="feedback" rows="5" required placeholder="Your Feedback"></textarea>
                     </div>
-                    <div class="d-flex justify-content-end align-items-center">
-                        <button type="submit" class="btn btn-success my-2">Submit</button>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <button type="submit" class="btn btn-primary my-2 rounded-pill px-5">Submit</button>
                     </div>
                 </form>
             </div>

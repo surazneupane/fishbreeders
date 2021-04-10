@@ -86,7 +86,7 @@
             @foreach($questions as $question)
             <div class="card w-5 m-1" style="width: 30rem;">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $question->title }}</h5>
+                    <h5 class="card-title text-truncate">{{ $question->title }}</h5>
                     <p class="card-text text-truncate w-100">
                         {{$question->description}}
                     </p>
