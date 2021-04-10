@@ -57,6 +57,8 @@ Route::group(['middleware' => ['viewcontrol']], function () {
 
     Route::get('/notification/{id}/show', [ViewController::class, 'notificationShow'])->name('notification.show');
 
+    Route::get('/aquarium-calculator', [ViewController::class, 'calculator'])->name('calculator');
+
 });
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

@@ -278,4 +278,8 @@ class ViewController extends Controller {
         $search = $request['search'];
         return view('frontend.search_post', compact('posts', 'search'));
     }
+
+    public function calculator() {
+        return view('frontend.calculator');
+    }
 }
