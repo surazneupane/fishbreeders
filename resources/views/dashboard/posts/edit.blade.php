@@ -51,19 +51,7 @@
                                             </span>
                                             @enderror
                                         </div>
-                                        <div class="col-span-6 sm:col-span-6">
-                                            <label for="author"
-                                                class="block text-sm font-medium text-gray-700">{{ _('Author*') }}</label>
-                                            <input type="text" name="author" id="author"
-                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
-                                                                                                                                @error('author')border-red-400 @enderror
-                                                                                                                                " value="{{ $post->author }}">
-                                            @error('author')
-                                            <span class="text-sm text-red-500">
-                                                {{ $message }}
-                                            </span>
-                                            @enderror
-                                        </div>
+                                        
                                         <div class="col-span-6 sm:col-span-6">
                                             <label for="category"
                                                 class="block text-sm font-medium text-gray-700">{{ _('Post Categories*') }}</label>
@@ -126,7 +114,7 @@
 
                                         <div class="col-span-6 sm:col-span-6">
                                             <label for="refrence"
-                                                class="block text-sm font-medium text-gray-700">{{ _('Post Refrence*') }}
+                                                class="block text-sm font-medium text-gray-700">{{ _('Post Reference*') }}
                                                 @error('refrence')
                                                 <span class="text-sm text-red-500">
                                                     {{ $message }}
