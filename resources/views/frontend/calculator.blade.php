@@ -11,6 +11,9 @@
             <h5 class="pt-4">
                 For Cuboid Tank
             </h5>
+            <div class=" py-4">
+                <img src="https://uploads-cdn.omnicalculator.com/images/aquarium/box-calc.png" alt="" height="100">
+            </div>
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <label for="length" class="form-label">Tank Length (cm) </label>
@@ -119,8 +122,8 @@
         document.getElementById('result-sphere').style.display = "block";
         document.getElementById('result-sphere-cubic').textContent = parseFloat(result).toFixed(2) + " Cubic Centimeters";
         document.getElementById('result-sphere-liter').textContent = parseFloat(result / 1000).toFixed(2) + " Liters";
-        document.getElementById('result-sphere-ukgallons').textContent = parseFloat((result / 1000)/4.54).toFixed(2) + " Uk Gallons";
-        document.getElementById('result-sphere-usgallons').textContent = parseFloat((result / 1000)/3.78541).toFixed(2) + " Us Gallons";
+        document.getElementById('result-sphere-ukgallons').textContent = parseFloat((result / 1000)/4.546).toFixed(2) + " Uk Gallons";
+        document.getElementById('result-sphere-usgallons').textContent = parseFloat((result / 1000)/3.785).toFixed(2) + " Us Gallons";
     });
 
 
