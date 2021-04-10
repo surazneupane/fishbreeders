@@ -205,7 +205,7 @@ function calculateHeaterSize() {
               '<a href="https://www.fishlore.com/amazon/300watt">multiple 300 watts</a>'),
         (document.getElementById("heatersizeresult").innerHTML = e);
 }
-function calculateChillerSize() {
+<functi></functi>on calculateChillerSize() {
     var e,
         t = Math.ceil(
             8.34 * form18.gallons.value * form18.tempdropneeded.value * 0.2
