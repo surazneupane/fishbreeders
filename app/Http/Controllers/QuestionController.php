@@ -124,6 +124,7 @@ class QuestionController extends Controller {
         $question = Question::findOrFail($id);
         $question -> categories()->detach();
         $question->notifications()->delete();
+        $question->answers()->delete();
         $question -> delete();
         return redirect()->back()->with('success','Question Deleted Sucessfully');
         

@@ -14,12 +14,10 @@ class CreatePostsTable extends Migration {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('sub_title')->nullable();
             $table->string('slug')->unique();
             $table->longText('content');
             $table->string('featured_image')->nullable();
             $table->text('excerpt')->nullable();
-            $table->string('author')->nullable();
             $table->string('status')->default('draft');
             $table->string('location')->nullable();
             $table->bigInteger('views')->default(0);

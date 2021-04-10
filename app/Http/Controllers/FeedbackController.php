@@ -28,6 +28,10 @@ class FeedbackController extends Controller
        return view('dashboard.feedbacks.index',compact('feedbacks'));
     }
 
+   public function  showFeedback(Feedback $feedback)
+   {
+    return view('dashboard.feedbacks.show',compact('feedback'));
+   }
 
     public function deleteFeedback($id)
     {

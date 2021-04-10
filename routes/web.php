@@ -77,5 +77,5 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'checkauth'], 'prefix
     Route::resource("/questions", QuestionController::class);
     Route::get('/feedback', [FeedbackController::class, 'showFeedbacks'])->name('admin.showfeedback');
     Route::post('/feedback/{id}/delete', [FeedbackController::class, 'deleteFeedback'])->name('admin.delete.feedback');
-
+    Route::get('/feedback/{feedback}/view',[FeedbackController::class,'showFeedback'])->name('admin.showsinglefeedback');
 });

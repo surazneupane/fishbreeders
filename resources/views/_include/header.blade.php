@@ -38,7 +38,13 @@
                             <hr class="my-0">
                             <div @if($notification->status == 0) style="background-color:#ffe6e6" @endif >
                                 <p class="text-muted w-100  p-2">
-                                    <strong> {{$notification->notificationFrom->name}} {{$notification->message}}
+                                    <strong>
+                                        @if($notification->notificationFrom)
+                                        {{$notification->notificationFrom->name}}
+                                        @else
+                                        Unknown User
+                                        @endif
+                                        {{$notification->message}}
                                     </strong>
                                     <a href="{{route('notification.show',$notification->id)}}">
                                         ({{$notification->notifiable->title}}) </a>

@@ -48,7 +48,7 @@
                                             {{ $feedback->title }}
                                         </td>
                                       
-                                        <td class="px-6 py-4 whitespace-nowrap">
+                                        <td class="px-6 py-4 whitespace-nowrap text-truncate">
                                            {{$feedback->feedback}}
 
                                            
@@ -73,7 +73,8 @@
                                          <td
                                          class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex items-center justify-center">
                                         
-                                         
+                                         <a href="{{route('admin.showsinglefeedback',$feedback->id)}}"
+                                            class="text-blue-600 m-1 hover:text-blue-900">View</a>
 
                                          <form action="{{route('admin.delete.feedback',$feedback->id)}}" method="post"
                                              onsubmit="return confirm('Are you sure you want to delete this Feedback?')"
