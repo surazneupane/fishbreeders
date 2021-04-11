@@ -65,7 +65,7 @@
                     </div>
 
                     <div class="col-span-6 sm:col-span-6 py-2">
-                        <label for="category" class="block text-sm font-bold text-gray-700">{{ _('Moderate') }}</label>
+                        <label for="category" class="block text-sm font-bold text-gray-700">{{ _('Average') }}</label>
                         <select type="text" name="moderate[]" id="category2" class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('category')border-red-400 @enderror " multiple>
                             @foreach ($selectFishes as $selectfish)
 
@@ -83,7 +83,7 @@
 
 
                     <div class="col-span-6 sm:col-span-6 py-2">
-                        <label for="category" class="block text-sm font-bold text-gray-700">{{ _('Incompactible') }}</label>
+                        <label for="category" class="block text-sm font-bold text-gray-700">{{ _('Not Compactible') }}</label>
                         <select type="text" name="incompactible[]" id="category3" class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('category')border-red-400 @enderror " multiple>
                             @foreach ($selectFishes as $selectfish)
                             <option value="{{$selectfish->id}}" @if($fish->compactibilities()->where('compactibility_id',3)->where('compactible_fish_id',$selectfish->id)->first()) selected @endif >{{$selectfish->name}}</option>

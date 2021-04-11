@@ -74,7 +74,28 @@
     </div>
 </section>
 
+<section>
+    <div class="bg-dark py-5">
+        <div class="container text-center text-white py-2">
+            <h3 class="">
+              {{$siteinfo->small_banner_text}}
+            </h3>
+            <p class="w-75 mx-auto">
+                {{$siteinfo->small_banner_description}}
+            </p>
+            <div>
+                <a  @if(Auth::check()) href="#"    data-bs-toggle="modal" data-bs-target="#suberfeedback" @endif class="btn btn-primary rounded-pill btn-lg m-2">
+                    Subscribe Now
+                </a>
+                <a href="{{route('ext-register')}}" class="btn btn-outline-light rounded-pill btn-lg m-2 ">
+                    Register Now
+                </a>
 
+            </div>
+        </div>
+
+    </div>
+</section>
 
 <section>
     <div class="container my-4">
@@ -99,6 +120,44 @@
         </div>
     </div>
 </section>
+
+{{-- modal super Suscriber --}}
+
+
+
+<div class="modal fade " id="suberfeedback" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg  modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Subscriber Feedback</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{route('superfeedback.give')}}" method="POST">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="title" class="form-label ">Title</label>
+                        <input type="text" class="form-control" name="title" id="title" required placeholder="Feedback title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label ">Email</label>
+                        <input type="email" class="form-control" name="email" id="email" required placeholder="Email Address">
+                    </div>
+                    <div class="mb-3">
+                        <label for="feedback" class="form-label ">Feedback</label>
+                        <textarea class="form-control" name="feedback" id="feedback" rows="5" required placeholder="Your Feedback"></textarea>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <button type="submit" class="btn btn-primary my-2 rounded-pill px-5">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 @endsection
 
 

@@ -9,8 +9,10 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\SocialiteAuthController;
+use App\Http\Controllers\SuperSubscriberController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewController;
+use App\Models\SuperSubscriberFeedback;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,6 +64,7 @@ Route::group(['middleware' => ['viewcontrol']], function () {
     Route::get('/fish_compactibilities', [ViewController::class, 'fish_compactibilities'])->name('fish.compactibility');
     Route::post('/fish_compactibilities/check/{category}', [ViewController::class, 'fish_check'])->name('fish.check');
 
+    Route::post('/give/super/feedback',[ViewController::class,'giveSuperFeedback'])->name('superfeedback.give');
 });
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -81,7 +84,14 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'checkauth'], 'prefix
     Route::get('/feedback', [FeedbackController::class, 'showFeedbacks'])->name('admin.showfeedback');
     Route::post('/feedback/{id}/delete', [FeedbackController::class, 'deleteFeedback'])->name('admin.delete.feedback');
     Route::get('/feedback/{feedback}/view', [FeedbackController::class, 'showFeedback'])->name('admin.showsinglefeedback');
+   
+    Route::get('/subscriber/feedbacks', [SuperSubscriberController::class, 'showSuperFeedbacks'])->name('admin.showSuperFeedback');
+    Route::post('/subscriber/feedback/{id}/delete', [SuperSubscriberController::class, 'deleteSuperFeedback'])->name('admin.delete.superfeedback');
+    Route::get('/subscriber/feedback/{id}/view', [SuperSubscriberController::class, 'showSuperFeedback'])->name('admin.showsuperfeedback');
+   
+   
     Route::resource("/fishes", FishController::class);
     Route::post('/fishes/compactibility/{id}/save', [FishController::class, 'saveCompactibility'])->name('fish.savecompactibility');
+
 
 });

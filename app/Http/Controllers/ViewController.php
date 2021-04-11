@@ -11,6 +11,7 @@ use App\Models\Fish;
 use App\Models\Notifiaction;
 use App\Models\Post;
 use App\Models\Question;
+use App\Models\SuperSubscriberFeedback;
 use App\Models\User;
 use CyrildeWit\EloquentViewable\Support\Period;
 use Exception;
@@ -305,5 +306,14 @@ class ViewController extends Controller {
 
         return view('frontend.fish-compactibility', compact('fishes', 'category'));
 
+    }
+
+
+    public function giveSuperFeedback(Request $request)
+    {
+        $data = $request->except('_token');
+        $data['user_id'] = Auth::id();
+        SuperSubscriberFeedback::create($data);
+        return redirect()->back();
     }
 }

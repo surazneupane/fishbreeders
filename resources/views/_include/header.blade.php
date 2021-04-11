@@ -97,45 +97,55 @@
         </div>
     </div>
     <div class="bg-primary">
-        <div class="container d-flex justify-content-between">
-            <ul class="nav text-white d-flex align-items-center w-100">
-                {{-- <li class="nav-item">
-                    <a href="#" class="nav-link p-0 m-0 text-capatlize text-white h-100 nav-hover">
-                        <img src="{{$siteinfo->logo}}" alt="" class="img-fluid p-0 m-0" width="40" />
-                </a>
-                </li> --}}
-                <li class="nav-item">
-                    <a href="{{route('home')}}" class="nav-link text-capatlize text-white h-100 nav-hover @if(request()->routeIs('home')) bg-danger @endif ">Home</a>
-                </li>
-                @forelse ($headerCategories as $category)
-                <li class="nav-item">
-                    <a href="
+        <nav class=" navbar navbar-expand-xl navbar-primary bg-primary">
+
+            <div class="container">
+                <button class="navbar-toggler btn btn-light bg-light shadow-none my-2 " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="margin-left:auto ">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                    </svg>
+
+                </button>
+
+
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav text-white  w-100   navbar-nav">
+
+                        <li class=" nav-item my-1 my-xl-0">
+                            <a href="{{route('home')}}" class="nav-link px-2 text-capatlize text-white h-100 nav-hover @if(request()->routeIs('home')) bg-danger @endif ">Home</a>
+                        </li>
+                        @forelse ($headerCategories as $category)
+                        <li class="nav-item my-1 my-xl-0">
+                            <a href="
                     {{ route('category', $category->slug) }}
-                    " class="nav-link text-capatlize text-white h-100 nav-hover @if(request()->url() == route('category', $category->slug)) bg-danger @endif">{{$category->title}}
-                    </a>
-                </li>
-                @empty
+                    " class="nav-link px-2 text-capatlize text-white h-100 nav-hover @if(request()->url() == route('category', $category->slug)) bg-danger @endif">{{$category->title}}
+                            </a>
+                        </li>
+                        @empty
 
-                @endforelse
-                <li class="nav-item">
-                    <a href="{{ route('calculator') }}" class="nav-link text-capatlize text-white h-100 nav-hover @if(request()->routeIs('calculator')) bg-danger @endif">
-                        Aquarium
-                    </a>
-                </li>
+                        @endforelse
+                        <li class="nav-item my-1 my-xl-0">
+                            <a href="{{ route('calculator') }}" class="nav-link px-2 text-capatlize text-white h-100 nav-hover @if(request()->routeIs('calculator')) bg-danger @endif">
+                                Aquarium
+                            </a>
+                        </li>
 
-                <li class="nav-item">
-                    <a href="{{ route('fish.compactibility') }}" class="nav-link text-capatlize text-white h-100 nav-hover @if(request()->routeIs('fish.compactibility')) bg-danger @endif">Fish Compatiblity</a>
-                </li>
-                <li class="nav-item  " style="margin-left: auto">
-                    <a href="{{ route('forums') }}" class="nav-link text-capatlize text-white nav-hover  h-100  @if(request()->routeIs('forums')) bg-danger @endif ">Forum</a>
-                </li>
-                <li class="nav-item">
+                        <li class="nav-item my-1 my-xl-0">
+                            <a href="{{ route('fish.compactibility') }}" class="nav-link px-2 text-capatlize text-white h-100 nav-hover @if(request()->routeIs('fish.compactibility')) bg-danger @endif">Fish Compatiblity</a>
+                        </li>
+                        <li class="nav-item my-1 my-xl-0 ml-auto ">
+                            <a href="{{ route('forums') }}" class="nav-link px-2 text-capatlize text-white nav-hover  h-100  @if(request()->routeIs('forums')) bg-danger @endif ">Forum</a>
+                        </li>
+                        <li class="nav-item my-1 my-xl-0">
+
+                        </li>
+                    </ul>
                     <form action="{{ route('search') }}" class="d-flex">
                         <input type="text" name="search" placeholder="Search Here..." id="search" class="form-control mx-2 shadow-none rounded-pill" value="{{$search ?? ""}}">
                     </form>
-                </li>
-            </ul>
+                </div>
 
-        </div>
+            </div>
+        </nav>
     </div>
 </header>
