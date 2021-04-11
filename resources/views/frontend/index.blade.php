@@ -75,16 +75,18 @@
 </section>
 
 <section>
-    <div class="bg-dark py-5">
+    <div class=" py-5" style="
+    background: linear-gradient(0deg, #00000050,#00000090), url('/static/images/fishes.jpg'); background-repeat: no-repeat; background-position: center; background-size: cover; ">
+
         <div class="container text-center text-white py-2">
             <h3 class="">
-              {{$siteinfo->small_banner_text}}
+                {{$siteinfo->small_banner_text}}
             </h3>
             <p class="w-75 mx-auto">
                 {{$siteinfo->small_banner_description}}
             </p>
             <div>
-                <a  @if(Auth::check()) href="#"    data-bs-toggle="modal" data-bs-target="#suberfeedback" @endif class="btn btn-primary rounded-pill btn-lg m-2">
+                <a @if(Auth::check()) href="#" data-bs-toggle="modal" data-bs-target="#suberfeedback" @endif class="btn btn-primary rounded-pill btn-lg m-2">
                     Subscribe Now
                 </a>
                 <a href="{{route('ext-register')}}" class="btn btn-outline-light rounded-pill btn-lg m-2 ">
