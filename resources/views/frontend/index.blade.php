@@ -75,8 +75,8 @@
 </section>
 
 <section>
-    <div class=" py-5" style="
-    background: linear-gradient(0deg, #00000050,#00000090), url('/static/images/fishes.jpg'); background-repeat: no-repeat; background-position: center; background-size: cover; ">
+    <div class=" py-5"  style="
+    background: linear-gradient(0deg, #00000050,#00000090),  url('@if($siteinfo->small_banner == "")/static/images/fishes.jpg @else {{$siteinfo->small_banner}} @endif'); background-repeat: no-repeat; background-position: center; background-size: cover; ">
 
         <div class="container text-center text-white py-2">
             <h3 class="">

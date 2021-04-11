@@ -34,6 +34,12 @@ class SiteController extends Controller {
                 $images         = $request->logo->storeAs('images', $image_name, 'public');
                 $data['logo'] = "/storage/" . $images;
             }
+            if($request->small_banner)
+            {
+                $image_name     = time() . "-" . $request->small_banner->getClientOriginalName();
+                $images         = $request->small_banner->storeAs('images', $image_name, 'public');
+                $data['small_banner'] = "/storage/" . $images;
+            }
             if ($siteInfo == null) {
                 SiteInfo::create($data);
             } else {

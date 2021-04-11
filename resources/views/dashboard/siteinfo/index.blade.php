@@ -91,6 +91,25 @@
                                         </div>
 
                                         <div class="col-span-6 sm:col-span-6">
+                                            <label for="small_banner"
+                                                class="block text-sm font-medium text-gray-700">{{ _('Small Banner Image') }}</label>
+                                            <input type="file" name="small_banner" id="small_banner" autocomplete="given-name"
+                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
+                                                @error('small_banner')border-red-400 @enderror
+                                                " value="{{ old('small_banner') }}">
+                                            @error('small_banner')
+                                            <span class="text-sm text-red-500">
+                                                {{ $message }}
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-span-6">
+                                            Current Image:
+                                            <img src="{{$siteInfo->small_banner}}" width="300">
+                                        </div>
+
+
+                                        <div class="col-span-6 sm:col-span-6">
                                             <label for="banner_text"
                                                 class="block text-sm font-medium text-gray-700">{{ _('Small Banner Text*') }}</label>
                                             <input type="text" name="small_banner_text" id="banner_text"
