@@ -396,6 +396,26 @@
 
     })
 
+    document.forms['calculator-cuboid'].addEventListener('reset', function() {
+        document.getElementById('result-cuboid').style.display = "none"
+    })
+    document.forms['calculator-cylinder'].addEventListener('reset', function() {
+        document.getElementById('result-cylinder').style.display = "none"
+    })
+    document.forms['calculator-sphere'].addEventListener('reset', function() {
+        document.getElementById('result-sphere').style.display = "none"
+
+    })
+    document.forms['calculator-heater'].addEventListener('reset', function() {
+        document.getElementById('result-heater').style.display = "none"
+
+    })
+    document.forms['calculator-chiller'].addEventListener('reset', function() {
+        document.getElementById('result-chiller').style.display = "none"
+
+    })
+
+
     document.getElementById('fah').addEventListener('keyup', function(e) {
         document.getElementById('cel').value = Math.round(((e.target.value - 32) / 1.8) * 100) / 100
     })
