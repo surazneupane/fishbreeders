@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreFishRequest;
+use App\Models\Category;
 use App\Models\Fish;
 use Illuminate\Http\Request;
 
@@ -25,8 +26,8 @@ class FishController extends Controller {
      */
     public function create() {
         //
-
-        return view('dashboard.fishes.create');
+        $categories = Category::find([1,2]);
+        return view('dashboard.fishes.create',compact('categories'));
     }
 
     /**
@@ -37,8 +38,12 @@ class FishController extends Controller {
      */
     public function store(StoreFishRequest $request) {
         //
-        Fish::create($request->except('_token'));
-        return redirect()->back()->with('success', 'Fish Added Sucessfully');
+
+        $fish = Fish::create($request->except('_token','category'));
+        $fish -> categories()->sync($request->category);
+        return redirect()->back()->with('success','Fish Added Sucessfully');
+
+  
     }
 
     /**
@@ -50,12 +55,11 @@ class FishController extends Controller {
     public function show($id) {
         //
         $fish = Fish::findOrFail($id);
-        if ($fish->category == 'swf') {
-            $selectFishes = Fish::where('category', 'swf')->get();
-        } else {
-            $selectFishes = Fish::where('category', 'fwf')->get();
-        }
-        return view('dashboard.fishes.show', compact('fish', 'selectFishes'));
+
+        $fishCategory = $fish->categories->first();
+        $selectFishes = $fishCategory->fishes()->get();
+        return view('dashboard.fishes.show',compact('fish','selectFishes','fishCategory'));
+
     }
 
     /**
@@ -66,8 +70,11 @@ class FishController extends Controller {
      */
     public function edit($id) {
         //
-        $fish = Fish::findOrFail($id);
-        return view('dashboard.fishes.edit', compact('fish'));
+
+       $fish = Fish::findOrFail($id);
+       $categories = Category::find([1,2]);
+        return view('dashboard.fishes.edit',compact('fish','categories'));
+
     }
 
     /**
@@ -79,9 +86,11 @@ class FishController extends Controller {
      */
     public function update(StoreFishRequest $request, $id) {
         //
-        $fish           = Fish::findORFail($id);
-        $fish->name     = $request->name;
-        $fish->category = $request->category;
+
+        $fish =Fish::findORFail($id);
+        $fish -> name =$request->name;
+        $fish->categories()->sync($request->category);
+
         $fish->update();
         return redirect()->back()->with('success', 'Updated Sucessfully');
     }
@@ -109,14 +118,24 @@ class FishController extends Controller {
         $compactFishes   = array();
         $moderateFishes  = array();
         $incompactFishes = array();
-        if (!empty($request->compactible)) {
 
-            foreach ($request['compactible'] as $key => $compactible) {
-                $compactFishes[$key]['compactibility_id'] = 1;
+        if(!empty($request->compactible))
+        {
+            
+        foreach($request['compactible'] as $key => $compactible)
+        {
+            $compactFishes[$key]['compactibility_id'] = 1;
 
-                $compactFishes[$key]['compactible_fish_id'] = $compactible;
-            }
+            $compactFishes[$key]['compactible_fish_id'] = $compactible;
+
+            
+           
+
+            
         }
+       }
+
+
 
         if (!empty($request->moderate)) {
             foreach ($request['moderate'] as $key => $moderate) {
@@ -136,10 +155,28 @@ class FishController extends Controller {
 
         }
 
+        $allAssignFish = array_merge($compactFishes,$moderateFishes,$incompactFishes);
+        
+        $reverseAllAssign = [];
+
+        for($i=0; $i<sizeof($allAssignFish);$i++)
+        {
+            $reverseAllAssign[$i]['compactibility_id'] = $allAssignFish[$i] ['compactibility_id'] ;
+            $reverseAllAssign[$i]['fish_id'] = $allAssignFish[$i] ['compactible_fish_id'] ;
+
+        }
+
         $mainFish->compactibilities()->detach();
-        $mainFish->compactibilities()->attach($compactFishes);
-        $mainFish->compactibilities()->attach($moderateFishes);
-        $mainFish->compactibilities()->attach($incompactFishes);
+        $mainFish->reverseCompactibilities()->detach();
+
+
+        $mainFish->compactibilities()->attach($allAssignFish);
+
+        
+        
+        $mainFish->reverseCompactibilities()->attach($reverseAllAssign);
+        
+       
 
         return redirect()->back()->with('success', 'Updated Sucessfully');
 

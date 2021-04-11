@@ -37,21 +37,31 @@
                                         </div>
 
 
-                                        <div class="col-span-6 sm:col-span-6">
-                                            <label for="category" class="block text-sm font-medium text-gray-700">{{ _('Fish Categories*') }}</label>
-                                            <select type="text" name="category" id="category" class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('category')border-red-400 @enderror ">
-                                                <option value="fwf">Fresh Water Fish</option>
-                                                <option value="swf">Salt Water Fish</option>
+
+                                <div class="col-span-6 sm:col-span-6">
+                                    <label for="category"
+                                        class="block text-sm font-medium text-gray-700">{{ _('Fish Categories*') }}</label>
+                                    <select type="text" name="category" id="category"
+                                        class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('category')border-red-400 @enderror "
+                                        >
+                                        @foreach ($categories as $category)
+                                            
+                                        <option value="{{$category->id}}">{{$category->title}}</option>
+                                        @endforeach
 
 
-                                                </option>
-                                            </select>
-                                            @error('category')
-                                            <span class="text-sm text-red-500">
-                                                {{ $message }}
-                                            </span>
-                                            @enderror
-                                        </div>
+                                      
+                                        </option>
+                                    </select>
+                                    @error('category')
+                                    <span class="text-sm text-red-500">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
+                                </div>
+
+
+                                    
 
 
 

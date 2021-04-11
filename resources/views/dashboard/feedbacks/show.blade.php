@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ $feedback->title }} - {{ __('Question Detail') }}
+                {{ strtoupper($feedback->title) }} - {{ __('Feedback Detail') }}
             </h2>
             <a href="{{route('admin.showfeedback')}}" class="px-2 py-1 bg-gray-500 text-white rounded hover:bg-gray-800"> Go
                 Back</a>

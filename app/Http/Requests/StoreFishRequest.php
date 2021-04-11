@@ -26,7 +26,7 @@ class StoreFishRequest extends FormRequest
         return [
             //
             'name' => 'required',
-            'category'=>'required|in:swf,fwf',
+            'category'=>'required',
         ];
     }
 }

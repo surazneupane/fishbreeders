@@ -15,4 +15,17 @@ class Fish extends Model
     {
         return $this->belongsToMany(Compactibility::class,'fish_compactibilities','fish_id','compactibility_id');
     }
+
+    public function reverseCompactibilities()
+    {
+        return $this->belongsToMany(Compactibility::class,'fish_compactibilities','compactible_fish_id','compactibility_id');
+    }
+
+
+   
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class,'fish_category');
+    }
 }
