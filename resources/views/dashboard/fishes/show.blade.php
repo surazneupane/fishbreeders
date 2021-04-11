@@ -41,80 +41,14 @@
              
                 <hr class="border-2 w-100 mb-5 ">
                 <h1 class="pb-4 text-2xl capitalize text-gray-700 ">Fish Compactibilities</h1>
-<form method="POST" action="{{route('fish.savecompactibility',$fish->id)}}">
-    @csrf
-                <div class="col-span-6 sm:col-span-6">
-                    <label for="category"
-                        class="block text-sm font-medium text-gray-700">{{ _('Compactibles') }}</label>
-                    <select type="text" name="compactible[]" id="category1"
-                        class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('category')border-red-400 @enderror "
-                        multiple>
-                        @foreach ($selectFishes as $selectfish)
-                            
-                        <option value="{{$selectfish->id}}" @if($fish->compactibilities()->where('compactibility_id',1)->where('compactible_fish_id',$selectfish->id)->first()) selected @endif>{{$selectfish->name}}</option>
-                        @endforeach
-                      
-                    </select>
-                    @error('category')
-                    <span class="text-sm text-red-500">
-                        {{ $message }}
-                    </span>
-                    @enderror
-
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg ">
-                @if(Session::has('success'))
-                <p style="color: green"> {{Session::get('success')}}</p>
-                @endif
-                <div class="px-4 py-5 sm:px-6">
-                    <h3 class="text-lg leading-6 font-medium text-gray-900">
-                        Fish Information
-                    </h3>
-
-                </div>
-                <div class="border-t border-gray-200">
-                    <dl>
-                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">
-                                Fish name
-                            </dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                {{ $fish->name }}
-                            </dd>
-                        </div>
-                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">
-                                Fish Type
-                            </dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                @if($fish->category == 'swf') Salt Water Fish @endif
-                                @if($fish->category == 'fwf') Fresh Water Fish @endif
-                            </dd>
-                        </div>
 
 
-                    </dl>
-                </div>
-
-                <h1 class="pb-4 text-2xl capitalize text-gray-700 px-4 pt-5 ">Fish Compactibilities</h1>
+               
+             
 
 
-                <div class="col-span-6 sm:col-span-6">
-                    <label for="category"
-                        class="block text-sm font-medium text-gray-700">{{ _('Incompactible') }}</label>
-                    <select type="text" name="incompactible[]" id="category3"
-                        class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('category')border-red-400 @enderror "
-                        multiple>
-                        @foreach ($selectFishes as $selectfish)
-                        <option value="{{$selectfish->id}}"  @if($fish->compactibilities()->where('compactibility_id',3)->where('compactible_fish_id',$selectfish->id)->first()) selected @endif>{{$selectfish->name}}</option>
-                        @endforeach
-                      
-                    </select>
-                    @error('category')
-                    <span class="text-sm text-red-500">
-                        {{ $message }}
-                    </span>
-                    @enderror
-                </div>
+
+              
 
                 <form method="POST" action="{{route('fish.savecompactibility',$fish->id)}}" class="px-4">
 
