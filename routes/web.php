@@ -59,6 +59,8 @@ Route::group(['middleware' => ['viewcontrol']], function () {
     Route::get('/notification/{id}/show', [ViewController::class, 'notificationShow'])->name('notification.show');
 
     Route::get('/aquarium-calculator', [ViewController::class, 'calculator'])->name('calculator');
+    Route::get('/fish_compactibilities', [ViewController::class, 'fish_compactibilities'])->name('fish.compactibility');
+    Route::post('/fish_compactibilities/check/{category}', [ViewController::class, 'fish_check'])->name('fish.check');
 
 });
 
@@ -78,8 +80,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'checkauth'], 'prefix
     Route::resource("/questions", QuestionController::class);
     Route::get('/feedback', [FeedbackController::class, 'showFeedbacks'])->name('admin.showfeedback');
     Route::post('/feedback/{id}/delete', [FeedbackController::class, 'deleteFeedback'])->name('admin.delete.feedback');
-    Route::get('/feedback/{feedback}/view',[FeedbackController::class,'showFeedback'])->name('admin.showsinglefeedback');
+    Route::get('/feedback/{feedback}/view', [FeedbackController::class, 'showFeedback'])->name('admin.showsinglefeedback');
     Route::resource("/fishes", FishController::class);
-    Route::post('/fishes/copactibility/{id}/save',[FishController::class,'saveCompactibility'])->name('fish.savecompactibility');
+    Route::post('/fishes/compactibility/{id}/save', [FishController::class, 'saveCompactibility'])->name('fish.savecompactibility');
 
 });

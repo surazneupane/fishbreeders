@@ -124,8 +124,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link text-capatlize text-white h-100 nav-hover @if(request()->routeIs('fish-compat')) bg-danger @endif">Fish
-                        Compatiblity</a>
+                    <a href="{{ route('fish.compactibility') }}" class="nav-link text-capatlize text-white h-100 nav-hover @if(request()->routeIs('fish.compactibility')) bg-danger @endif">Fish Compatiblity</a>
                 </li>
                 <li class="nav-item  " style="margin-left: auto">
                     <a href="{{ route('forums') }}" class="nav-link text-capatlize text-white nav-hover  h-100  @if(request()->routeIs('forums')) bg-danger @endif ">Forum</a>

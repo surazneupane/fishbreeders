@@ -1,4 +1,4 @@
-<section>
+<section class="mt-auto">
     <div class="" style="background-color: #120e43">
         <div class="container py-4">
             <div class="row d-lg-flex justify-content-between">

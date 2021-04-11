@@ -7,6 +7,7 @@ use App\Http\Requests\StoreUserExternalRequest;
 use App\Http\Requests\UpdateExternalUserRequest;
 use App\Models\Answer;
 use App\Models\Category;
+use App\Models\Fish;
 use App\Models\Notifiaction;
 use App\Models\Post;
 use App\Models\Question;
@@ -281,5 +282,28 @@ class ViewController extends Controller {
 
     public function calculator() {
         return view('frontend.calculator');
+    }
+
+    public function fish_compactibilities() {
+        return view('frontend.fish-compactibility');
+    }
+
+    public function fish_check(Category $category, Request $request) {
+
+        $fishes = Fish::whereIn('id', $request->fishes)->get();
+
+        $compactibility = [];
+
+        foreach ($fishes as $key => $fish) {
+            $compactibility[$key] = [];
+            foreach ($fishes as $selectedFish) {
+                $compactibility[$key] = [...$compactibility[$key], $fish->compactibilities()->where('compactible_fish_id', $selectedFish->id)->first()];
+            }
+        }
+
+        // dd($compactibility[0][0]->compactibility);
+
+        return view('frontend.fish-compactibility', compact('fishes', 'category'));
+
     }
 }

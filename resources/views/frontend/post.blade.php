@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', $post->seo_title)
+@section('title', $post->title ." - ".env('APP_NAME'))
 
 @section('head')
 <meta name="description" content="{{ $post->seo_description }}" />
