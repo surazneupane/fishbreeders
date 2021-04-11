@@ -40,8 +40,11 @@
                                     <select type="text" name="category" id="category"
                                         class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('category')border-red-400 @enderror "
                                         >
-                                        <option value="fwf">Fresh Water Fish</option>
-                                        <option value="swf">Salt Water Fish</option>
+                                        @foreach ($categories as $category)
+                                            
+                                        <option value="{{$category->id}}">{{$category->title}}</option>
+                                        @endforeach
+
 
                                       
                                         </option>

@@ -50,8 +50,7 @@
                                             {{ $fish->name }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-gray-500">
-                                           @if($fish->category == 'swf') Salt Water Fish @endif
-                                           @if($fish->category == 'fwf') Fresh Water Fish @endif
+                                          {{$fish->categories->first()->title}}
 
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-gray-500">

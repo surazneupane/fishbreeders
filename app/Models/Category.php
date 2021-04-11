@@ -23,4 +23,9 @@ class Category extends Model {
 
     }
 
+    public function fishes()
+    {
+        return $this->belongsToMany(Fish::class,'fish_category');
+    }
+
 }

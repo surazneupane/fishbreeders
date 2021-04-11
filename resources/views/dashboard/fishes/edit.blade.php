@@ -41,8 +41,11 @@
                                     <select type="text" name="category" id="category"
                                         class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('category')border-red-400 @enderror "
                                         >
-                                        <option value="fwf" @if($fish->category == 'fwf') selected @endif>Fresh Water Fish</option>
-                                        <option value="swf" @if($fish->category == 'swf') selected @endif>Salt Water Fish</option>
+                                        @foreach ($categories as $category)
+                                            
+                                        <option value="{{$category->id}}" @if($fish->categories->contains($category)) selected @endif>{{$category->title}}</option>
+                                        @endforeach
+                                        
 
                                       
                                         </option>

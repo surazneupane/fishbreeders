@@ -22,8 +22,7 @@
                 <hr class="border-2 w-100 mb-5 ">
                 <div class="text-sm my-4">
                     <p>
-                        Fish Type : @if($fish->category == 'swf') Salt Water Fish @endif
-                        @if($fish->category == 'fwf') Fresh Water Fish @endif
+                        Fish Type : {{$fishCategory->title}}
                     </p>
                 <hr class="border-2 w-100 mb-5 ">
 
@@ -37,6 +36,9 @@
                
                   
                 </div>
+
+                <?php $alreadyAssigned = $fish->compactibilities();
+                ?>
                 <hr class="border-2 w-100 mb-5 ">
                 <h1 class="pb-4 text-2xl capitalize text-gray-700 ">Fish Compactibilities</h1>
 <form method="POST" action="{{route('fish.savecompactibility',$fish->id)}}">
@@ -49,7 +51,7 @@
                         multiple>
                         @foreach ($selectFishes as $selectfish)
                             
-                        <option value="{{$selectfish->id}}" @if($fish->compactibilities()->where('compactibility_id',1)->where('compactible_fish_id',$selectfish->id)->first()) selected @endif >{{$selectfish->name}}</option>
+                        <option value="{{$selectfish->id}}" @if($fish->compactibilities()->where('compactibility_id',1)->where('compactible_fish_id',$selectfish->id)->first()) selected @endif>{{$selectfish->name}}</option>
                         @endforeach
                       
                     </select>
@@ -88,7 +90,7 @@
                         class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('category')border-red-400 @enderror "
                         multiple>
                         @foreach ($selectFishes as $selectfish)
-                        <option value="{{$selectfish->id}}" @if($fish->compactibilities()->where('compactibility_id',3)->where('compactible_fish_id',$selectfish->id)->first()) selected @endif >{{$selectfish->name}}</option>
+                        <option value="{{$selectfish->id}}"  @if($fish->compactibilities()->where('compactibility_id',3)->where('compactible_fish_id',$selectfish->id)->first()) selected @endif>{{$selectfish->name}}</option>
                         @endforeach
                       
                     </select>
