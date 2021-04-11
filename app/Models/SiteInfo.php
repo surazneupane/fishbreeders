@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SiteInfo extends Model
 {
-    protected $fillable = ['about_us','banner','banner_text','logo'];
+    protected $fillable = ['about_us','banner','banner_text','logo','small_banner_description','small_banner_text'];
     use HasFactory;
 
 }

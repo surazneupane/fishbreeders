@@ -29,6 +29,8 @@ class StoreSiteInfoRequest extends FormRequest
             'logo'  => 'image|mimes:png,jpg,jpeg,svg',
             'banner_text' => 'required|string',
             'about_us'      => 'required|string',
+            'small_banner_text' =>'required|string',
+            'small_banner_description'=>'required|string',
         ];
     }
 }

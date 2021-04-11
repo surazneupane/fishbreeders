@@ -39,6 +39,11 @@
                         {{ __('Feedbacks') }}
                     </x-jet-nav-link>
 
+                    <x-jet-nav-link href="{{ route('admin.showSuperFeedback') }}"
+                    :active="request()->routeIs('admin.showSuperFeedback')">
+                    {{ __('Subscriber Feedback') }}
+                     </x-jet-nav-link>
+
                     <x-jet-nav-link href="{{ route('fishes.index') }}" :active="request()->routeIs('fishes.*')">
                         {{ __('Fishes') }}
                     </x-jet-nav-link>
