@@ -74,7 +74,28 @@
     </div>
 </section>
 
+<section>
+    <div class="bg-dark py-5">
+        <div class="container text-center text-white py-2">
+            <h3 class="">
+                Become a Fish Breeding Super Subscriber
+            </h3>
+            <p class="w-75 mx-auto">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, recusandae. Nostrum accusantium, debitis quasi deserunt consequatur corporis sunt? Ab, consequuntur. Doloribus a itaque eveniet quam porro perspiciatis eos culpa optio esse voluptas eum corporis dolorem nemo, mollitia at ducimus tempora corrupti deserunt atque. Veniam, est quae laborum fugit id nostrum doloribus officia laboriosam et fuga.
+            </p>
+            <div>
+                <a href="#" class="btn btn-primary rounded-pill btn-lg m-2">
+                    Subscribe Now
+                </a>
+                <a href="#" class="btn btn-outline-light rounded-pill btn-lg m-2 ">
+                    Register Now
+                </a>
 
+            </div>
+        </div>
+
+    </div>
+</section>
 
 <section>
     <div class="container my-4">
