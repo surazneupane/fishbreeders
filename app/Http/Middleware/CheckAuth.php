@@ -20,16 +20,12 @@ class CheckAuth {
 
         if (Auth::check()) {
             if ((Auth::user()->roles->contains(3))) {
-
-                abort(401);
+                
+                return redirect()->route('home');
             }
         }
 
-        $siteinfo = SiteInfo::find(1);
-        if (!$siteinfo) {
-            $siteinfo = new SiteInfo();
-        }
-        View::share(compact('siteinfo'));
+      
 
         return $next($request);
     }

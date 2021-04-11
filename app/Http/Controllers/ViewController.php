@@ -106,12 +106,12 @@ class ViewController extends Controller {
             'email'    => 'required|email',
             'password' => 'required',
         ]);
-        $user = User::where('email', $request->email)->first();
-        if ($user) {
-            if ($user->roles->contains(3) && Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1])) {
+        // $user = User::where('email', $request->email)->first();
+        // if ($user) {
+            if ( Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1])) {
                 return redirect()->route('home');
             }
-        }
+        // }
 
         return redirect()->back()->with('error', 'Invalid Email Or Password');
     }
