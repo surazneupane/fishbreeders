@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\FishController;
@@ -69,9 +70,7 @@ Route::group(['middleware' => ['viewcontrol']], function () {
 
     Route::post('/give/super/feedback', [ViewController::class, 'giveSuperFeedback'])->name('superfeedback.give');
 
-    Route::get('/messages', function () {
-        return view('frontend.chat');
-    });
+    Route::get('/messages', [ChatController::class, 'index'])->name('chat');
 });
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
