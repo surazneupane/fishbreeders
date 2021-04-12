@@ -147,9 +147,13 @@
                         </div>
                     </div>
 
+                    <?php $replies = $answer->replies()->get();  ?>
+                 
+                    <h5 class="px-1">Replies</h5>
+
                     {{-- replies --}}
-                  @foreach($answer->replies()->get() as $reply)
-                    <div class="card my-3">
+                  @foreach( $replies as $reply)
+                    <div class="card my-2">
                         <div class="card-header d-flex align-items-center justify-content-between">
                             <div>
                                 @isset($reply->user->name)
@@ -208,7 +212,7 @@
                        
                         <div class="form-group">
 
-                            <label for="answer">Reply </label>
+                            <label for="answer"> </label>
                             <textarea name="reply" placeholder="Reply To Answer" class="form-control"
                                 rows="2" required></textarea>
                         </div>
