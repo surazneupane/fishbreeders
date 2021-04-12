@@ -10,8 +10,8 @@
 
 
                 @if(Auth::user())
-
-                <?php $notifications = Auth::user()->userNotification()  ?>
+                <?php $user=Auth::user(); ?>
+                <?php $notifications = $user->userNotification()  ?>
                 <li class="nav-item d-flex align-items-center">
                     <div class="dropdown d-flex align-items-center">
                         <button class="btn btn-transparent  dropdown-toggle shadow-none d-flex align-items-center " style="position: relative;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -66,10 +66,11 @@
                 <li class="nav-item">
                     <div class="dropdown">
                         <button class="btn btn-transparent dropdown-toggle shadow-none d-flex align-items-center " type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="{{ Auth::user()->profile_photo_url }}" alt="" width="45" class="img-fluid rounded-circle mx-2 border border-primary border-2 ">
+                            <img src="{{ $user->profile_photo_url }}" alt="" width="45" class="img-fluid rounded-circle mx-2 border border-primary border-2 ">
                             <span>
-                                {{ Auth::user()->name }} 
-                                @if(Auth::user()->roles->contains(1) || Auth::user()->roles->contains(2))
+
+                                {{ $user->name }} 
+                                @if($user->roles->contains(1) ||$user->roles->contains(2))
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="blue" class="bi bi-patch-check-fill" viewBox="0 0 16 16">
                                     <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
                                   </svg>
