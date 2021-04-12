@@ -25,4 +25,6 @@ if (mix.inProduction()) {
     mix.version();
 }
 
+mix.js("resources/js/vue.js", "public/js").vue();
+
 // mix.browserSync("laradash.test");
