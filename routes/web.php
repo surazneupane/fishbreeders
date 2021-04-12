@@ -51,6 +51,10 @@ Route::group(['middleware' => ['viewcontrol']], function () {
     Route::post('/question/{id}/delete', [ViewController::class, 'deleteQuestion'])->name('ext-user.myquesdel');
     Route::post('/question/{id}/edit', [ViewController::class, 'editQuestion'])->name('ext-user.myquesedit');
 
+    Route::post('/forums/answer/{id}/reply',[ViewController::class,'replyAnswer'])->name('ext-user.answerReply');
+    Route::post('forums/answer/reply/{id}/delete',[ViewController::class,'deleteReply'])->name('ext-user.deleteReply');
+
+
     Route::get('/profile', [ViewController::class, 'profile'])->name('ext-user.profile');
     Route::post('/profile/{id}/update', [ViewController::class, 'updateProfile'])->name('ext-user.profileupdate');
 
@@ -59,6 +63,7 @@ Route::group(['middleware' => ['viewcontrol']], function () {
     Route::post('/forums/answer/{id}/delete', [ViewController::class, 'deleteANswer'])->name('user.forum.deleteans');
 
     Route::get('/notification/{id}/show', [ViewController::class, 'notificationShow'])->name('notification.show');
+    Route::get('/notification/show/{id}/reply', [ViewController::class, 'replyNotificationShow'])->name('notification.reply.show');
 
     Route::get('/aquarium-calculator', [ViewController::class, 'calculator'])->name('calculator');
     Route::get('/fish_compactibilities', [ViewController::class, 'fish_compactibilities'])->name('fish.compactibility');

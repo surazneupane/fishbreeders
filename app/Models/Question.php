@@ -18,7 +18,12 @@ class Question extends Model implements Viewable {
         parent::boot();
 
         static::deleting(function ($question) {
-            $question->answers()->delete();
+           foreach( $question->answers()->get() as $answer)
+           {
+            $answer->replies()->delete();
+            $answer->notifications()->where('notifiable_id',$answer->id)->delete();
+            $answer->delete();
+           }
         });
     }
 

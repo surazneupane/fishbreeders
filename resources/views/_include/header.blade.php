@@ -40,8 +40,13 @@
                                         @endif
                                         {{$notification->message}}
                                     </strong>
+                                    @if($notification->notifiable_type == 'App\Models\Question')
                                     <a href="{{route('notification.show',$notification->id)}}">
                                         ({{$notification->notifiable->title}}) </a>
+                                        @else
+                                        <a href="{{route('notification.reply.show',$notification->id)}}">
+                                            ({{$notification->notifiable->description}}) </a>
+                                        @endif
                                 </p>
                             </div>
 
