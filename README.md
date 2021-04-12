@@ -1,13 +1,18 @@
-# Hello News Nepal
+# Fish Breeders Web Portal
 
-Laravel application
+# Setup Process
 
-1. clone
+1. clone the repository from your command line :
+    git clone https://github.com/surazneupane/fishbreeders.git
 
-2. key-generate
+2. cd fishbreeders
 
-3. db migrate
+3. composer install
 
-4. db seed
+4.  create new .env file and copy contents of  .env.example to .env
 
-5. Ready to run
+5. setup database credintials on .env file
+
+6.  php artisan key:generate
+
+7. finally php artisan serve and you are ready to go for browser .
