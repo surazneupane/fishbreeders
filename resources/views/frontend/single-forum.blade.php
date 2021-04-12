@@ -88,9 +88,9 @@
                         @else
                         <div class="text-center">
                             <h5 class="text-primary">
-                                You Must Login/sign-up to Answer
+                               Login  To Answer
                             </h5>
-                            <a href="{{ route('ext-login') }}">Login</a>
+                            <a href="{{ route('ext-login') }}" class="btn btn-success">Login</a>
                         </div>
                         @endif
                     </div>
