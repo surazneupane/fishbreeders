@@ -219,10 +219,10 @@ class ViewController extends Controller {
         $answer   = Answer::findOrFail($id);
         $question = $answer->question()->first();
         if (Auth::id() == $question->user_id) {
-            $associatedNotification = $question->notifications()->where('notify_to', Auth::id())->where('notify_from', $answer->user_id)->first();
+            $associatedNotification = $question->notifications()->where('notifiable_id',$question->id)->where('notify_to', Auth::id())->where('notify_from', $answer->user_id)->first();
 
         } else {
-            $associatedNotification = $question->notifications()->where('notify_to', $question->user_id)->where('notify_from', Auth::id())->first();
+            $associatedNotification = $question->notifications()->where('notifiable_id',$question->id)->where('notify_to', $question->user_id)->where('notify_from', Auth::id())->first();
         }
         if (!empty($associatedNotification)) {
             $associatedNotification->delete();
@@ -361,10 +361,10 @@ class ViewController extends Controller {
         $reply = AnswerReply::findOrFail($id);
         $answer = $reply->answer()->first();
         if (Auth::id() == $answer->user_id) {
-            $associatedNotification = $answer->notifications()->where('notify_to', Auth::id())->where('notify_from', $answer->user_id)->first();
+            $associatedNotification = $answer->notifications()->where('notifiable_id',$answer->id)->where('notify_to', Auth::id())->where('notify_from', $answer->user_id)->first();
 
         } else {
-            $associatedNotification = $answer->notifications()->where('notify_to', $answer->user_id)->where('notify_from', Auth::id())->first();
+            $associatedNotification = $answer->notifications()->where('notifiable_id',$answer->id)->where('notify_to', $answer->user_id)->where('notify_from', Auth::id())->first();
         }
         if (!empty($associatedNotification)) {
             $associatedNotification->delete();
