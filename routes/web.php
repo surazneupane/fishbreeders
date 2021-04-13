@@ -77,6 +77,9 @@ Route::get('/chats/rooms/{chatRoom}/messages', [ChatController::class, 'messages
 Route::post('/chats/rooms/{chatRoom}/message', [ChatController::class, 'newMessage'])->name('chat.newMessage');
 Route::get('/chats/users', [ChatController::class, 'searchUser'])->name('chat.searchUser');
 Route::post('/chats/rooms/create', [ChatController::class, 'createRoom'])->name('chat.createRoom');
+Route::get('/chats/rooms/{chatRoom}/users', [ChatController::class, 'getUsers'])->name('chats.users');
+Route::post('/chats/rooms/{chatRoom}/users/add', [ChatController::class, 'addUsers'])->name('chats.users.add');
+Route::get('/chats/rooms/{chatRoom}/users/{user}/leave', [ChatController::class, 'leaveUser'])->name('chats.users.leave');
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified', 'checkauth'], 'prefix' => 'admin'], function () {

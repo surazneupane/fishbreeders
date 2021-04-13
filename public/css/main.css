@@ -10924,3 +10924,7 @@ textarea.form-control-lg {
 .notification::-webkit-scrollbar {
   display: none;
 }
+
+* {
+  box-sizing: border-box;
+}

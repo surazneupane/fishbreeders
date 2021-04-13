@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="col-lg-3 ">
+        <div class="col-lg-3 col-xl-2 ">
             <div class="border h-100 ">
                 <CreateChatRoom v-on:chatroomcreated="getRooms()" />
                 <chat-room-selection
@@ -11,11 +11,19 @@
                 />
             </div>
         </div>
-        <div class="col">
+        <div class="col" v-if="currentRoom.id">
             <message-container :messages="messages" />
             <input-message
                 :room="currentRoom"
                 v-on:messagesent="getMessages()"
+            />
+        </div>
+        <div class="col-lg-3 col-xl-2" v-if="currentRoom.id">
+            <chat-room-info
+                :room="currentRoom"
+                :users="users"
+                v-on:useradded="getUsers()"
+                v-on:userleave="getRooms()"
             />
         </div>
     </div>
@@ -26,19 +34,22 @@ import ChatRoomSelection from "./chatRoomSelection.vue";
 import inputMessage from "./inputMessage.vue";
 import messageContainer from "./messageContainer.vue";
 import CreateChatRoom from "./createChatRoom.vue";
+import ChatRoomInfo from "./ChatRoomInfo.vue";
 export default {
     data() {
         return {
             chatRooms: [],
             currentRoom: [],
-            messages: []
+            messages: [],
+            users: []
         };
     },
     components: {
         messageContainer,
         inputMessage,
         ChatRoomSelection,
-        CreateChatRoom
+        CreateChatRoom,
+        ChatRoomInfo
     },
     methods: {
         getRooms() {
@@ -46,7 +57,8 @@ export default {
                 .get("/chats/rooms")
                 .then(response => {
                     this.chatRooms = response.data;
-                    this.setRoom(response.data[0]);
+                    if (response.data[0]) this.setRoom(response.data[0]);
+                    else this.currentRoom = [];
                 })
                 .catch(error => {
                     console.log(error);
@@ -54,6 +66,17 @@ export default {
         },
         setRoom(room) {
             this.currentRoom = room;
+            this.getUsers();
+        },
+        getUsers() {
+            axios
+                .get("/chats/rooms/" + this.currentRoom.id + "/users")
+                .then(response => {
+                    this.users = response.data;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         },
         getMessages() {
             axios

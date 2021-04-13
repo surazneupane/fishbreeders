@@ -58,4 +58,18 @@ class ChatController extends Controller {
         ChatMessage::create(["user_id" => Auth::id(), "chat_room_id" => $room->id, "message" => $request->message]);
         return $room;
     }
+    public function getUsers(ChatRoom $chatRoom) {
+        return $chatRoom->users;
+    }
+    public function addUsers(ChatRoom $chatRoom, Request $request) {
+        foreach ($request->users as $user) {
+            if (!$chatRoom->users->contains($user['code'])) {
+                $chatRoom->users()->attach($user["code"]);
+            }
+        }
+        return $chatRoom->users;
+    }
+    public function leaveUser(ChatRoom $chatRoom, User $user) {
+        $chatRoom->users()->detach($user->id);
+    }
 }
