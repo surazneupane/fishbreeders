@@ -22,6 +22,7 @@
                 <input type="password" name="password" id="password"
                     class="form-control @error('password') is-invalid @enderror" placeholder="Password">
             </div>
+            
             <div class="d-flex justify-content-between">
                 <button class="btn btn-primary">
                     Login
@@ -29,6 +30,11 @@
                 <a href="{{ route('ext-register') }}" class="btn btn-success">Sign Up</a>
             </div>
         </form>
+        @if (Route::has('password.request'))
+        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+            {{ __('Forgot your password?') }}
+        </a>
+    @endif
         <div class="my-3">
             <h5 class="text-center">
                 OR
