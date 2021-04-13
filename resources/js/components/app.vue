@@ -1,7 +1,16 @@
 <template>
-    <div class="container py-5">
-        <h1 class="">
-            Hello world
-        </h1>
+    <div class="container">
+        <Container />
     </div>
 </template>
+
+<script>
+import Container from "./chat/Container";
+export default {
+    components: {
+        Container: Container
+    }
+};
+</script>
+
+<style></style>

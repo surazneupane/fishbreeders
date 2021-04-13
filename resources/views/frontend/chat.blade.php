@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('head')
+<link rel="stylesheet" href="/css/select.css" />
+@endsection
+
 @section('content')
 <div id="app">
     <app></app>

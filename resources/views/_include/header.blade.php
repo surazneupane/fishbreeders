@@ -79,6 +79,9 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                             <li>
+                                <a href="{{route('chat')}}" class="dropdown-item">Messages</a>
+                            </li>
+                            <li>
                                 <a href="{{route('ext-user.myquest')}}" class="dropdown-item">My Questions</a>
                             </li>
                             <li>

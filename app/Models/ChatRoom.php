@@ -11,7 +11,7 @@ class ChatRoom extends Model {
     protected $fillable = ['name'];
 
     public function users() {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, "user_chat_room", "chat_room_id", "user_id");
     }
 
     public function messages() {

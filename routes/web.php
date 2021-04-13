@@ -70,9 +70,13 @@ Route::group(['middleware' => ['viewcontrol']], function () {
 
     Route::post('/give/super/feedback', [ViewController::class, 'giveSuperFeedback'])->name('superfeedback.give');
 
-    Route::get('/messages', [ChatController::class, 'index'])->name('chat');
+    Route::get('/chats', [ChatController::class, 'index'])->name('chat');
 });
-
+Route::get('/chats/rooms', [ChatController::class, 'rooms'])->name('chat.rooms');
+Route::get('/chats/rooms/{chatRoom}/messages', [ChatController::class, 'messages'])->name('chat.messages');
+Route::post('/chats/rooms/{chatRoom}/message', [ChatController::class, 'newMessage'])->name('chat.newMessage');
+Route::get('/chats/users', [ChatController::class, 'searchUser'])->name('chat.searchUser');
+Route::post('/chats/rooms/create', [ChatController::class, 'createRoom'])->name('chat.createRoom');
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified', 'checkauth'], 'prefix' => 'admin'], function () {
