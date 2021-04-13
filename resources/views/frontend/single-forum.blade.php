@@ -24,10 +24,10 @@
                             @if($user)
                             @if($user->roles->contains(1) || $user->roles->contains(2))
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="blue" class="bi bi-patch-check-fill" viewBox="0 0 16 16">
-                                <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
-                              </svg>
-                              @endif
-                              @endif
+                                <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z" />
+                            </svg>
+                            @endif
+                            @endif
                         </small>
                         <small>
                             Viewed {{ $views }}
@@ -60,7 +60,7 @@
 
                         @if($errors->has('reply'))
                         <label for="error" class="alert alert-danger">{{$errors->first('reply')}}*</label>
-    
+
                         @endif
 
                         @if(Session::has('error'))
@@ -74,12 +74,11 @@
                         @endif
                         <form action="{{route('user.forum.giveans',$question->id)}}" method="POST">
                             @csrf
-                           
+
                             <div class="form-group">
 
                                 <label for="answer">Answer</label>
-                                <textarea required name="answer" placeholder="Your Answer Here" class="form-control"
-                                    rows="5"></textarea>
+                                <textarea required name="answer" placeholder="Your Answer Here" class="form-control" rows="5"></textarea>
                             </div>
                             <div class="d-flex justify-content-end">
                                 <button class="btn btn-success my-2">Submit</button>
@@ -88,7 +87,7 @@
                         @else
                         <div class="text-center">
                             <h5 class="text-primary">
-                               Login  To Answer
+                                Login To Answer
                             </h5>
                             <a href="{{ route('ext-login') }}" class="btn btn-success">Login</a>
                         </div>
@@ -100,8 +99,7 @@
                         <div class="card-header d-flex align-items-center justify-content-between">
                             <div>
                                 @isset($answer->user->name)
-                                <img src="{{$answer->user->profile_photo_url}}" alt="" width="40" height="40"
-                                    class="img-fluid rounded-circle">
+                                <img src="{{$answer->user->profile_photo_url}}" alt="" width="40" height="40" class="img-fluid rounded-circle">
                                 @endisset
                                 <span class="px-2">
                                     {{$answer->user->name ?? "unknown"}}
@@ -111,14 +109,14 @@
                                     @if($user)
                                     @if($user->roles->contains(1) || $user->roles->contains(2))
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="blue" class="bi bi-patch-check-fill" viewBox="0 0 16 16">
-                                        <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
-                                      </svg>
-                                      @endif
-                                      @endif
+                                        <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z" />
+                                    </svg>
+                                    @endif
+                                    @endif
                                 </span>
-                             
+
                             </div>
-                            
+
                             <div class="text-muted">
                                 {{-- answer created time --}}
                                 {{ $answer->created_at->diffForHumans() }}
@@ -133,8 +131,7 @@
                             <div class="d-flex align-items-center justify-content-between">
                                 <livewire:react-action :item="$answer" likes="{{$answer->votes()->where('vote_count',1)->count()}}" dislikes="{{$answer->votes()->where('vote_count',-1)->count()}}" />
                                 @if(Auth::id() == $answer->user_id || Auth::id() == $question->user_id)
-                                <form onsubmit="return deleteAnswer();"
-                                    action="{{route('user.forum.deleteans',$answer->id)}}" method="POST">
+                                <form onsubmit="return deleteAnswer();" action="{{route('user.forum.deleteans',$answer->id)}}" method="POST">
                                     @csrf
                                     <button class="btn text-primary shadow-none" type="submit">Delete
                                     </button>
@@ -148,19 +145,28 @@
                     </div>
 
                     <?php $replies = $answer->replies()->get();  ?>
-                 
-                    <h5 class="px-1">Replies</h5>
+
+                    <div class="px-1">Replies</div>
 
                     {{-- replies --}}
-                  @foreach( $replies as $reply)
-                    <div class="card my-2">
-                        <div class="card-header d-flex align-items-center justify-content-between">
-                            <div>
+                    @foreach( $replies as $reply)
+
+
+                    <div class=" bg-white p-1   border-bottom">
+                        <div class="p-1 w-100 my-2 ">
+
+                            <small class="">
+                                {{$reply->description}}
+                            </small>
+                        </div>
+
+                        <div class=" d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center ">
+
                                 @isset($reply->user->name)
-                                <img src="{{$reply->user->profile_photo_url}}" alt="" width="40" height="40"
-                                    class="img-fluid rounded-circle">
+                                <img src="{{$reply->user->profile_photo_url}}" alt="" width="24" height="24" class="img-fluid rounded-circle">
                                 @endisset
-                                <span class="px-2">
+                                <small class="px-2 text-nowrap">
                                     {{$reply->user->name ?? "unknown"}}
 
                                     <?php $user = $reply->user()->first(); ?>
@@ -168,62 +174,54 @@
                                     @if($user)
                                     @if($user->roles->contains(1) || $user->roles->contains(2))
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="blue" class="bi bi-patch-check-fill" viewBox="0 0 16 16">
-                                        <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
-                                      </svg>
-                                      @endif
-                                      @endif
-                                </span>
-                             
+                                        <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z" />
+                                    </svg>
+                                    @endif
+                                    @endif
+                                </small>
+                                <div>
+                                    <small class="text-nowrap text-muted">
+
+                                        {{ $reply->created_at->diffForHumans() }}
+                                    </small>
+
+                                </div>
+
+
                             </div>
-                            
-                            <div class="text-muted">
-                                {{-- answer created time --}}
-                                {{ $reply->created_at->diffForHumans() }}
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">
-                                {{$reply->description}}
-                            </p>
-                        </div>
-                        <div class="card-footer text-muted">
-                            <div class="d-flex align-items-center justify-content-between">
+
+                            <div class="d-flex align-items-center">
+
                                 <livewire:react-action :item="$reply" likes="{{$reply->votes()->where('vote_count',1)->count()}}" dislikes="{{$reply->votes()->where('vote_count',-1)->count()}}" />
                                 @if(Auth::id() == $reply->user_id || Auth::id() == $question->user_id || Auth::id() == $answer->user_id)
-                                <form onsubmit="return deleteAnswer();"
-                                    action="{{route('ext-user.deleteReply',$reply->id)}}" method="POST">
+                                <form onsubmit="return deleteAnswer();" action="{{route('ext-user.deleteReply',$reply->id)}}" method="POST">
                                     @csrf
-                                    <button class="btn text-primary shadow-none" type="submit">Delete
+                                    <button class="btn text-primary shadow-none btn-sm" type="submit">Delete
                                     </button>
                                 </form>
-
                                 @endif
-
 
                             </div>
                         </div>
                     </div>
 
-                        @endforeach
+
+                    @endforeach
 
                     @if(Auth::check())
-                    <form action="{{route('ext-user.answerReply',$answer->id)}}" method="POST">
+                    <form action="{{route('ext-user.answerReply',$answer->id)}}" method="POST" class="d-flex align-items-center">
                         @csrf
-                       
-                        <div class="form-group">
-
-                            <label for="answer"> </label>
-                            <textarea name="reply" placeholder="Reply To Answer" class="form-control"
-                                rows="2" required></textarea>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <button class="btn btn-success my-2">Submit</button>
-                        </div>
+                        <input type=text name="reply" placeholder="Reply To Answer" class="form-control" required>
+                        <button class="btn btn-success btn-sm my-2">Reply</button>
                     </form>
                     @endif
 
 
                     @endforeach
+                </div>
+                <div>
+                    {{ $answers->links('pagination::bootstrap-4') }}
+
                 </div>
 
             </div>
@@ -233,11 +231,10 @@
 </section>
 
 <script type="text/javascript">
-    function   deleteAnswer()
-    {
-      return  confirm('Are You Sure?');
+    function deleteAnswer() {
+        return confirm('Are You Sure?');
     }
-    
+
 </script>
 
 

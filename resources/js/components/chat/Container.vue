@@ -82,7 +82,8 @@ export default {
             axios
                 .get("/chats/rooms/" + this.currentRoom.id + "/messages")
                 .then(response => {
-                    this.messages = response.data;
+                    this.messages.push(...response.data.reverse());
+                    this.lastPage = response.data.last_page;
                 })
                 .catch(error => {
                     console.log(error);
@@ -108,6 +109,7 @@ export default {
         currentRoom(val, oldVal) {
             if (oldVal.id) {
                 this.disconnect(oldVal);
+                this.messages = [];
             }
             this.connect();
         }

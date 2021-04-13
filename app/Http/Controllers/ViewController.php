@@ -110,9 +110,9 @@ class ViewController extends Controller {
         ]);
         // $user = User::where('email', $request->email)->first();
         // if ($user) {
-            if ( Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1])) {
-                return redirect()->route('home');
-            }
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'status' => 1])) {
+            return redirect()->route('home');
+        }
         // }
 
         return redirect()->back()->with('error', 'Invalid Email Or Password');
@@ -122,7 +122,7 @@ class ViewController extends Controller {
 
         views($question)->record();
         $views   = views($question)->count();
-        $answers = $question->answers()->orderBy('created_at', 'DESC')->get();
+        $answers = $question->answers()->latest()->paginate(5);
         return view('frontend.single-forum', compact('question', 'views', 'answers'));
     }
 
@@ -219,10 +219,10 @@ class ViewController extends Controller {
         $answer   = Answer::findOrFail($id);
         $question = $answer->question()->first();
         if (Auth::id() == $question->user_id) {
-            $associatedNotification = $question->notifications()->where('notifiable_id',$question->id)->where('notify_to', Auth::id())->where('notify_from', $answer->user_id)->first();
+            $associatedNotification = $question->notifications()->where('notifiable_id', $question->id)->where('notify_to', Auth::id())->where('notify_from', $answer->user_id)->first();
 
         } else {
-            $associatedNotification = $question->notifications()->where('notifiable_id',$question->id)->where('notify_to', $question->user_id)->where('notify_from', Auth::id())->first();
+            $associatedNotification = $question->notifications()->where('notifiable_id', $question->id)->where('notify_to', $question->user_id)->where('notify_from', Auth::id())->first();
         }
         if (!empty($associatedNotification)) {
             $associatedNotification->delete();
@@ -246,7 +246,7 @@ class ViewController extends Controller {
             return redirect()->route('home');
         }
         $question = Question::findOrFail($id);
-      
+
         $question->notifications()->where('notifiable_id', $question->id)->delete();
         $question->delete();
         return redirect()->back()->with('success', 'Question Deleted Sucessfully');
@@ -314,80 +314,69 @@ class ViewController extends Controller {
 
     }
 
-
-    public function giveSuperFeedback(Request $request)
-    {
+    public function giveSuperFeedback(Request $request) {
         if (!Auth::user()) {
             return redirect()->route('home');
         }
-        $data = $request->except('_token');
+        $data            = $request->except('_token');
         $data['user_id'] = Auth::id();
         SuperSubscriberFeedback::create($data);
         return redirect()->back();
     }
 
-
-
-    public function replyAnswer(AnswerReplyRequest $request,$id)
-    {
+    public function replyAnswer(AnswerReplyRequest $request, $id) {
         if (!Auth::user()) {
             return redirect()->route('home');
         }
-       $answer =Answer::findOrFail($id);
-       $reply = new AnswerReply;
-       $reply->description = $request->reply;
-       $reply->user_id = Auth::id();
-       $answer->replies()->save($reply);
-     
-       if ($answer->user_id != Auth::id()) {
-        $notification = new Notifiaction();
+        $answer             = Answer::findOrFail($id);
+        $reply              = new AnswerReply;
+        $reply->description = $request->reply;
+        $reply->user_id     = Auth::id();
+        $answer->replies()->save($reply);
 
-        $notification->notify_to   = $answer->user_id;
-        $notification->notify_from = Auth::id();
-        $notification->message     = "Replied On Yor Answer";
-        $answer->notifications()->save($notification);
+        if ($answer->user_id != Auth::id()) {
+            $notification = new Notifiaction();
+
+            $notification->notify_to   = $answer->user_id;
+            $notification->notify_from = Auth::id();
+            $notification->message     = "Replied On Yor Answer";
+            $answer->notifications()->save($notification);
+        }
+
+        return redirect()->back()->with('success', 'Reply Added Sucessfully');
+
     }
 
-
-       return redirect()->back()->with('success','Reply Added Sucessfully');
-
-    }
-
-    public function deleteReply($id)
-    {
+    public function deleteReply($id) {
         if (!Auth::user()) {
             return redirect()->route('home');
         }
-        $reply = AnswerReply::findOrFail($id);
+        $reply  = AnswerReply::findOrFail($id);
         $answer = $reply->answer()->first();
         if (Auth::id() == $answer->user_id) {
-            $associatedNotification = $answer->notifications()->where('notifiable_id',$answer->id)->where('notify_to', Auth::id())->where('notify_from', $answer->user_id)->first();
+            $associatedNotification = $answer->notifications()->where('notifiable_id', $answer->id)->where('notify_to', Auth::id())->where('notify_from', $answer->user_id)->first();
 
         } else {
-            $associatedNotification = $answer->notifications()->where('notifiable_id',$answer->id)->where('notify_to', $answer->user_id)->where('notify_from', Auth::id())->first();
+            $associatedNotification = $answer->notifications()->where('notifiable_id', $answer->id)->where('notify_to', $answer->user_id)->where('notify_from', Auth::id())->first();
         }
         if (!empty($associatedNotification)) {
             $associatedNotification->delete();
         }
         $reply->delete();
-        return redirect()->back()->with('success','Reply Deleted Sucessfully');
+        return redirect()->back()->with('success', 'Reply Deleted Sucessfully');
 
     }
 
-    public function replyNotificationShow($id)
-    {
+    public function replyNotificationShow($id) {
         if (!Auth::user()) {
             return redirect()->route('home');
         }
         $notification         = Notifiaction::findOrFail($id);
         $notification->status = 1;
-        $answer             = Answer::findOrFail($notification->notifiable_id);
-        $question = $answer->question()->first();
+        $answer               = Answer::findOrFail($notification->notifiable_id);
+        $question             = $answer->question()->first();
         $notification->update();
         return $this->singleForum($question);
     }
-
-
-
 
 }

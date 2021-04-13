@@ -17,7 +17,7 @@ class ChatController extends Controller {
         return view('frontend.chat');
     }
     public function rooms() {
-        $rooms = Auth::user()->rooms;
+        $rooms = User::find(Auth::id())->rooms()->with('users')->get();
         return $rooms;
     }
     public function messages(ChatRoom $chatRoom) {
@@ -59,7 +59,7 @@ class ChatController extends Controller {
         return $room;
     }
     public function getUsers(ChatRoom $chatRoom) {
-        return $chatRoom->users;
+        return $chatRoom->users()->with('roles')->get();
     }
     public function addUsers(ChatRoom $chatRoom, Request $request) {
         foreach ($request->users as $user) {
