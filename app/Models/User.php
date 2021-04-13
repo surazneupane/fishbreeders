@@ -68,14 +68,16 @@ class User extends Authenticatable {
         return $this->belongsToMany(Role::class, "user_role");
     }
 
-    public function userNotification()
-    {
-        return $this->hasMany(Notifiaction::class,'notify_to')->orderBy('created_at','DESC')->take(5)->get();
+    public function userNotification() {
+        return $this->hasMany(Notifiaction::class, 'notify_to')->orderBy('created_at', 'DESC')->take(5)->get();
     }
 
-    public function questions()
-    {
+    public function questions() {
         return $this->hasMany(Question::class);
     }
-  
+
+    public function rooms() {
+        return $this->belongsToMany(ChatRoom::class, 'user_chat_room');
+    }
+
 }

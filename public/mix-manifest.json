@@ -1,6 +1,8 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/main.js": "/js/main.js",
+    "/js/vue.js": "/js/vue.js",
     "/css/app.css": "/css/app.css",
+    "/css/select.css": "/css/select.css",
     "/css/main.css": "/css/main.css"
 }

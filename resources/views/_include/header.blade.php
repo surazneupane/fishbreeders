@@ -1,13 +1,52 @@
 <header>
     <div class="container">
 
-        <div class="d-flex justify-content-between align-items-center">
-            <a href="/" class="text-decoration-none text-dark d-flex align-items-center">
-                <img src="{{$siteinfo->logo}}" alt="" width="150" height="150" />
-                <span class="h1"> Fish Breeder </span>
+        <div class="d-flex justify-content-between align-items-center my-1 flex-wrap flex-column flex-lg-row">
+            <a href="/" class="text-decoration-none text-dark d-flex align-items-center mx-auto mx-lg-0">
+                <img src="{{$siteinfo->logo}}" alt="" height="100" class="my-1" />
+                {{-- <span class="h1"> Fish Breeder </span> --}}
             </a>
-            <ul class="nav">
 
+            <style>
+                .search {
+                    width: 500px;
+
+                }
+
+                @media (max-width: 1200px) {
+                    .search {
+                        width: 300px;
+                    }
+                }
+
+                @media (max-width: 1000px) {
+                    .search {
+                        width: 400px;
+                    }
+                }
+
+                @media (max-width: 500px) {
+                    .search {
+                        width: 300px;
+                    }
+                }
+
+            </style>
+
+            <div class="mx-auto mx-lg-0 search my-2" style="">
+                <form action="{{ route('search') }}" class="w-100">
+                    <div class="d-flex border  align-content-center border-primary p-0 justify-content-between w-100 ">
+                        <input type="text" name="search" placeholder="Search Here..." id="search" class="form-control pr-0   shadow-none rounded-0 w-100 border-0 " value="{{$search ?? ""}}">
+                        <button type="submit" class="btn btn-primary shadow-none   border shadow-0 outline-none border-top-0 border-right-0 border-bottom-0 m-0 rounded-0  m-0 border-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <ul class="nav mx-auto mx-lg-0">
 
                 @if(Auth::user())
                 <?php $user=Auth::user(); ?>
@@ -43,10 +82,10 @@
                                     @if($notification->notifiable_type == 'App\Models\Question')
                                     <a href="{{route('notification.show',$notification->id)}}">
                                         ({{$notification->notifiable->title}}) </a>
-                                        @else
-                                        <a href="{{route('notification.reply.show',$notification->id)}}">
-                                            ({{$notification->notifiable->description}}) </a>
-                                        @endif
+                                    @else
+                                    <a href="{{route('notification.reply.show',$notification->id)}}">
+                                        ({{$notification->notifiable->description}}) </a>
+                                    @endif
                                 </p>
                             </div>
 
@@ -69,15 +108,18 @@
                             <img src="{{ $user->profile_photo_url }}" alt="" width="45" class="img-fluid rounded-circle mx-2 border border-primary border-2 ">
                             <span>
 
-                                {{ $user->name }} 
+                                {{ $user->name }}
                                 @if($user->roles->contains(1) ||$user->roles->contains(2))
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="blue" class="bi bi-patch-check-fill" viewBox="0 0 16 16">
-                                    <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
-                                  </svg>
-                                  @endif
+                                    <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z" />
+                                </svg>
+                                @endif
                             </span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                            <li>
+                                <a href="{{route('chat')}}" class="dropdown-item">Messages</a>
+                            </li>
                             <li>
                                 <a href="{{route('ext-user.myquest')}}" class="dropdown-item">My Questions</a>
                             </li>
@@ -152,9 +194,7 @@
 
                         </li>
                     </ul>
-                    <form action="{{ route('search') }}" class="d-flex">
-                        <input type="text" name="search" placeholder="Search Here..." id="search" class="form-control mx-2 shadow-none rounded-pill" value="{{$search ?? ""}}">
-                    </form>
+
                 </div>
 
             </div>

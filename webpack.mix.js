@@ -1,4 +1,5 @@
 const mix = require("laravel-mix");
+require("dotenv").config();
 
 /*
  |--------------------------------------------------------------------------
@@ -16,13 +17,14 @@ mix.js("resources/js/app.js", "public/js").postCss(
     "public/css",
     [require("postcss-import"), require("tailwindcss"), require("autoprefixer")]
 );
-mix.js("resources/js/main.js", "public/js").sass(
-    "resources/scss/main.scss",
-    "public/css"
-);
+mix.js("resources/js/main.js", "public/js")
+    .sass("resources/scss/main.scss", "public/css")
+    .sass("resources/scss/select.scss", "public/css");
 
 if (mix.inProduction()) {
     mix.version();
 }
+
+mix.js("resources/js/vue.js", "public/js").vue();
 
 // mix.browserSync("laradash.test");
