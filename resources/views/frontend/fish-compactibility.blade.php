@@ -28,10 +28,10 @@
                 @csrf
                 <div class="mb-3">
                     <label for="freshfish" class="form-label">Select Fishes</label>
-                    <select name="fishes[]" id="freshfish" class="form-control" multiple>
+                    <select required name="fishes[]" id="freshfish" class="form-control" multiple>
                         <option></option>
                         @foreach (\App\Models\Category::find(1)->fishes as $fish)
-                        <option value="{{ $fish->id }}">{{ $fish->name }}</option>
+                        <option  value="{{ $fish->id }}">{{ $fish->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -109,7 +109,7 @@
 
                 <div class="mb-3">
                     <label for="saltfish" class="form-label">Select Fishes</label>
-                    <select name="fishes[]" id="saltfish" class="form-control" multiple>
+                    <select required name="fishes[]" id="saltfish" class="form-control" multiple>
                         <option></option>
                         @foreach (\App\Models\Category::find(2)->fishes as $fish)
                         <option value="{{ $fish->id }}">{{ $fish->name }}</option>
