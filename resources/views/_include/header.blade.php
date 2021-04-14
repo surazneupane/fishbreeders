@@ -61,32 +61,56 @@
                                 <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
                             </svg>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-end  p-0 notification" aria-labelledby="dropdownMenuButton1" style="width: 300px;margin-top:5px; max-height: 500px; overflow-y: scroll ;ms-overflow-style: none;  /* IE and Edge */
+                        <div class="dropdown-menu dropdown-menu-end  p-0 notification" aria-labelledby="dropdownMenuButton1" style="width: 400px;margin-top:5px; max-height: 500px; overflow-y: scroll ;ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;">
-                            <h6 class="bg-success text-white p-2 m-0" style="position: sticky; top: 0">Your
+                            <h6 class="bg-success text-white p-2 m-0" style="position: sticky; top: 0">All
                                 Notifications</h6>
                             @forelse ($notifications as $notification)
                             {{-- <div @if($notification->status == 0) style="background-color:#d4d2cd" @endif> --}}
 
                             <hr class="my-0">
-                            <div @if($notification->status == 0) style="background-color:#ffe6e6" @endif >
-                                <p class="text-muted w-100  p-2">
-                                    <strong>
+                            <div @if($notification->status == 0) style="background:#f0f0f0" @else style="background: #fff;" @endif class="d-flex align-items-center">
+
+                                <div>
+                                    @if($notification->notificationFrom)
+                                    <img src="{{$notification->notificationFrom->profile_photo_url}}" alt="" width="40" height="40" class="m-1">
+                                    @else
+                                    @endif
+
+                                </div>
+                                <div class="p-1">
+                                    <div>
                                         @if($notification->notificationFrom)
                                         {{$notification->notificationFrom->name}}
                                         @else
                                         Unknown User
                                         @endif
-                                        {{$notification->message}}
-                                    </strong>
+
+                                    </div>
+                                    <div>
+                                        <small class="text-muted">
+                                            {{$notification->message}}
+                                        </small>
+                                    </div>
                                     @if($notification->notifiable_type == 'App\Models\Question')
-                                    <a href="{{route('notification.show',$notification->id)}}">
-                                        ({{$notification->notifiable->title}}) </a>
+                                    <a href="{{route('notification.show',$notification->id)}}" class="text-decoration-none">
+                                        <small>
+                                            {{$notification->notifiable->title}}
+                                        </small> </a>
+
                                     @else
-                                    <a href="{{route('notification.reply.show',$notification->id)}}">
-                                        ({{$notification->notifiable->description}}) </a>
+                                    <a href="{{route('notification.reply.show',$notification->id)}}" class="text-decoration-none">
+                                        <small>
+                                            {{$notification->notifiable->description}}
+                                        </small> </a>
+
                                     @endif
-                                </p>
+                                </div>
+                                <div class="p-1" style="margin-left: auto !important; align-self: flex-start ">
+                                    <small class="text-muted">
+                                        {{$notification->created_at->diffForHumans()}}
+                                    </small>
+                                </div>
                             </div>
 
                             {{-- </div> --}}
