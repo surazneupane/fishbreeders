@@ -15,7 +15,6 @@
                 <h1 class="pb-4 text-2xl capitalize text-gray-700 ">{{ $post->title }}</h1>
                 <hr class="border-2 w-100 mb-5 ">
                 <div class="text-sm my-4">
-
                     <p>
                         Posted by : {{ $post->user->name }}
                     </p>
@@ -33,7 +32,6 @@
                     <p>
                         Views : {{ $post->views }}
                     </p>
-
                 </div>
                 <hr class="border-2 w-100 mb-5 ">
                 <div class="my-4">
