@@ -37,8 +37,13 @@
                         </li>
                         @endforeach
                         <li class="d-block">
-                            <a href="#" class="nav-link text-white">
+                            <a href="{{route('calculator')}}" class="nav-link text-white">
                                 <small> Aquarium Calculator</small>
+                            </a>
+                        </li>
+                        <li class="d-block">
+                            <a href="{{ route('fish.compactibility') }}" class="nav-link text-white">
+                                <small> Fish Compactibility </small>
                             </a>
                         </li>
                         <li class="d-block">

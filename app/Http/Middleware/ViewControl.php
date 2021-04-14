@@ -28,16 +28,18 @@ class ViewControl {
         if (!$siteinfo) {
             $siteinfo = new SiteInfo();
         }
+        $hasMessages = 0;
 
+        if(Auth::check()){
         $rooms = User::find(Auth::id())->rooms()->get();
 
-        $hasMessages = 0;
 
         foreach ($rooms as $room) {
             if ($room->messages()->whereNotIn('user_id', [Auth::id()])->where('viewed', false)->get()->count() > 0) {
                 $hasMessages++;
             }
         }
+    }
 
 
         View::share(compact('categories', 'headerCategories', 'siteinfo', 'footerCategories', 'hasMessages'));
