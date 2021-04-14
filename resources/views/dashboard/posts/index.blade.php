@@ -78,8 +78,9 @@
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium ">
                                             <a href="{{ route('posts.show', $post->id) }}" class="text-blue-600 m-1 hover:text-blue-900">View</a>
-                                            <a href="{{ route('posts.edit', $post->id) }}" class="text-indigo-600 m-1 hover:text-indigo-900">Edit</a>
                                             @can('user_access')
+                                        
+                                            <a href="{{ route('posts.edit', $post->id) }}" class="text-indigo-600 m-1 hover:text-indigo-900">Edit</a>
                                             <form action="{{ route('posts.destroy', $post->id) }}" class="inline" method="post" onsubmit="return confirm('Are you sure you want to delete this post?')">
                                                 @csrf
                                                 @method('delete')

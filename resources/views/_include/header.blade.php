@@ -209,7 +209,7 @@
                         </li>
 
                         <li class="nav-item my-1 my-xl-0 mx-2">
-                            <a href="{{ route('fish.compactibility') }}" class="nav-link px-2 text-capatlize text-white h-100 nav-hover @if(request()->routeIs('fish.compactibility')) bg-danger @endif">Fish Compatiblity</a>
+                            <a href="{{ route('fish.compactibility') }}" class="nav-link px-2 text-capatlize text-white h-100 nav-hover @if(request()->routeIs('fish.compactibility')) bg-danger @endif">Fish Compatibility</a>
                         </li>
                         <li class="nav-item my-1 my-xl-0 ml-auto mx-2">
                             <a href="{{ route('forums') }}" class="nav-link px-2 text-capatlize text-white nav-hover  h-100  @if(request()->routeIs('forums')) bg-danger @endif ">Forum</a>
