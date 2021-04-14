@@ -45,7 +45,7 @@
                 </div>
 
 
-                <h1 class="pb-4 text-2xl capitalize text-gray-700 px-4 pt-5 ">Fish Compactibilities</h1>
+                <h1 class="pb-4 text-2xl capitalize text-gray-700 px-4 pt-5 ">Fish Compatibility</h1>
 
                 <form method="POST" action="{{route('fish.savecompactibility',$fish->id)}}" class="px-4">
 
