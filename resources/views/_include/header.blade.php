@@ -215,6 +215,7 @@
                             <a href="{{ route('forums') }}" class="nav-link px-2 text-capatlize text-white nav-hover  h-100  @if(request()->routeIs('forums')) bg-danger @endif ">Forum</a>
                         </li>
                         <li class="nav-item my-1 my-xl-0">
+                            <a href="{{ route('aboutus') }}" class="nav-link px-2 text-capatlize text-white nav-hover  h-100  @if(request()->routeIs('aboutus')) bg-danger @endif ">About Us</a>
 
                         </li>
                     </ul>

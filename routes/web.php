@@ -70,6 +70,8 @@ Route::group(['middleware' => ['viewcontrol']], function () {
 
     Route::post('/give/super/feedback', [ViewController::class, 'giveSuperFeedback'])->name('superfeedback.give');
 
+    Route::get("/about-us", function(){return view('frontend.aboutus');})->name('aboutus');
+
     Route::get('/chats', [ChatController::class, 'index'])->name('chat');
 });
 Route::get('/chats/rooms', [ChatController::class, 'rooms'])->name('chat.rooms');

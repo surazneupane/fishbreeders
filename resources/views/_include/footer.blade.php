@@ -7,7 +7,25 @@
                         About Us
                     </h4>
                     <div class="text-white">
-                        {!! $siteinfo->about_us !!}
+                        <img src={{ $siteinfo->logo }} height="80" style="object-fit: contain" class="bg-white w-100 py-1" />
+                        <div>
+                            <div class="my-2 text-uppercase">
+                                Fish breeders Pvt. Ltd
+                            </div>
+                            <div>
+                                <i>
+                                    info@fishbreeders.com
+                                </i>
+                            </div>
+                            <div>
+                                <i>
+                                    345345353452,2342342342
+                                </i>
+                            </div>
+                            <div class="my-2">
+                                Learn More about us click <a href="{{ route('aboutus') }}">here</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-3">
@@ -36,6 +54,11 @@
                         <li class="d-block">
                             <a href="{{ route('forums') }}" class="nav-link text-white">
                                 <small> Forum </small>
+                            </a>
+                        </li>
+                        <li class="d-block">
+                            <a href="{{ route('aboutus') }}" class="nav-link text-white">
+                                <small> About Us </small>
                             </a>
                         </li>
                     </ul>
@@ -70,7 +93,7 @@
 
 
 <div class="modal fade " id="feedbackmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg  modal-dialog-centered">
+    <div class="modal-dialog   modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Feedback</h5>
@@ -89,7 +112,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="feedback" class="form-label ">Feedback</label>
-                        <textarea class="form-control" name="feedback" id="feedback" rows="5" required placeholder="Your Feedback"></textarea>
+                        <textarea class="form-control" name="feedback" id="feedback" rows="7" required placeholder="Your Feedback"></textarea>
                     </div>
                     <div class="d-flex justify-content-center align-items-center">
                         <button type="submit" class="btn btn-primary my-2 rounded-pill px-5">Submit</button>
