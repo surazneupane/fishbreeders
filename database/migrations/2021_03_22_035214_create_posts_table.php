@@ -18,7 +18,7 @@ class CreatePostsTable extends Migration {
             $table->longText('content');
             $table->string('featured_image')->nullable();
             $table->text('excerpt')->nullable();
-            $table->string('status')->default('draft');
+            $table->string('status')->default("0");
             $table->string('location')->nullable();
             $table->bigInteger('views')->default(0);
             $table->bigInteger('share')->default(0);

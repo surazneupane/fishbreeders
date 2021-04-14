@@ -60,7 +60,7 @@
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-gray-500">
-                                            @if ($post->status)
+                                            @if ($post->status && $post->status != "draft" )
                                             <span class="text-sm text-green-900 bg-green-200 px-2 py-1 rounded-xl">
                                                 Published
                                             </span>
