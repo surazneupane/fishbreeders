@@ -45,7 +45,7 @@
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
 
-                                    @forelse ($posts->reverse() as $post )
+                                    @forelse ($posts as $post )
 
 
                                     <tr>
@@ -105,7 +105,7 @@
                     </div>
                 </div>
             </div>
-
+            {{$posts->links()}}
         </div>
     </div>
 </x-app-layout>

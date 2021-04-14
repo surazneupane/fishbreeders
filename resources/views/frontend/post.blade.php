@@ -29,7 +29,18 @@
                     <small>
                         Published by {{date("F jS, Y", strtotime($post->created_at))}}
                     </small>
+
+                   
+
+                
                 </div>
+            @if($post->breeding)
+
+                <button type="button" class="btn btn-primary my-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Breeding Guide
+
+                </button>
+                @endif
                 {{-- <div class="my-2">
                     <a href="" class="btn btn-transparent">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#3b5998"
@@ -64,15 +75,13 @@
 
             @if($post->breeding)
             <div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="position: fixed; right: 50px; bottom: 50px;">
-                    Breeding
-                </button>
+                
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Breeding</h5>
+                                {{-- <h5 class="modal-title" id="exampleModalLabel">Breeding</h5> --}}
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">

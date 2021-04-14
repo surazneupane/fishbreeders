@@ -19,8 +19,8 @@ class SiteController extends Controller {
     public function store(StoreSiteInfoRequest $request) {
         try {
             $siteInfo = SiteInfo::find(1);
-            $data     = $request->except('banner', '_token');
-            
+            $data     = $request->except('banner','small_banner','logo', '_token');
+
             if ($request->banner) {
                 $image_name     = time() . "-" . $request->banner->getClientOriginalName();
                 $images         = $request->banner->storeAs('images', $image_name, 'public');

@@ -24,7 +24,7 @@ class FeedbackController extends Controller
 
     public function showFeedbacks()
     {
-       $feedbacks = Feedback::all();
+       $feedbacks = Feedback::latest()->paginate(10);
        return view('dashboard.feedbacks.index',compact('feedbacks'));
     }
 

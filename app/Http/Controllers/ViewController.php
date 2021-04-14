@@ -73,7 +73,7 @@ class ViewController extends Controller {
     public function forum(Request $request) {
         if ((!empty($request->all()))) {
             if (isset($request->name)) {
-                $forums = Category::where('slug', $request->name)->first()->questions()->paginate(10);
+                $forums = Category::where('slug', $request->name)->first()->questions()->orderBy('created_at','desc')->paginate(10);
             } else if ($request->query) {
                 $forums = Question::where('title', 'like', '%' . $request['query'] . '%')->paginate(10);
 
@@ -237,7 +237,7 @@ class ViewController extends Controller {
         if (!Auth::user()) {
             return redirect()->route('home');
         }
-        $questions = Auth::user()->questions;
+        $questions = Auth::user()->questions()->latest()->paginate(10);
         return view('frontend.myquestions', compact('questions'));
     }
 

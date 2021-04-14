@@ -123,6 +123,20 @@
 
 
 
+
+                                        <div class="col-span-6 sm:col-span-6 ">
+                                            <label for="footer_about" class="block text-sm font-medium text-gray-700">{{ _('Footer About*') }}</label>
+                                            <textarea name="footer_about" id="footer_about" autocomplete="footer_about" value="{{ old('footer_about') }}" rows="10" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">{{$siteInfo->footer_about}}</textarea>
+                                            @error('footer_about')
+                                            <span class="text-sm text-red-500">
+                                                {!! $siteinfo->footer_about !!}
+                                            </span>
+                                            @enderror
+                                        </div>
+
+
+
+
                                     </div>
                                 </div>
                                 <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
@@ -140,7 +154,7 @@
     </div>
     <script>
         tinymce.init({
-            selector: '#about_us'
+            selector: '#about_us,#footer_about'
             , plugins: 'lists, table code image link'
             , menubar: false
             , height: 800

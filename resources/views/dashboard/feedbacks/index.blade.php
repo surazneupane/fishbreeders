@@ -104,7 +104,7 @@
                     </div>
                 </div>
             </div>
-
+{{$feedbacks->links()}}
         </div>
     </div>
 </x-app-layout>

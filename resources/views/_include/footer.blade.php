@@ -3,25 +3,14 @@
         <div class="container py-4">
             <div class="row d-lg-flex justify-content-between">
                 <div class="col-lg-4">
-                    <h4 class="text-white border-light border-bottom py-2">
-                        About Us
-                    </h4>
+                  
                     <div class="text-white">
-                        <img src={{ $siteinfo->logo }} height="80" style="object-fit: contain" class="bg-white w-100 py-1" />
+                        {{-- <img src={{ $siteinfo->logo }} height="80" style="object-fit: contain" class=" w-100 py-1" /> --}}
                         <div>
-                            <div class="my-2 text-uppercase">
-                                Fish breeders Pvt. Ltd
+                            <div class="my-2">
+                                {{$siteinfo->footer_about}}
                             </div>
-                            <div>
-                                <i>
-                                    info@fishbreeders.com
-                                </i>
-                            </div>
-                            <div>
-                                <i>
-                                    345345353452,2342342342
-                                </i>
-                            </div>
+                          
                             <div class="my-2">
                                 Learn More about us click <a href="{{ route('aboutus') }}">here</a>
                             </div>

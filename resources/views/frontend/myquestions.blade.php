@@ -11,7 +11,7 @@
 
                 @foreach ($questions as $forum )
 
-                <div class="card w-100 border-0">
+                <div class="card w-100 border-1">
                     <div class="card-body">
                         <a href="{{ route('forums.show', $forum->id) }}"
                             class=" text-decoration-none text-dark card-link  ">
@@ -63,14 +63,18 @@
                                     <span> {{ $category->title }} </span>
                                 </div>
                                 @endforeach
-                            </div>
 
+              
+
+                            </div>
+                          
 
 
                         </div>
                     </div>
+                 
                 </div>
-
+               
                 {{-- Edit Modal --}}
                 <div class="modal fade " id="editquestionmodal{{$forum->id}}" tabindex="-1"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -121,6 +125,9 @@
 
 
                 @endforeach
+                <div class="my-4">
+                    {{ $questions->links('pagination::bootstrap-4') }}
+                </div>
             </div>
         </div>
     </div>

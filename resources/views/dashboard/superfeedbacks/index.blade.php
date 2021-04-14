@@ -112,7 +112,7 @@
                     </div>
                 </div>
             </div>
-
+{{$subFeedbacks->links()}}
         </div>
     </div>
 </x-app-layout>

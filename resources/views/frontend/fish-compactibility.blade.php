@@ -15,7 +15,7 @@
             
             " style="background-color: #5DA3FA; letter-spacing:.1rem">
 
-        Fish Compactibility Checker
+        Fish Compatibility Checker
     </h3>
 
     <div class="row ">
@@ -47,7 +47,7 @@
             @isset($fishes)
 
             <div class="my-5">
-                <h4>Fish Compactibility Result</h4>
+                <h4>Fish Compatibility Result</h4>
                 <table class="table table-striped">
                     <tr>
                         <th scope="col"></th>
@@ -130,7 +130,7 @@
             @isset($fishes)
 
             <div class="my-5">
-                <h4>Fish Compactibility Result</h4>
+                <h4>Fish Compatibility Result</h4>
                 <table class="table table-striped">
                     <tr>
                         <th scope="col"></th>

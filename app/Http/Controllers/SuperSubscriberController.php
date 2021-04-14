@@ -12,7 +12,7 @@ class SuperSubscriberController extends Controller
 
     public function showSuperFeedbacks()
     {
-        $subFeedbacks = SuperSubscriberFeedback::all();
+        $subFeedbacks = SuperSubscriberFeedback::latest()->paginate(10);
         return view('dashboard.superfeedbacks.index',compact('subFeedbacks'));
     }
 

@@ -31,6 +31,7 @@ class StoreSiteInfoRequest extends FormRequest
             'about_us'      => 'required|string',
             'small_banner_text' =>'required|string',
             'small_banner_description'=>'required|string',
+            'footer_about' => 'required',
         ];
     }
 }

@@ -22,6 +22,8 @@ class CreateSiteInfosTable extends Migration
             $table->string('small_banner_text')->nullable();
             $table->longText('small_banner_description')->nullbale();
             $table->longText('small_banner')->nullable();
+            $table->longText('footer_about')->nullable();
+
 
             $table->timestamps();
         });

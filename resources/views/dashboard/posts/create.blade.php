@@ -98,7 +98,7 @@
 
 
                                         <div class="col-span-6 sm:col-span-6">
-                                            <label for="refrence" class="block text-sm font-medium text-gray-700">{{ _('Post Reference*') }}
+                                            <label for="refrence" class="block text-sm font-medium text-gray-700">{{ _('Post Reference') }}
                                                 @error('refrence')
                                                 <span class="text-sm text-red-500">
                                                     {{ $message }}

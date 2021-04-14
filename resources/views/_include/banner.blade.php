@@ -19,7 +19,7 @@
                 <h1 class="text-white mb-4 h3" style="letter-spacing: 0.1rem">
                     {!! $siteinfo->banner_text !!}
                 </h1>
-                <a href="#" class="btn btn-light btn-lg px-4">Join Now</a>
+                <a href="{{route('ext-register')}}" class="btn btn-light btn-lg px-4">Join Now</a>
             </div>
         </div>
     </div>

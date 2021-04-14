@@ -45,7 +45,7 @@
                     </x-jet-nav-link>
 
                     <x-jet-nav-link href="{{ route('fishes.index') }}" :active="request()->routeIs('fishes.*')">
-                        {{ __('Fishes') }}
+                        {{ __('Fish Compatibility') }}
                     </x-jet-nav-link>
                     @endcan
                 </div>

@@ -26,7 +26,6 @@ class UpdatePostRequest extends FormRequest {
             "excerpt"        => "required",
             "featured_image" => "image|mimes:png,jpg,jpeg,gif,svg|max:2048",
             "content"        => "required",
-            "refrence"       => "required",
         ];
     }
 

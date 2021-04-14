@@ -142,9 +142,11 @@
                 </tbody>
               </table>
             </div>
+
           </div>
         </div>
       </div>
+      {{$categories->links()}}
 
     </div>
   </div>

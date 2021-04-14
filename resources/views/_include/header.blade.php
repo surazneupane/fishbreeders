@@ -189,11 +189,11 @@
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav text-white  w-100   navbar-nav">
 
-                        <li class=" nav-item my-1 my-xl-0">
+                        <li class=" nav-item my-1 my-xl-0 mx-2">
                             <a href="{{route('home')}}" class="nav-link px-2 text-capatlize text-white h-100 nav-hover @if(request()->routeIs('home')) bg-danger @endif ">Home</a>
                         </li>
                         @forelse ($headerCategories as $category)
-                        <li class="nav-item my-1 my-xl-0">
+                        <li class="nav-item my-1 my-xl-0 mx-2">
                             <a href="
                     {{ route('category', $category->slug) }}
                     " class="nav-link px-2 text-capatlize text-white h-100 nav-hover @if(request()->url() == route('category', $category->slug)) bg-danger @endif">{{$category->title}}
@@ -202,19 +202,19 @@
                         @empty
 
                         @endforelse
-                        <li class="nav-item my-1 my-xl-0">
+                        <li class="nav-item my-1 my-xl-0 mx-2">
                             <a href="{{ route('calculator') }}" class="nav-link px-2 text-capatlize text-white h-100 nav-hover @if(request()->routeIs('calculator')) bg-danger @endif">
-                                Aquarium
+                                Aquarium Calculator
                             </a>
                         </li>
 
-                        <li class="nav-item my-1 my-xl-0">
+                        <li class="nav-item my-1 my-xl-0 mx-2">
                             <a href="{{ route('fish.compactibility') }}" class="nav-link px-2 text-capatlize text-white h-100 nav-hover @if(request()->routeIs('fish.compactibility')) bg-danger @endif">Fish Compatiblity</a>
                         </li>
-                        <li class="nav-item my-1 my-xl-0 ml-auto ">
+                        <li class="nav-item my-1 my-xl-0 ml-auto mx-2">
                             <a href="{{ route('forums') }}" class="nav-link px-2 text-capatlize text-white nav-hover  h-100  @if(request()->routeIs('forums')) bg-danger @endif ">Forum</a>
                         </li>
-                        <li class="nav-item my-1 my-xl-0">
+                        <li class="nav-item my-1 my-xl-0 mx-2">
                             <a href="{{ route('aboutus') }}" class="nav-link px-2 text-capatlize text-white nav-hover  h-100  @if(request()->routeIs('aboutus')) bg-danger @endif ">About Us</a>
 
                         </li>

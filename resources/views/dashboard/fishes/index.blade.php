@@ -89,7 +89,7 @@
                     </div>
                 </div>
             </div>
-
+{{$fishes->links()}}
         </div>
     </div>
 </x-app-layout>

@@ -15,7 +15,7 @@ class FishController extends Controller {
      */
     public function index() {
         //
-        $fishes = Fish::all();
+        $fishes = Fish::latest()->paginate(10);
         return View('dashboard.fishes.index', compact('fishes'));
     }
 

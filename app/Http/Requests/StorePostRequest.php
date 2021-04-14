@@ -27,7 +27,6 @@ class StorePostRequest extends FormRequest {
             "excerpt"        => "required",
             "featured_image" => "required|image|mimes:png,jpg,jpeg,gif,svg|max:2048",
             "content"        => "required",
-            "refrence"       => "required",
             "category"       => "required",
         ];
     }

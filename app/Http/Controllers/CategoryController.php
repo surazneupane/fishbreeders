@@ -15,7 +15,7 @@ class CategoryController extends Controller {
      */
     public function index() {
 
-        $categories = Category::where('parent_id', null)->get();
+        $categories = Category::where('parent_id', null)->paginate(10);
 
         return view('dashboard.categories.index', compact('categories'));
     }
