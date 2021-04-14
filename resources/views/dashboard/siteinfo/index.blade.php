@@ -113,7 +113,7 @@
 
                                         <div class="col-span-6 sm:col-span-6 ">
                                             <label for="about_us" class="block text-sm font-medium text-gray-700">{{ _('Small Banner Description*') }}</label>
-                                            <textarea name="small_banner_description" id="about_us" autocomplete="about_us" value="{{ old('small_banner_description') }}" rows="10" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">{{$siteInfo->about_us}}</textarea>
+                                            <textarea name="small_banner_description" id="about_us" autocomplete="about_us" value="{{ old('small_banner_description') }}" rows="10" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">{{$siteInfo->small_banner_description}}</textarea>
                                             @error('small_banner_description')
                                             <span class="text-sm text-red-500">
                                                 {{ $message }}
