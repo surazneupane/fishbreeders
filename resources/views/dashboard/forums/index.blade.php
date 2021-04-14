@@ -89,7 +89,7 @@
                     </div>
                 </div>
                 <div class="my-4">
-                    {{ $questions->links('pagination::bootstrap-4') }}
+                    {{ $questions->links() }}
                 </div>
             </div>
           
