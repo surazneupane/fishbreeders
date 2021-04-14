@@ -69,7 +69,7 @@ class User extends Authenticatable {
     }
 
     public function userNotification() {
-        return $this->hasMany(Notifiaction::class, 'notify_to')->orderBy('created_at', 'DESC')->take(5)->get();
+        return $this->hasMany(Notifiaction::class, 'notify_to')->orderBy('created_at', 'DESC')->get();
     }
 
     public function questions() {
