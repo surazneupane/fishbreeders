@@ -15,9 +15,7 @@
                 <h1 class="pb-4 text-2xl capitalize text-gray-700 ">{{ $post->title }}</h1>
                 <hr class="border-2 w-100 mb-5 ">
                 <div class="text-sm my-4">
-                    <p>
-                        Author : {{ $post->author }}
-                    </p>
+                  
                     <p>
                         Posted by : {{ $post->user->name }}
                     </p>
@@ -34,12 +32,7 @@
                     <p>
                         Views : {{ $post->views }}
                     </p>
-                    <p>
-                        Share : {{ $post->share }}
-                    </p>
-                    <p>
-                        Tag : {{ $post->tag }}
-                    </p>
+                 
                 </div>
                 <hr class="border-2 w-100 mb-5 ">
                 <div class="my-4">
@@ -52,24 +45,12 @@
                     </ol>
                 </div>
                 <hr class="border-2 w-100 mb-5 ">
-                <div class="my-4 text-sm">
-                    <h5>SEO Details</h5>
-
-                    <div class="px-4 pt-3">
-                        <p>
-                            Title : {{ $post->seo_title }}
-                        </p>
-                        <p>
-                            Description : {{ $post->seo_description }}
-                        </p>
-                        <p>
-                            Keywords : {{ $post->seo_keywords }}
-                        </p>
-                    </div>
-                </div>
+               
                 <hr class="border-2 w-100 mb-5 ">
                 <div class="my-4">
                     <p class="text-sm">
+                        <h5 class="text-sm">Excrept:</h5>
+
                         {{ $post->excerpt }}
                     </p>
                 </div>
@@ -80,7 +61,23 @@
                 </div>
                 <hr class="border-2 w-100 mb-5 ">
                 <div>
+                    <h5 class="text-sm">Post Content:</h5>
+
                     {!! $post->content !!}
+                </div>
+                <hr class="border-2 w-100 mb-5 ">
+
+                <div>
+                    <h5 class="text-sm">Post Reference:</h5>
+
+                    {!! $post->refrence !!}
+                </div>
+                <hr class="border-2 w-100 mb-5 ">
+
+                <div>
+                    <h5 class="text-sm">Post Breeding:</h5>
+
+                    {!! $post ->breeding!!}
                 </div>
             </div>
         </div>
