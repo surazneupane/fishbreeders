@@ -298,18 +298,6 @@ class ViewController extends Controller {
     public function fish_check(Category $category, Request $request) {
 
         $fishes = Fish::whereIn('id', $request->fishes)->get();
-
-        $compactibility = [];
-
-        foreach ($fishes as $key => $fish) {
-            $compactibility[$key] = [];
-            foreach ($fishes as $selectedFish) {
-                $compactibility[$key] = [...$compactibility[$key], $fish->compactibilities()->where('compactible_fish_id', $selectedFish->id)->first()];
-            }
-        }
-
-        // dd($compactibility[0][0]->compactibility);
-
         return view('frontend.fish-compactibility', compact('fishes', 'category'));
 
     }
