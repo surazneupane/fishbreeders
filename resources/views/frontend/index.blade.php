@@ -86,13 +86,16 @@
                 {{$siteinfo->small_banner_description}}
             </p>
             <div>
-                <a @if(Auth::check()) href="#" data-bs-toggle="modal" data-bs-target="#suberfeedback" @endif class="btn btn-primary rounded-pill btn-lg m-2">
+                @if(Auth::check())
+                <a  href="#" data-bs-toggle="modal" data-bs-target="#suberfeedback" class="btn btn-primary rounded-pill btn-lg m-2">
                     Subscribe Now
                 </a>
+                @else
+
                 <a href="{{route('ext-register')}}" class="btn btn-outline-light rounded-pill btn-lg m-2 ">
                     Register Now
                 </a>
-
+                @endif
             </div>
         </div>
 
