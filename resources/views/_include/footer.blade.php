@@ -43,7 +43,7 @@
                         </li>
                         <li class="d-block">
                             <a href="{{ route('fish.compactibility') }}" class="nav-link text-white">
-                                <small> Fish Compactibility </small>
+                                <small> Fish Compatibility </small>
                             </a>
                         </li>
                         <li class="d-block">
