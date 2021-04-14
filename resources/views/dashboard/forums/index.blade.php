@@ -82,11 +82,17 @@
 
                                 </tbody>
                             </table>
+                          
                         </div>
+                      
+        
                     </div>
                 </div>
+                <div class="my-4">
+                    {{ $questions->links('pagination::bootstrap-4') }}
+                </div>
             </div>
-
+          
         </div>
     </div>
 </x-app-layout>

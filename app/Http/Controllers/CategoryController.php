@@ -77,7 +77,7 @@ class CategoryController extends Controller {
         $category->show_in_footer  = $request->show_in_footer;
         $category->order           = $request->order;
         $category->save();
-        return redirect()->back();
+        return redirect()->back()->with('success','Category Updated Sucessfully');
     }
 
     /**

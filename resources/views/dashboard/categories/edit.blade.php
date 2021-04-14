@@ -17,7 +17,11 @@
                             </p>
                         </div>
                     </div>
+                  
                     <div class="mt-5 md:mt-0 md:col-span-2">
+                        @if(Session::has('success'))
+                     <p style="color: green">   {{Session::get('success')}} </p>
+                        @endif
                         <form action="{{ route('category.update', $category->id) }}" method="POST">
                             @csrf
                             @method('put')
