@@ -9,7 +9,7 @@
             <div class="col-9">
 
 
-                @foreach ($forums as $forum )
+                @forelse ($forums as $forum )
 
                 <div class="card w-100 border-0 border-bottom">
                     <div class="card-body">
@@ -56,7 +56,11 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
+                @empty
+                <div class="h5 text-muted my-5 text-center">
+                    No Result Found
+                </div>
+                @endforelse
 
                 <div class="my-4">
                     {{ $forums->links('pagination::bootstrap-4') }}

@@ -21,9 +21,13 @@
             </h3>
 
             <div class="d-flex flex-wrap justify-content-around">
-                @foreach ($posts as $post )
+                @forelse ($posts as $post )
                 @include('_include.post-card')
-                @endforeach
+                @empty
+                <div class="h5 text-muted my-5">
+                    No Result Found
+                </div>
+                @endforelse
                 {{ $posts->links('pagination::bootstrap-4') }}
             </div>
         </div>
