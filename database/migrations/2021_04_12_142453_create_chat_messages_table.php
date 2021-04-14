@@ -16,6 +16,7 @@ class CreateChatMessagesTable extends Migration {
             $table->integer('user_id');
             $table->integer('chat_room_id');
             $table->mediumText('message');
+            $table->boolean('viewed')->default(0);
             $table->timestamps();
         });
     }

@@ -18,10 +18,20 @@ class ChatController extends Controller {
     }
     public function rooms() {
         $rooms = User::find(Auth::id())->rooms()->with('users')->get();
+
         return $rooms;
     }
     public function messages(ChatRoom $chatRoom) {
-        return $chatRoom->messages()->with('user')->latest()->get();
+        $messages = $chatRoom->messages()->with('user')->latest()->get();
+
+        $unviewed = $chatRoom->messages()->whereNotIn('user_id', [Auth::id()])->where('viewed', false)->get();
+
+        foreach ($unviewed as $view) {
+            $view->viewed = true;
+            $view->save();
+        }
+
+        return $messages;
     }
 
     public function newMessage(ChatRoom $chatRoom, Request $request) {

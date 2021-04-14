@@ -142,7 +142,9 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                             <li>
-                                <a href="{{route('chat')}}" class="dropdown-item">Messages</a>
+                                <a href="{{route('chat')}}" class="dropdown-item">Messages
+                                    @if($hasMessages > 0) <strong class="bg-primary   text-white p-1" style="font-size: .7rem">{{ $hasMessages }}</strong>@endif
+                                </a>
                             </li>
                             <li>
                                 <a href="{{route('ext-user.myquest')}}" class="dropdown-item">My Questions</a>

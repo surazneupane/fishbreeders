@@ -75,7 +75,7 @@
 </section>
 
 <section>
-    <div class=" py-5"  style="
+    <div class=" py-5" style="
     background: linear-gradient(0deg, #00000050,#00000090),  url('@if($siteinfo->small_banner == "")/static/images/fishes.jpg @else {{$siteinfo->small_banner}} @endif'); background-repeat: no-repeat; background-position: center; background-size: cover; ">
 
         <div class="container text-center text-white py-2">
@@ -83,7 +83,7 @@
                 {{$siteinfo->small_banner_text}}
             </h3>
             <p class="w-75 mx-auto">
-                {{$siteinfo->small_banner_description}}
+                {!! $siteinfo->small_banner_description !!}
             </p>
             <div>
                 <a @if(Auth::check()) href="#" data-bs-toggle="modal" data-bs-target="#suberfeedback" @endif class="btn btn-primary rounded-pill btn-lg m-2">
