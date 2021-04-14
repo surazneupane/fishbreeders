@@ -15,7 +15,7 @@
                 <h1 class="pb-4 text-2xl capitalize text-gray-700 ">{{ $post->title }}</h1>
                 <hr class="border-2 w-100 mb-5 ">
                 <div class="text-sm my-4">
-                  
+
                     <p>
                         Posted by : {{ $post->user->name }}
                     </p>
@@ -23,7 +23,8 @@
                         created date : {{ $post->created_at }}
                     </p>
                     <p>
-                        status : @if ($post->status)
+                        status : @if ($post->status && $post->status != "draft")
+
                         Published
                         @else
                         Draft
@@ -32,7 +33,7 @@
                     <p>
                         Views : {{ $post->views }}
                     </p>
-                 
+
                 </div>
                 <hr class="border-2 w-100 mb-5 ">
                 <div class="my-4">
@@ -45,7 +46,7 @@
                     </ol>
                 </div>
                 <hr class="border-2 w-100 mb-5 ">
-               
+
                 <hr class="border-2 w-100 mb-5 ">
                 <div class="my-4">
                     <p class="text-sm">
