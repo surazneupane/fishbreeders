@@ -75,7 +75,7 @@
                         <div style="width:20px; height:20px; border: 1px solid #000 " class="bg-danger m-1">
                         </div>
                         <small>
-                            Not Compactible
+                            Not Compatible
                         </small>
                     </div>
 
@@ -196,7 +196,7 @@
                                 <div style="width:20px; height:20px; border: 1px solid #000 " class="bg-danger m-1">
                                 </div>
                                 <small>
-                                    Not Compactible
+                                    Not Compatible
                                 </small>
                             </div>
 
