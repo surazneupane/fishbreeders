@@ -19,7 +19,9 @@
             " style="background-color: #5DA3FA; letter-spacing:.1rem">
                 {{ $category->title }}
             </h3>
-
+            <div>
+            {!!$category->post_content!!}
+            </div>
             <div class="d-flex flex-wrap justify-content-around">
                 @forelse ($posts as $post )
                 @include('_include.post-card')

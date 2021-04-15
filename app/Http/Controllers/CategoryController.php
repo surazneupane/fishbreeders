@@ -15,7 +15,7 @@ class CategoryController extends Controller {
      */
     public function index() {
 
-        $categories = Category::where('parent_id', null)->paginate(10);
+        $categories = Category::paginate(10);
 
         return view('dashboard.categories.index', compact('categories'));
     }
@@ -76,6 +76,7 @@ class CategoryController extends Controller {
         $category->show_in_header  = $request->show_in_header;
         $category->show_in_footer  = $request->show_in_footer;
         $category->order           = $request->order;
+        $category->post_content = $request->post_content;
         $category->save();
         return redirect()->back()->with('success','Category Updated Sucessfully');
     }

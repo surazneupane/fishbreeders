@@ -21,9 +21,10 @@ class StoreCategoryRequest extends FormRequest {
      */
     public function rules() {
         return [
-            "title"   => "required",
+            "title"   => "required|unique:categories",
             "slug"    => "required|unique:categories,slug",
             "status"  => "required|boolean",
+            'post_content' => 'required',
         ];
     }
 

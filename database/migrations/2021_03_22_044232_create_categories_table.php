@@ -16,11 +16,11 @@ class CreateCategoriesTable extends Migration {
 
             $table->string('title')->unique();
             $table->string('slug')->unique();
-            $table->integer('parent_id')->nullable();
             $table->boolean('status')->default(false);
             $table->integer('order')->nullable();
             $table->boolean('show_in_header')->default(false);
             $table->boolean('show_in_footer')->default(false);
+            $table->longText('post_content')->nullable();
             $table->timestamps();
             $table->date('deleted_at')->nullable();
         });

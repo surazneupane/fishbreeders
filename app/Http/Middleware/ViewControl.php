@@ -20,8 +20,8 @@ class ViewControl {
      */
     public function handle(Request $request, Closure $next) {
 
-        $headerCategories = Category::where('show_in_header', "1")->where('status', '1')->where('parent_id', null)->orderBy('order')->get();
-        $footerCategories = Category::where('show_in_footer', "1")->where('status', '1')->where('parent_id', null)->orderBy('order')->get();
+        $headerCategories = Category::where('show_in_header', "1")->where('status', '1')->orderBy('order')->get();
+        $footerCategories = Category::where('show_in_footer', "1")->where('status', '1')->orderBy('order')->get();
         $categories       = Category::where('status', '1')->orderBy('order')->get();
 
         $siteinfo = SiteInfo::find(1);
