@@ -97,7 +97,20 @@
                                     </div>
                                   
 
-                                   
+                                    <div class="col-span-6 sm:col-span-6">
+                                        <label for="post_content" class="block text-sm font-medium text-gray-700">{{ _('Post Content*') }}
+                                            @error('post_content')
+                                            <span class="text-sm text-red-500">
+                                                {{ $message }}
+                                            </span>
+                                            @enderror</label>
+                                        <textarea type="text" name="post_content" id="post_content" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
+                                            @error('post_content')border-red-400 @enderror
+                                            " rows=10>{{ old('post_content') }}</textarea>
+
+                                    </div>
+
+
 
                                 </div>
                             </div>
@@ -110,9 +123,104 @@
                     </div>
                     </form>
                 </div>
+
+
             </div>
         </div>
 
     </div>
     </div>
+
+    <script>
+        tinymce.init({
+            selector: '#post_content'
+            , plugins: 'lists, table code image link'
+            , menubar: false
+            , height: 800
+            , toolbar: [{
+                name: 'history'
+                , items: ['undo', 'redo']
+            }, {
+                name: 'styles'
+                , items: ['styleselect']
+            }, {
+                name: 'formatting'
+                , items: ['bold', 'italic', "fontsizeselect"]
+    
+            }, {
+                name: 'alignment'
+                , items: ['alignleft', 'aligncenter', 'alignright', 'alignjustify']
+            }, {
+                name: 'listing'
+                , items: ['bullist', 'numlist']
+            }, {
+                name: 'indentation'
+                , items: ['outdent', 'indent']
+            }, {
+                name: 'table'
+                , items: ['table']
+            }, {
+                name: 'color'
+                , items: ['forecolor', 'backcolor']
+            }, {
+                name: 'image'
+                , items: ['image', 'code', 'link']
+            }]
+            , toolbar_mode: 'floating',
+            /* without images_upload_url set, Upload tab won't show up*/
+            images_upload_url: '/api/upload',
+            /* we override default upload handler to simulate successful upload*/
+            images_upload_handler: example_image_upload_handler
+    
+            , content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+        });
+
+
+        function example_image_upload_handler(blobInfo, success, failure, progress) {
+            var xhr, formData;
+
+            xhr = new XMLHttpRequest();
+            xhr.withCredentials = false;
+            xhr.open('POST', '/api/upload');
+
+            xhr.upload.onprogress = function(e) {
+                progress(e.loaded / e.total * 100);
+            };
+
+            xhr.onload = function() {
+                var json;
+                if (xhr.status === 403) {
+                    failure('HTTP Error: ' + xhr.status, {
+                        remove: true
+                    });
+                    return;
+                }
+
+                if (xhr.status < 200 || xhr.status >= 300) {
+                    failure('HTTP Error: ' + xhr.status);
+                    return;
+                }
+
+                json = JSON.parse(xhr.responseText);
+
+                if (!json || typeof json.location != 'string') {
+                    failure('Invalid JSON: ' + xhr.responseText);
+                    return;
+                }
+
+                success(json.location);
+            };
+
+            xhr.onerror = function() {
+                failure('Image upload failed due to a XHR Transport error. Code: ' + xhr.status);
+            };
+
+            formData = new FormData();
+            formData.append('file', blobInfo.blob(), blobInfo.filename());
+
+            xhr.send(formData);
+        };
+    </script>
 </x-app-layout>
+
+

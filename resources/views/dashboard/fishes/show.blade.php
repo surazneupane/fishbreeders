@@ -51,7 +51,7 @@
 
                     @csrf
                     <div class="col-span-6 sm:col-span-6 py-2">
-                        <label for="category" class="block text-sm font-bold text-gray-700">{{ _('Compactibles') }}</label>
+                        <label for="category" class="block text-sm font-bold text-gray-700">{{ _('Compatibles') }}</label>
                         <select type="text" name="compactible[]" id="category1" class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('category')border-red-400 @enderror " multiple>
                             @foreach ($selectFishes as $selectfish)
                             <option value="{{$selectfish->id}}" @if($fish->compactibilities()->where('compactibility_id',1)->where('compactible_fish_id',$selectfish->id)->first()) selected @endif >{{$selectfish->name}}</option>

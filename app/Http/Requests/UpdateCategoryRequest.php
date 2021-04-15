@@ -24,6 +24,8 @@ class UpdateCategoryRequest extends FormRequest {
             "title"  => "required",
             "slug"   => "required|unique:categories,slug," . $this->id,
             "status" => "required|boolean",
+            'post_content' => 'required',
+
         ];
     }
 
