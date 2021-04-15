@@ -32,7 +32,7 @@
                     <select required name="fishes[]" id="freshfish" class="form-control" multiple>
                         <option></option>
                         @foreach (\App\Models\Category::find(1)->fishes as $fish)
-                        <option  value="{{ $fish->id }}">{{ $fish->name }}</option>
+                        <option value="{{ $fish->id }}">{{ $fish->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -49,6 +49,44 @@
 
             <div class="my-5">
                 <h4>Fish Compatibility Result</h4>
+                <div>
+                    <h6>Legends</h6>
+                </div>
+                <div class="d-flex justify-content-between align-items-center flex-wrap">
+
+                    <div class="d-flex align-items-center">
+                        <div style="width:20px; height:20px; border: 1px solid #000 " class="bg-success m-1">
+                        </div>
+                        <small>
+                            Compatible
+                        </small>
+                    </div>
+
+
+                    <div class="d-flex align-items-center">
+                        <div style="width:20px; height:20px; border: 1px solid #000 " class="bg-warning m-1">
+                        </div>
+                        <small>
+                            Average
+                        </small>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                        <div style="width:20px; height:20px; border: 1px solid #000 " class="bg-danger m-1">
+                        </div>
+                        <small>
+                            Not Compactible
+                        </small>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                        <div style="width:20px; height:20px; border: 1px solid #000 " class="bg-light m-1">
+                        </div>
+                        <small>
+                            No Result
+                        </small>
+                    </div>
+                </div>
                 <table class="table table-striped">
                     <tr>
                         <th scope="col"></th>
@@ -68,20 +106,20 @@
 
                             @if($compactibleFish->compactibilities()->where('compactible_fish_id', $fish->id)->where('compactibility_id', 1)->first())
 
-                            <div style="width:40px; height:40px; " class="bg-success">
+                            <div style="width:40px; height:40px; border: 1px solid #e6e6e6 " class="bg-success">
                             </div>
 
                             @elseif($compactibleFish->compactibilities()->where('compactible_fish_id', $fish->id)->where('compactibility_id', 2)->first())
 
-                            <div style="width:40px; height:40px; " class="bg-warning">
+                            <div style="width:40px; height:40px; border: 1px solid #e6e6e6 " class="bg-warning">
                             </div>
                             @elseif($compactibleFish->compactibilities()->where('compactible_fish_id', $fish->id)->where('compactibility_id', 3)->first())
 
-                            <div style="width:40px; height:40px; " class="bg-danger">
+                            <div style="width:40px; height:40px; border: 1px solid #e6e6e6 " class="bg-danger">
                             </div>
 
                             @else
-                            <div style="width:40px; height:40px; " class="bg-light">
+                            <div style="width:40px; height:40px; border: 1px solid #e6e6e6 " class="bg-light">
                             </div>
 
                             @endif
@@ -132,6 +170,45 @@
 
             <div class="my-5">
                 <h4>Fish Compatibility Result</h4>
+                        <div>
+                            <h6>Legends</h6>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center flex-wrap">
+
+                            <div class="d-flex align-items-center">
+                                <div style="width:20px; height:20px; border: 1px solid #000 " class="bg-success m-1">
+                                </div>
+                                <small>
+                                    Compatible
+                                </small>
+                            </div>
+
+
+                            <div class="d-flex align-items-center">
+                                <div style="width:20px; height:20px; border: 1px solid #000 " class="bg-warning m-1">
+                                </div>
+                                <small>
+                                    Average
+                                </small>
+                            </div>
+
+                            <div class="d-flex align-items-center">
+                                <div style="width:20px; height:20px; border: 1px solid #000 " class="bg-danger m-1">
+                                </div>
+                                <small>
+                                    Not Compactible
+                                </small>
+                            </div>
+
+                            <div class="d-flex align-items-center">
+                                <div style="width:20px; height:20px; border: 1px solid #000 " class="bg-light m-1">
+                                </div>
+                                <small>
+                                    No Result
+                                </small>
+                            </div>
+                        </div>
+
                 <table class="table table-striped">
                     <tr>
                         <th scope="col"></th>
@@ -151,20 +228,24 @@
 
                             @if($compactibleFish->compactibilities()->where('compactible_fish_id', $fish->id)->where('compactibility_id', 1)->first())
 
-                            <div style="width:40px; height:40px; " class="bg-success">
+                            <div style="width:40px; height:40px; border: 1px solid #e6e6e6" class="bg-success">
+
                             </div>
 
                             @elseif($compactibleFish->compactibilities()->where('compactible_fish_id', $fish->id)->where('compactibility_id', 2)->first())
 
-                            <div style="width:40px; height:40px; " class="bg-warning">
+                            <div style="width:40px; height:40px; border: 1px solid #e6e6e6" class="bg-warning">
+
                             </div>
                             @elseif($compactibleFish->compactibilities()->where('compactible_fish_id', $fish->id)->where('compactibility_id', 3)->first())
 
-                            <div style="width:40px; height:40px; " class="bg-danger">
+                            <div style="width:40px; height:40px; border: 1px solid #e6e6e6" class="bg-danger">
+
                             </div>
 
                             @else
-                            <div style="width:40px; height:40px; " class="bg-light">
+                            <div style="width:40px; height:40px; border: 1px solid #e6e6e6" class="bg-light">
+
                             </div>
 
                             @endif
