@@ -13,7 +13,7 @@
                         <div class="px-4 sm:px-0">
                             <h3 class="text-lg font-medium leading-6 text-gray-900">{{ _('New User') }}</h3>
                             <p class="mt-1 text-sm text-gray-600">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, quo!
+                                {{-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, quo! --}}
                             </p>
                         </div>
                     </div>
@@ -78,10 +78,10 @@
                                                 class="block text-sm font-medium text-gray-700">{{ _('Status') }}</label>
                                             <select id="status" name="status" autocomplete="status"
                                                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                                <option value="0" {{ old('status') == "0" ? 'selected': '' }}>NO
+                                                <option value="0" {{ old('status') == "0" ? 'selected': '' }}>In-Active
                                                 </option>
                                                 <option value="1" {{ old('status') == "1" ? 'selected': '' }}>
-                                                    YES
+                                                    Active
                                                 </option>
                                             </select>
                                             @error('status')

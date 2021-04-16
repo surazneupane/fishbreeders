@@ -163,6 +163,17 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
+                            <?php $adminOrEditor = Auth::user()->roles?>
+                            @if($adminOrEditor->contains(1) || $adminOrEditor->contains(2))
+                            <li>
+                               
+                                  <a target="_blank" href="{{route('dashboard')}}" class="dropdown-item" > @if($adminOrEditor->contains(2)) Editor @else Admin @endif Dashboard</a>
+
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            @endif
                             <li>
                                 <form method="post" action="{{ route('logout') }}">
                                     @csrf
