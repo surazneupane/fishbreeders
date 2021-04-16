@@ -9,7 +9,7 @@
                 class="w-100 btn btn-transparent border-bottom shadow-none"
                 :class="room == currentRoom ? 'active' : 'room-hover'"
             >
-                <span v-if="room.users.length > 2 && room.users.length == 1">
+                <span v-if="room.users.length > 2 || room.users.length == 1">
                     {{ room.name }}
                 </span>
                 <span v-else>
