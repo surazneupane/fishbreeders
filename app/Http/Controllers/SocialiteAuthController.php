@@ -22,7 +22,7 @@ class SocialiteAuthController extends Controller {
 
             // You should show something simple fail message
 
-            return $this->sendFailedResponse($e->getMessage());
+            return $this->sendFailedResponse();
         }
     }
 
@@ -30,8 +30,11 @@ class SocialiteAuthController extends Controller {
 
         try {
             $user = Socialite::driver($driver)->user();
+
+          
         } catch (Exception $e) {
-            return $this->sendFailedResponse($e->getMessage());
+  
+            return $this->sendFailedResponse();
         }
 
         // check for email in returned user
@@ -45,7 +48,7 @@ class SocialiteAuthController extends Controller {
     }
 
     protected function sendFailedResponse($msg = null) {
-        // return redirect()->route('social.login')->withErrors(['msg' => $msg ?: 'Unable to login, try with another provider to login.']);
+        return redirect()->route('ext-login')->with(['error' => $msg ? $msg: 'Unable to login, try with another provider to login.']);
     }
 
     protected function loginOrCreateAccount($providerUser, $driver) {
