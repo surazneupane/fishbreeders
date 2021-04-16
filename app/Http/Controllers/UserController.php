@@ -45,8 +45,9 @@ class UserController extends Controller {
     public function store(StoreUserRequest $request) {
 
         // dd($request->all());
-
-        $user = User::create($request->all());
+        $data = $request->except('_token');
+        $data['password'] = Hash::make($data['password']);
+        $user = User::create($data);
         $user->roles()->attach($request->role);
         return redirect(route('users.index'));
     }

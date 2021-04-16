@@ -76,12 +76,12 @@ class QuestionController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
-        //
-        $categories = Category::where('status', '1')->get();
-        $question = Question::findOrFail($id);
-        return view('dashboard.forums.questions.edit',compact('question','categories'));
-    }
+    // public function edit($id) {
+    //     //
+    //     $categories = Category::where('status', '1')->get();
+    //     $question = Question::findOrFail($id);
+    //     return view('dashboard.forums.questions.edit',compact('question','categories'));
+    // }
 
     /**
      * Update the specified resource in storage.

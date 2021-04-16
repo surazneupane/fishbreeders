@@ -50,7 +50,9 @@ class PostController extends Controller {
         foreach ($request->category as $category) {
             $post->categories()->attach($category);
         }
-        return redirect(route('posts.index'));
+        $message = Auth::user()->roles->contains(1) ? "Post Added Sucessfully" : "Thank You for posting! An Admin will review your post before it will be approved and published.";
+
+        return redirect()->route('posts.index')->with('success',$message);
     }
 
     /**
@@ -70,8 +72,14 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post) {
+        if(Auth::user()->roles->contains(1))
+        {
         $categories = Category::all();
         return view('dashboard.posts.edit', compact('post', 'categories'));
+        }
+        else{
+            abort(401);
+        }
     }
 
     /**

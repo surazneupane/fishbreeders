@@ -66,6 +66,7 @@ class SocialiteAuthController extends Controller {
             $user = User::create([
                 'name'     => $providerUser->getName(),
                 'email'    => $providerUser->getEmail(),
+                'status'    => 1,
                 // user can use reset password to create a password
                 'password' => '',
             ]);

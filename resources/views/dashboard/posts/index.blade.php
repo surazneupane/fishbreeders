@@ -12,7 +12,9 @@
             <div class="block mb-10">
                 <a href="{{ route('posts.create') }}" class="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-xl shadow">Add Post</a>
             </div>
-
+            @if(Session::has('success'))
+            <p style="color: green">{{Session::get('success')}}</p>
+            @endif
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
