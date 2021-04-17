@@ -9,7 +9,7 @@ use App\Models\User;
 class DashboardController extends Controller {
     public function index() {
 
-        $posts      = Post::all()->count();
+        $posts      = Post::where('status',1)->count();
         $categories = Category::all()->count();
         $users      = User::all()->count();
         $views      = Post::all()->sum('views');

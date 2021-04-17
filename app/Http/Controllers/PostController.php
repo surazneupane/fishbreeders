@@ -17,9 +17,14 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-
+        $user = Auth::user();
+        if($user->roles->contains(1))
+        {
         $posts = Post::latest()->paginate(10);
-
+        }
+        else{
+           $posts = $user->posts()->paginate(10);
+        }
         return view('dashboard.posts.index', compact('posts'));
     }
 

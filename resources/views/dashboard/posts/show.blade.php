@@ -15,9 +15,11 @@
                 <h1 class="pb-4 text-2xl capitalize text-gray-700 ">{{ $post->title }}</h1>
                 <hr class="border-2 w-100 mb-5 ">
                 <div class="text-sm my-4">
+                    @if(Auth::user()->roles->contains(1))
                     <p>
                         Posted by : {{ $post->user->name ?? "Deleted User" }}
                     </p>
+                    @endif
                     <p>
                         created date : {{ $post->created_at }}
                     </p>
@@ -45,7 +47,6 @@
                 </div>
                 <hr class="border-2 w-100 mb-5 ">
 
-                <hr class="border-2 w-100 mb-5 ">
                 <div class="my-4">
                     <p class="text-sm">
                         <h5 class="text-sm">Excrept:</h5>
