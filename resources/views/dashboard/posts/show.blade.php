@@ -24,11 +24,15 @@
                         created date : {{ $post->created_at }}
                     </p>
                     <p>
-                        status : @if ($post->status && $post->status != "draft")
+                        status : @if ($post->status == 1)
 
                         Published
-                        @else
+                        @endif
+                        @if($post->status == 0)
                         Draft
+                        @endif
+                        @if($post->status == 2)
+                        Declined
                         @endif
                     </p>
                     <p>

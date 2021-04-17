@@ -60,13 +60,19 @@
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-gray-500">
-                                            @if ($post->status && $post->status != "draft" )
+                                            @if ($post->status == 1 )
                                             <span class="text-sm text-green-900 bg-green-200 px-2 py-1 rounded-xl">
                                                 Published
                                             </span>
-                                            @else
+                                            @endif
+                                            @if($post->status == 0)
                                             <span class="text-sm text-gray-900 bg-gray-200 px-2 py-1 rounded-xl">
                                                 Draft
+                                            </span>
+                                            @endif
+                                            @if($post->status == 2)
+                                            <span class="text-sm text-gray-900 bg-red-100 px-2 py-1 rounded-xl">
+                                                Declined
                                             </span>
                                             @endif
                                         </td>
