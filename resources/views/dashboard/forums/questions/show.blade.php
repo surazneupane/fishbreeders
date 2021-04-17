@@ -25,7 +25,7 @@
                     <hr class="border-2 w-100 mb-5 ">
 
                     <p>
-                        Posted by : {{ $question->user->name }}
+                        Posted by : {{ $question->user->name ?? "Deleted User" }}
                     </p>
                     <hr class="border-2 w-100 mb-5 ">
 
