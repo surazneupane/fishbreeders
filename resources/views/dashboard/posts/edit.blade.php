@@ -139,6 +139,11 @@
                                                 <option value="1" @if ($post->status == "1")
                                                     selected
                                                     @endif>Publish</option>
+                                                    @if($post->user()->first()->roles->contains(2))
+                                                    <option value="2" @if ($post->status == "2")
+                                                        selected
+                                                        @endif>Decline</option>
+                                                        @endif
                                             </select> @error('status') <span class="text-sm text-red-500">
                                                 {{ $message }}
                                             </span>
