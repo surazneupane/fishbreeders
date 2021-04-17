@@ -21,7 +21,7 @@
                     </x-jet-nav-link>
                     @endcan
                     <x-jet-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.*')">
-                        {{ __('Posts') }}
+                      @if(Auth::user()->roles->contains(1))  {{ __('Posts') }} @else {{ __('Your Posts') }}  @endif
                     </x-jet-nav-link>
                     @can('user_access')
                     <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
