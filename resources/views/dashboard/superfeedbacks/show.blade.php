@@ -36,7 +36,7 @@
                     </p>
                 <hr class="border-2 w-100 mb-5 ">
                  
-             Email in this site:   {{$subFeedback->user->email}}
+             Email in this site:   {{$subFeedback->user->email ?? ""}}
 
              <hr class="border-2 w-100 mb-5 ">
 Feedback Email : {{$subFeedback->email}}
