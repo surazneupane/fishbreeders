@@ -12,9 +12,7 @@
             <div class="block mb-10">
                 <a href="{{ route('posts.create') }}" class="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-xl shadow">Add Post</a>
             </div>
-            @if(Session::has('success'))
-            <p style="color: green">{{Session::get('success')}}</p>
-            @endif
+          
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -111,4 +109,40 @@
             {{$posts->links()}}
         </div>
     </div>
+    @if(Session::has('success') && Auth::user()->roles->contains(2))
+    <div class="mt-6" x-data="{ open: true }">
+
+        <!-- Button (blue), duh! -->
+  
+        <!-- Dialog (full screen) -->
+        <div class="absolute top-0 left-0 flex items-center justify-center w-full h-full" style="background-color: rgba(0,0,0,.5);" x-show="open" >
+  
+          <!-- A basic modal dialog with title, body and one button to close -->
+          <div class="h-auto p-4 mx-2 text-left bg-white rounded shadow-xl md:max-w-xl md:p-6 lg:p-8 md:mx-0" @click.away="open = false">
+            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+              <h3 class="text-lg font-large leading-6 text-gray-900">
+              Post Added Sucessfully
+              </h3>
+  
+              <div class="mt-2">
+                <p class="text-m leading-5 text-green-500">
+               
+                 {{Session::get('success')}}
+                </p>
+            </div>
+          </div>
+  
+            <!-- One big close button.  --->
+            <div class="mt-5 sm:mt-6">
+              <span class="flex w-full rounded-md shadow-sm">
+                <button @click="open = false" class="inline-flex justify-center w-full px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-700">
+                Okay!
+                </button>
+              </span>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+      @endif
 </x-app-layout>

@@ -84,14 +84,19 @@ class UserController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUserRequest $request, User $user) {
-        if ($request->password == null) {
-            $user->fill($request->except(['_token', 'role', 'password']));
-        } else {
-            $user->fill($request->except(['_token', 'role']));
+    public function update(UpdateUserRequest $request) {
+
+        $user = User::findOrFail($request->id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->status = $request->status;
+
+        if($request->password != null)
+        {
+            $user->password = Hash::make($request->password);
+
         }
-        $user->password = Hash::make($request->password);
-        $user->save();
+        $user->update();
         $user->roles()->detach();
         $user->roles()->attach($request->role);
         return redirect(route('users.index'));
