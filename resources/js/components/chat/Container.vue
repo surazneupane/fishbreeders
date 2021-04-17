@@ -56,7 +56,7 @@ export default {
             axios
                 .get("/chats/rooms")
                 .then(response => {
-                    this.chatRooms = response.data;
+                    this.chatRooms = response.data.reverse();
                     if (response.data[0]) this.setRoom(response.data[0]);
                     else this.currentRoom = [];
                 })
