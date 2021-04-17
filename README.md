@@ -5,7 +5,7 @@
 1. Installed required installation for laravel 8.x
     a. php version 7.4
     b. composer
-    c. npm for node modules management (Styling , tailwind css)
+    c. npm for node modules management (Styling , tailwind css) compiles our .scss files into css
     d. mysql database
 
 2. Created Laravel(8.x) project from composer using command :
@@ -21,7 +21,7 @@
 
 2.  cd fishbreeders
 
-3.  composer install
+3.  composer install (installs required project for our project taking reference from composer.json file for eg: our project uses Socialite for gmail and fb login that is installed by composer install)
 
 4.  create new .env file and copy contents of  .env.example to .env
 
