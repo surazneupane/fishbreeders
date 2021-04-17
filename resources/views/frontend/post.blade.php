@@ -21,7 +21,7 @@
                 <h1 class=" text-center">{{ $post->title }}</h1>
                 <div>
                     <small>
-                        Written by {{ $post->user->name}}
+                        Written by {{ $post->user->name ?? "Anonymous"}}
                     </small>
 
                     <small class="border-right h-100 border-secondary mx-3" style="height: 10px; border-right: 2px solid #eee "></small>

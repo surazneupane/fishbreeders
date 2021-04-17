@@ -24,7 +24,7 @@
         <div class="d-flex justify-content-between align-items-center">
             <small>
 
-                by: {{ $post->user->name }}
+                by: {{ $post->user->name ?? "Anonymous" }}
             </small>
 
             <small>

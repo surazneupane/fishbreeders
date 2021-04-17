@@ -16,7 +16,7 @@
                 <hr class="border-2 w-100 mb-5 ">
                 <div class="text-sm my-4">
                     <p>
-                        Posted by : {{ $post->user->name }}
+                        Posted by : {{ $post->user->name ?? "Deleted User" }}
                     </p>
                     <p>
                         created date : {{ $post->created_at }}

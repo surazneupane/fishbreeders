@@ -26,7 +26,7 @@ class CreatePostsTable extends Migration {
             $table->longText('breeding')->nullable();
 
 
-            $table->foreignId('user_id')->constrained();
+            $table->integer('user_id');
             $table->date('deleted_at')->nullable();
             $table->timestamps();
         });

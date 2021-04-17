@@ -62,13 +62,13 @@
                                             Guest
 
                                             @else
-                                            {{$feedback->user->name}}
+                                            {{$feedback->user->name ?? "Guest"}}
                                             @endif
 
 
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            {{$feedback->user->email}}
+                                            {{$feedback->user->email ?? "Guest"}}
 
 
                                         </td>

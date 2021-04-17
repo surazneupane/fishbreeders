@@ -59,7 +59,7 @@
                                             Guest
 
                                             @else
-                                            {{$feedback->user->name}}
+                                            {{$feedback->user->name ?? "Guest"}}
                                             @endif
 
 
