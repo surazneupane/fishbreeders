@@ -30,17 +30,15 @@ class ViewControl {
         }
         $hasMessages = 0;
 
-        if(Auth::check()){
-        $rooms = User::find(Auth::id())->rooms()->get();
+        if (Auth::check()) {
+            $rooms = User::find(Auth::id())->rooms()->get();
 
-
-        foreach ($rooms as $room) {
-            if ($room->messages()->whereNotIn('user_id', [Auth::id()])->where('viewed', false)->get()->count() > 0) {
-                $hasMessages++;
+            foreach ($rooms as $room) {
+                if ($room->messages()->whereNotIn('user_id', [Auth::id()])->where('viewed', false)->get()->count() > 0) {
+                    $hasMessages++;
+                }
             }
         }
-    }
-
 
         View::share(compact('categories', 'headerCategories', 'siteinfo', 'footerCategories', 'hasMessages'));
         return $next($request);

@@ -66,6 +66,8 @@ export default {
         },
         setRoom(room) {
             this.currentRoom = room;
+            room.unviewed = false;
+            this.currentRoom.unviewed = false;
             this.getUsers();
         },
         getUsers() {
@@ -89,12 +91,25 @@ export default {
                 });
         },
         connect() {
+            if (this.chatRooms.length > 0) {
+                let vm = this;
+                // this.getRooms();
+
+                window.Echo.private("rooms.message.check").listen(
+                    ".check.rooms",
+                    e => {
+                        vm.getRooms();
+                        console.log("hello");
+                    }
+                );
+            }
             if (this.currentRoom.id) {
                 let vm = this;
                 this.getMessages();
                 window.Echo.private("chat." + this.currentRoom.id).listen(
                     ".message.new",
                     e => {
+                        console.log("reply");
                         vm.getMessages();
                     }
                 );
@@ -110,6 +125,9 @@ export default {
                 this.disconnect(oldVal);
                 this.messages = [];
             }
+            this.connect();
+        },
+        chatRooms(val, oldVal) {
             this.connect();
         }
     },

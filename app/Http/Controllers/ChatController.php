@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CheckChatRooms;
 use App\Events\NewChatMessage;
 use App\Models\ChatMessage;
 use App\Models\ChatRoom;
@@ -19,8 +20,17 @@ class ChatController extends Controller {
     public function rooms() {
         $rooms = User::find(Auth::id())->rooms()->with('users')->get();
 
+        if (Auth::check()) {
+
+            foreach ($rooms as $room) {
+                if ($room->messages()->whereNotIn('user_id', [Auth::id()])->where('viewed', false)->get()->count() > 0) {
+                    $room['unviewed'] = true;
+                }
+            }
+        }
         return $rooms;
     }
+
     public function messages(ChatRoom $chatRoom) {
         $messages = $chatRoom->messages()->with('user')->latest()->get();
 
@@ -42,7 +52,7 @@ class ChatController extends Controller {
         ]);
 
         broadcast(new NewChatMessage($newMessage))->toOthers();
-
+        broadcast(new CheckChatRooms())->toOthers();
         return $newMessage;
     }
     public function searchUser(Request $request) {

@@ -20,6 +20,9 @@ class EventServiceProvider extends ServiceProvider {
         'App\Events\NewChatMessage' => [
             'App\Listeners\SendChatMessageNotification',
         ],
+        'App\Events\CheckChatRooms' => [
+            'App\Listeners\SendChatRoomNotification',
+        ]
     ];
 
     /**

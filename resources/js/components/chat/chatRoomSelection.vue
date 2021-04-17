@@ -8,7 +8,10 @@
                 <button
                     @click="$emit('roomchanged', room)"
                     class="w-100 btn btn-transparent border-bottom shadow-none"
-                    :class="room == currentRoom ? 'active' : 'room-hover'"
+                    :class="[
+                        room == currentRoom ? 'active' : 'room-hover',
+                        room.unviewed ? 'unviewed' : ''
+                    ]"
                 >
                     <span
                         v-if="room.users.length > 2 || room.users.length == 1"
@@ -75,5 +78,8 @@ export default {
 }
 .active:hover {
     color: #fff;
+}
+.unviewed {
+    background-color: rgba(30, 143, 255, 0.527);
 }
 </style>
