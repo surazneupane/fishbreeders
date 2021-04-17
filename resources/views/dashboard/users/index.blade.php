@@ -78,7 +78,7 @@
                                             {{ $user->email }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-gray-500">
-                                            {{ $user->posts->count() }}
+                                            {{ $user->posts->where('status',1)->count() }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             @if($user->status)
