@@ -68,7 +68,7 @@
 
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            {{$feedback->user->email ?? "Guest"}}
+                                            {{$feedback->user->email ?? ""}}
 
 
                                         </td>

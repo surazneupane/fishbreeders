@@ -26,7 +26,7 @@
                         Guest
                         
                         @else
-                        {{$subFeedback->user->name}}
+                        {{$subFeedback->user->name ?? "Guest"}}
                         @endif
                     </p>
                 <hr class="border-2 w-100 mb-5 ">
