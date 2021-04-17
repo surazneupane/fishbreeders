@@ -23,6 +23,11 @@
 
 3.  composer install (installs required project for our project taking reference from composer.json file for eg: our project uses Socialite for gmail and fb login that is installed by composer install)
 
+    --Package Used--
+    laravel/socialite": "^5.2", ( for fb and gmail login)
+    "livewire/livewire": "^2.4",(for async request in like and dislike)
+    "pusher/pusher-php-server": "~4.0"(for bordcating of messages on chat)
+
 4.  create new .env file and copy contents of  .env.example to .env
 
 5.  setup database credintials on .env file
