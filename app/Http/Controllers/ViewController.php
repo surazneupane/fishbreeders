@@ -282,7 +282,7 @@ class ViewController extends Controller {
     }
 
     public function search(Request $request) {
-        $posts  = Post::where('title', 'like', '%' . $request['search'] . '%')->get();
+        $posts  = Post::where('title', 'like', '%' . $request['search'] . '%')->where('status',1)->get();
         $search = $request['search'];
         return view('frontend.search_post', compact('posts', 'search'));
     }
