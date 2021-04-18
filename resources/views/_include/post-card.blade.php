@@ -15,7 +15,7 @@
         " class="bg-primary text-white rounded-pill">
 
             <small class="text-uppercase">
-                {{ $post->categories->first()->title }}
+                {{ $post->categories->first()->title ?? "" }}
             </small>
         </div>
         <a href="{{ route('post', $post->slug) }}" class=" text-decoration-none text-dark card-link  ">

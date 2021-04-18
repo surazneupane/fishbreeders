@@ -24,9 +24,11 @@
                 <hr class="border-primary" style="border-top: 5px solid" />
             </div>
             <div class="px-2">
+                @if($breedingPosts!= "")
                 @foreach ($breedingPosts->take(4) as $post )
                 @include('_include.post-card-horizantal')
                 @endforeach
+                @endif
             </div>
         </div>
         <div class="col-lg-4">
@@ -35,10 +37,12 @@
                 <hr class="border-primary" style="border-top: 5px solid" />
             </div>
             <div class="px-2">
+                @if($freshWaterPosts!= "")
 
                 @foreach ($freshWaterPosts->take(4) as $post )
                 @include('_include.post-card-horizantal')
                 @endforeach
+                @endif
 
 
             </div>
@@ -49,10 +53,12 @@
                 <hr class="border-primary" style="border-top: 5px solid" />
             </div>
             <div class="px-2">
+                @if($saltWaterPosts!= "")
 
                 @foreach ($saltWaterPosts->take(4) as $post )
                 @include('_include.post-card-horizantal')
                 @endforeach
+                @endif
 
             </div>
         </div>

@@ -31,9 +31,11 @@
                     <label for="freshfish" class="form-label">Select Fishes</label>
                     <select required name="fishes[]" id="freshfish" class="form-control" multiple>
                         <option></option>
+                        @if(\App\Models\Category::find(1))
                         @foreach (\App\Models\Category::find(1)->fishes as $fish)
                         <option value="{{ $fish->id }}">{{ $fish->name }}</option>
                         @endforeach
+                        @endif
                     </select>
                 </div>
                 <div class="mb-3">
@@ -166,9 +168,11 @@
                     <label for="saltfish" class="form-label">Select Fishes</label>
                     <select required name="fishes[]" id="saltfish" class="form-control" multiple>
                         <option></option>
+                        @if(\App\Models\Category::find(2))
                         @foreach (\App\Models\Category::find(2)->fishes as $fish)
                         <option value="{{ $fish->id }}">{{ $fish->name }}</option>
                         @endforeach
+                        @endif
                     </select>
                 </div>
                 <div class="mb-3">

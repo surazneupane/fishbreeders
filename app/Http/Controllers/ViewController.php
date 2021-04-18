@@ -27,9 +27,9 @@ class ViewController extends Controller {
     public function index() {
         $posts           = Post::where('status', '1')->latest()->get();
         $popularPosts    = Post::orderByViews('desc', Period::pastDays(3))->where('status', '1')->get();
-        $saltWaterPosts  = Category::find(2)->posts()->where('status', '1')->get();
-        $freshWaterPosts = Category::find(1)->posts()->where('status', '1')->get();
-        $breedingPosts   = Category::find(3)->posts()->where('status', '1')->get();
+        $saltWaterPosts  = Category::find(2) ? Category::find(2)->posts()->where('status', '1')->get(): "";
+        $freshWaterPosts = Category::find(1) ? Category::find(1)->posts()->where('status', '1')->get(): "";
+        $breedingPosts   = Category::find(3) ?Category::find(3)->posts()->where('status', '1')->get():"";
         $questions       = Question::latest()->get()->take(3);
 
         return view('frontend.index', compact('posts', 'popularPosts', 'saltWaterPosts', 'freshWaterPosts', 'breedingPosts', 'questions'));

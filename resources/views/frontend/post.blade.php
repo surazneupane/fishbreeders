@@ -16,7 +16,7 @@
 
             <div class="text-center my-5">
                 <div class="alert alert-secondary text-capitalize">
-                    home > {{ $post->categories->first()->title }} > {{ $post->title }}
+                    home > {{  $post->categories->first()->title ?? "" }} > {{ $post->title }}
                 </div>
                 <h1 class=" text-center">{{ $post->title }}</h1>
                 <div>
@@ -97,9 +97,11 @@
             <div>
                 <h3>Related Post</h3>
                 <div class="row gx-3 my-3 p-0">
+                    @if($post->categories->first())
                     @foreach ($post->relatedPost as $post )
                     @include('_include.post-card')
                     @endforeach
+                    @endif
                 </div>
             </div>
 
