@@ -11,7 +11,10 @@
 
             <div class="block mb-10">
                 <a href="{{ route('questions.create') }}" class="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-xl shadow">Add Question</a>
+                <a href="{{route('forumcategory.index')}}" class="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-xl shadow">Forum Categories</a>
+
             </div>
+           
 
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">

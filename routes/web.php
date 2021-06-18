@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\ForumCategoryController;
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChatController;
@@ -94,6 +95,13 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'checkauth'], 'prefix
     Route::post('/subcat/{id}/update',[CategoryController::class, 'updateSubCategory'])->name('category.subcategory.update');
 
     Route::resource('category', CategoryController::class);
+    Route::resource('forumcategory',ForumCategoryController::class);
+    Route::get('/forumcategory/{id}/create',[ForumCategoryController::class,'createSubCategory'])->name('forumcategory.subcategory.create');
+    Route::post('/forumcategory/{id}/store',[ForumCategoryController::class,'storeSubCat'])->name('forumcategory.subcategory.store');
+    Route::get('/forumcategory/sub/{id}/edit',[ForumCategoryController::class, 'editSubCategory'])->name('forumcategory.subcategory.edit');
+    Route::post('/forumcategory/sub/{id}/update',[ForumCategoryController::class, 'updateSubCategory'])->name('forumcategory.subcategory.update');
+
+   
     Route::resource('users', UserController::class);
     Route::get('/siteinfo', [SiteController::class, 'index'])->name('siteinfo.index');
     ROute::post('/siteinfo/store', [SiteController::class, 'store'])->name('siteinfo.store');
