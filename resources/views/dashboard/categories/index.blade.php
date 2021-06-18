@@ -35,10 +35,10 @@
                       Slug
                     </th>
 
-                    {{-- <th scope="col"
+                   <th scope="col"
                       class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Sub-Categories
-                    </th> --}}
+                    </th> 
                     <th scope="col"
                       class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Status
@@ -75,9 +75,9 @@
                       {{ $category->slug }}
                     </td>
 
-                    {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {{ $category->children()->count() }}
-                    </td> --}}
+                    </td> 
                     <td class="px-6 py-4 whitespace-nowrap text-gray-500">
                       @if ($category->status)
                       <span class="text-sm text-gray-900 bg-green-300 px-2 py-1 rounded-xl">
@@ -115,8 +115,11 @@
                       {{ $category->order }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium ">
-                      {{-- <a href="{{ route('category.show', $category->id) }}"
-                        class="text-blue-600 m-1 hover:text-blue-900">View</a> --}}
+                       <a href="{{ route('category.show', $category->id) }}"
+                        class="text-blue-600 m-1 hover:text-blue-900">View</a>
+
+
+                 
                       <a href="{{ route('category.edit', $category->id) }}"
                         class="text-indigo-600 m-1 hover:text-indigo-900">Edit</a>
                       <form action="{{ route('category.destroy', $category->id) }}" class="inline" method="post"

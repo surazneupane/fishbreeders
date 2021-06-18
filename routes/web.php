@@ -90,6 +90,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'checkauth'], 'prefix
     Route::resource('posts', PostController::class);
     Route::get('/category/{id}/create', [CategoryController::class, 'createSubCategory'])->name('category.subcategory.create');
     Route::post('/category/{id}/store', [CategoryController::class, 'storeSubCategory'])->name('category.subcategory.store');
+    Route::get('/subcat/{id}/edit',[CategoryController::class, 'editSubCategory'])->name('category.subcategory.edit');
+    Route::post('/subcat/{id}/update',[CategoryController::class, 'updateSubCategory'])->name('category.subcategory.update');
+
     Route::resource('category', CategoryController::class);
     Route::resource('users', UserController::class);
     Route::get('/siteinfo', [SiteController::class, 'index'])->name('siteinfo.index');

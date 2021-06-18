@@ -21,6 +21,7 @@ class CreateCategoriesTable extends Migration {
             $table->boolean('show_in_header')->default(false);
             $table->boolean('show_in_footer')->default(false);
             $table->longText('post_content')->nullable();
+            $table->integer('parent_id')->default(0);
             $table->timestamps();
             $table->date('deleted_at')->nullable();
         });

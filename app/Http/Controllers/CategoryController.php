@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\StoreSubCategoryRequest;
+use App\Http\Requests\UpdateSubCategoryRequest;
+
+
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -15,7 +19,7 @@ class CategoryController extends Controller {
      */
     public function index() {
 
-        $categories = Category::paginate(10);
+        $categories = Category::where('parent_id',0)->paginate(10);
 
         return view('dashboard.categories.index', compact('categories'));
     }
@@ -98,9 +102,30 @@ class CategoryController extends Controller {
         return view('dashboard.categories.sub.create', compact('category'));
     }
 
-    public function storeSubCategory($id, StoreCategoryRequest $request) {
+    public function storeSubCategory($id, StoreSubCategoryRequest $request) {
         $request['parent_id'] = $id;
-        Category::create($request->except('_token'));
+       $result = Category::create($request->except('_token'));
         return redirect(route('category.show', $id));
+    }
+
+    public function editSubCategory($id)
+    {   
+        $category = Category::findOrFail($id);
+        return view('dashboard.categories.sub.edit', compact('category'));
+        
+    }
+
+    public function updateSubCategory(UpdateSubCategoryRequest $request,$id)
+    {
+        $category = Category::findOrFail($id);
+        $category->title           = $request->title;
+        $category->slug            = $request->slug;
+        $category->status          = $request->status;
+        $category->show_in_header  = $request->show_in_header;
+        $category->show_in_footer  = $request->show_in_footer;
+        $category->order           = $request->order;
+        $category->save();
+        return redirect()->back()->with('success','Category Updated Sucessfully');
+
     }
 }

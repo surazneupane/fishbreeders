@@ -68,6 +68,30 @@
                                             </span>
                                             @enderror
                                         </div>
+
+                                        <div class="col-span-6 sm:col-span-6">
+                                            <label for="category" class="block text-sm font-medium text-gray-700">{{ _('Post Sub Categories*') }}</label>
+                                            <select type="text" name="subcategory[]" id="subcategory" class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('category')border-red-400 @enderror " multiple>
+                                                <option></option>
+                                                @foreach ($subCategories as $sub)
+                                                <option value="{{ $sub->id }}"
+                                                
+                                                @if ($post->
+                                                    subcategories->contains($sub) )
+                                                    selected
+                                                    @endif
+                                                >
+                                                    {{ $sub->title }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                            @error('subcategory')
+                                            <span class="text-sm text-red-500">
+                                                {{ $message }}
+                                            </span>
+                                            @enderror
+                                        </div>
+
                                         <div class="col-span-6 sm:col-span-6">
                                             <label for="featured_image" class="block text-sm font-medium text-gray-700">{{ _('Featured Image* - upload new image and  old image will be deleted') }}</label>
                                             <input type="file" name="featured_image" id="featured_image" class=" " accept="image/png,image/jpeg,image/gif,image/svg" value="{{ old('featured_image') }}" />
@@ -260,6 +284,12 @@
         };
         $(document).ready(function() {
             $('#category').select2({
+                placeholder: "Select Categories"
+                , multiple: true
+                , theme: "classic"
+            });
+
+            $('#subcategory').select2({
                 placeholder: "Select Categories"
                 , multiple: true
                 , theme: "classic"

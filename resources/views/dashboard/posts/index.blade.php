@@ -26,6 +26,9 @@
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Category
                                         </th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                         Sub  Category
+                                        </th>
 
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Status
@@ -55,6 +58,12 @@
 
                                         <td class="px-6 py-4 whitespace-nowrap text-gray-500">
                                             @foreach ($post->categories as $category)
+                                            {{ $category->title }}@if (!$loop->last), @endif
+                                            @endforeach
+                                        </td>
+
+                                        <td class="px-6 py-4 whitespace-nowrap text-gray-500">
+                                            @foreach ($post->subcategories as $category)
                                             {{ $category->title }}@if (!$loop->last), @endif
                                             @endforeach
                                         </td>

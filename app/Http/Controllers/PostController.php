@@ -34,8 +34,9 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        $categories = Category::all();
-        return view('dashboard.posts.create', compact('categories'));
+        $categories = Category::where('parent_id',0)->get();
+        $subCategories = Category::where('parent_id','>',0)->get();
+        return view('dashboard.posts.create', compact('categories','subCategories'));
     }
 
     /**
@@ -54,6 +55,9 @@ class PostController extends Controller {
         $post                   = Post::create($data);
         foreach ($request->category as $category) {
             $post->categories()->attach($category);
+        }
+        foreach ($request->subcategory as $sub) {
+            $post->categories()->attach($sub);
         }
         $message = Auth::user()->roles->contains(1) ? "Post Added Sucessfully" : "Thank You for posting! An Admin will review your post before it will be approved and published.";
 
@@ -79,8 +83,10 @@ class PostController extends Controller {
     public function edit(Post $post) {
         if(Auth::user()->roles->contains(1))
         {
-        $categories = Category::all();
-        return view('dashboard.posts.edit', compact('post', 'categories'));
+        $categories = Category::where('parent_id',0)->get();
+        $subCategories = Category::where('parent_id','>',0)->get();
+
+        return view('dashboard.posts.edit', compact('post', 'categories','subCategories'));
         }
         else{
             abort(401);
@@ -109,6 +115,10 @@ class PostController extends Controller {
         $post->categories()->detach();
         foreach ($request->category as $category) {
             $post->categories()->attach($category);
+        }
+
+        foreach ($request->subcategory as $sub) {
+            $post->categories()->attach($sub);
         }
         return redirect(route('posts.index'));
 

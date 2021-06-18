@@ -49,6 +49,18 @@
                         @endforeach
                     </ol>
                 </div>
+
+                <hr class="border-2 w-100 mb-5 ">
+
+                <div class="my-4">
+                    <h5 class="text-sm">Sub Categories</h5>
+                    <ol class="text-sm list-decimal px-8 pt-3">
+                        @foreach ($post->subCategories as $category)
+                        <li class="text-sm">{{ $category->title }}</li>
+
+                        @endforeach
+                    </ol>
+                </div>
                 <hr class="border-2 w-100 mb-5 ">
 
                 <div class="my-4">

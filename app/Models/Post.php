@@ -15,7 +15,11 @@ class Post extends Model implements Viewable {
     protected $fillable = ['title', 'slug', 'content', 'featured_image', 'excerpt', 'tag', 'status', 'location', 'views', 'share', 'user_id', 'deleted_at', 'refrence', 'breeding'];
 
     public function categories() {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class)->where('parent_id',0);
+    }
+
+    public function subCategories() {
+        return $this->belongsToMany(Category::class)->where('parent_id','>',0);
     }
 
     public function user() {
