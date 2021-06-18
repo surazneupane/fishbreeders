@@ -164,10 +164,10 @@
                                 <hr class="dropdown-divider">
                             </li>
                             <?php $adminOrEditor = Auth::user()->roles?>
-                            @if($adminOrEditor->contains(1) || $adminOrEditor->contains(2))
+                            @if($adminOrEditor->contains(1) || $adminOrEditor->contains(2) || $adminOrEditor->contains(4))
                             <li>
                                
-                                  <a target="_blank" href="{{route('dashboard')}}" class="dropdown-item" > @if($adminOrEditor->contains(2)) Editor @else Admin @endif Dashboard</a>
+                                  <a target="_blank" href="{{route('dashboard')}}" class="dropdown-item" > @if($adminOrEditor->contains(2)) Editor @elseif($adminOrEditor->contains(1)) Admin @else Forum @endif Dashboard</a>
 
                             </li>
                             <li>

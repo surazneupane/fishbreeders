@@ -108,5 +108,10 @@ class DatabaseSeeder extends Seeder {
                 'compactibility' => 'incompactible',
             ]
         );
+
+
+        Role::create([
+            'name'=> 'Forum Moderator',
+        ]);
     }
 }

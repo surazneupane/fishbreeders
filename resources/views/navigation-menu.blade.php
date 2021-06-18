@@ -12,6 +12,16 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+
+               
+                 @if(Auth::user()->roles->contains(4))
+                <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('forums.index') }}" :active="request()->routeIs('forums.*')||request()->routeIs('forumcategory.*')">
+                        {{ __('Forums') }}
+                    </x-jet-nav-link>
+                    @else
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
@@ -20,9 +30,13 @@
                         {{ __('Categories') }}
                     </x-jet-nav-link>
                     @endcan
+                
                     <x-jet-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.*')">
                       @if(Auth::user()->roles->contains(1))  {{ __('Posts') }} @else {{ __('Your Posts') }}  @endif
                     </x-jet-nav-link>
+
+                  
+
                     @can('user_access')
                     <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
                         {{ __('Users') }}
@@ -48,6 +62,7 @@
                         {{ __('Fish Compatibility') }}
                     </x-jet-nav-link>
                     @endcan
+                    @endif
                 </div>
             </div>
 
