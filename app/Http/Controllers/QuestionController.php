@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreQuestionRequest;
 use App\Models\Category;
+use App\Models\ForumCategory;
+
 use App\Models\Question;
 use Exception;
 use Illuminate\Http\Request;
@@ -27,8 +29,10 @@ class QuestionController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        $categories = Category::where('status', '1')->get();
-        return view('dashboard.forums.questions.create', compact('categories'));
+        $forumCatgeoires = ForumCategory::all()->where('status',1);
+        $subCategories = $forumCatgeoires->where('parent_id','>',0);
+        $categories = $forumCatgeoires->where('parent_id',0);
+        return view('dashboard.forums.questions.create', compact('categories','subCategories'));
     }
 
     /**
@@ -48,6 +52,12 @@ class QuestionController extends Controller {
         {
             $tags[]=$category;
         }
+        if(!empty($request->subcategory)){
+        foreach($request->subcategory as $category)
+        {
+            $tags[]=$category;
+        }
+    }
         $question->categories()->sync($tags);
         return redirect()->route('forums.index')->with('success','Question Posted Sucessfully');
     }
@@ -76,12 +86,14 @@ class QuestionController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function edit($id) {
-    //     //
-    //     $categories = Category::where('status', '1')->get();
-    //     $question = Question::findOrFail($id);
-    //     return view('dashboard.forums.questions.edit',compact('question','categories'));
-    // }
+    public function edit($id) {
+        //
+        $forumCatgeoires = ForumCategory::all()->where('status',1);
+        $subCategories = $forumCatgeoires->where('parent_id','>',0);
+        $categories = $forumCatgeoires->where('parent_id',0);
+        $question = Question::findOrFail($id);
+        return view('dashboard.forums.questions.edit',compact('question','categories','subCategories'));
+    }
 
     /**
      * Update the specified resource in storage.
@@ -101,6 +113,14 @@ class QuestionController extends Controller {
             foreach($request->category as $category)
             {
                 $tags[]=$category;
+            }
+
+            if(!empty($request->subcategory))
+            {
+                foreach($request->subcategory as $category)
+                {
+                    $tags[]=$category;
+                }
             }
             $question->categories()->sync($tags);
             return redirect()->route('forums.index')->with('success','Question Updated Sucessfully');

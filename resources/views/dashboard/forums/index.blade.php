@@ -33,9 +33,11 @@
                                             Answers
                                         </th>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Status
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             created Date
                                         </th>
-
                                         <th scope="col" class="relative px-6 py-3">
                                             <span class="sr-only">view</span>
                                             <span class="sr-only">Edit</span>
@@ -55,17 +57,35 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-gray-500">
                                             {{ $question->user->name ?? "" }}
                                         </td>
-
+                                      
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {{ $question->answers->count() }}
 
+                                        </td>
+
+                                        <td class="px-6 py-4 whitespace-nowrap text-gray-500">
+                                            @if ($question->status == 1 )
+                                            <span class="text-sm text-green-900 bg-green-200 px-2 py-1 rounded-xl">
+                                                Published
+                                            </span>
+                                            @endif
+                                            @if($question->status == 0)
+                                            <span class="text-sm text-gray-900 bg-gray-200 px-2 py-1 rounded-xl">
+                                                Draft
+                                            </span>
+                                            @endif
+                                            @if($question->status == 2)
+                                            <span class="text-sm text-gray-900 bg-red-100 px-2 py-1 rounded-xl">
+                                                Declined
+                                            </span>
+                                            @endif
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {{ $question->created_at }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium ">
                                             <a href="{{ route('questions.show', $question->id) }}" class="text-blue-600 m-1 hover:text-blue-900">View</a>
-                                            {{-- <a href="{{ route('questions.edit', $question->id) }}" class="text-indigo-600 m-1 hover:text-indigo-900">Edit</a> --}}
+                                             <a href="{{ route('questions.edit', $question->id) }}" class="text-indigo-600 m-1 hover:text-indigo-900">Edit</a> 
                                             <form action="{{ route('questions.destroy', $question->id) }}" class="inline" method="post" onsubmit="return confirm('Are you sure you want to delete this Question?')">
                                                 @csrf
                                                 @method('delete')

@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model implements Viewable {
 
     use InteractsWithViews;
-    protected $fillable = ['title', 'description', 'user_id'];
+    protected $fillable = ['title', 'description', 'user_id','status'];
     use HasFactory;
 
     // delete all answers when question is deleted
@@ -32,7 +32,7 @@ class Question extends Model implements Viewable {
     }
 
     public function categories() {
-        return $this->belongsToMany(Category::class, 'question_category');
+        return $this->belongsToMany(ForumCategory::class, 'question_forum_category');
     }
 
     public function user() {

@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use App\Models\Category;
+use App\Models\ForumCategory;
+
 use App\Models\SiteInfo;
 use App\Models\User;
 use Closure;
@@ -23,7 +25,9 @@ class ViewControl {
         $headerCategories = Category::where('show_in_header', "1")->where('status', '1')->orderBy('order')->get();
         $footerCategories = Category::where('show_in_footer', "1")->where('status', '1')->orderBy('order')->get();
         $categories       = Category::where('status', '1')->orderBy('order')->get();
-
+        $forumCategories = ForumCategory::all()->where('status',1);
+        $forumMainCat = $forumCategories->where('parent_id',0);
+        $forumSubCat  = $forumCategories->where('parent_id','>',0);
         $siteinfo = SiteInfo::find(1);
         if (!$siteinfo) {
             $siteinfo = new SiteInfo();
@@ -40,7 +44,7 @@ class ViewControl {
             }
         }
 
-        View::share(compact('categories', 'headerCategories', 'siteinfo', 'footerCategories', 'hasMessages'));
+        View::share(compact('categories', 'headerCategories', 'siteinfo', 'footerCategories', 'hasMessages','forumMainCat','forumSubCat'));
         return $next($request);
     }
 }

@@ -63,7 +63,7 @@
                 @endforelse
 
                 <div class="my-4">
-                    {{ $forums->links('pagination::bootstrap-4') }}
+                    {{ $forums->appends(request()->input())->links('pagination::bootstrap-4') }}
                 </div>
 
             </div>

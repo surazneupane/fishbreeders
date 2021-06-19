@@ -17,8 +17,12 @@
                             class=" text-decoration-none text-dark card-link  ">
                             <h5 class="card-title">
                                 {{ $forum->title }}
+                                
                             </h5>
                         </a>
+
+                       
+
                         <p class="card-text text-truncate text-muted">
                             <small>
                                 {{ $forum->description }}
@@ -45,7 +49,9 @@
                                     {{ $forum->answers->count() }} Answers
                                 </small>
 
-                                <button class="text-primary" data-bs-toggle="modal"
+                                
+
+                                <button class="text-primary"  data-bs-toggle="modal"
                                     data-bs-target="#editquestionmodal{{$forum->id}}">
                                     Edit
                                 </button>
@@ -57,6 +63,8 @@
                                     </button>
                                 </form>
                             </div>
+                           
+
                             <div class="d-flex">
                                 @foreach ($forum->categories->take(3) as $category)
                                 <div class="badge bg-success d-flex align-items-center px-2 mx-1">
@@ -67,6 +75,25 @@
               
 
                             </div>
+
+                            <div class="d-flex">
+                                @if($forum->status ==1)
+                                <div class="badge bg-success d-flex align-items-center px-2 mx-1">
+                                    <span> Published </span>
+                                </div>
+                        @elseif($forum->status == 0)
+                                <div class="badge bg-primary d-flex align-items-center px-2 mx-1">
+                                    <span> Draft </span>
+                                </div>
+                            @else
+                                <div class="badge bg-danger d-flex align-items-center px-2 mx-1">
+                                    <span> Declined </span>
+                                </div>
+
+                                @endif              
+
+                            </div>
+
                           
 
 
@@ -96,10 +123,10 @@
                                     <div class="form-group py-3">
                                         <label for="category">Category</label>
                                         <div>
-                                            <select name="category[]" id="category" class="form-control" required
+                                            <select name="category[]" class="category" class="form-control" required
                                                 multiple>
                                                 <option></option>
-                                                @foreach ($categories as $category)
+                                                @foreach ($forumMainCat as $category)
                                                 <option value="{{ $category->id }}" @if($forum->
                                                     categories->contains($category)) selected @endif>
                                                     {{ $category->title }}
@@ -108,6 +135,24 @@
                                             </select>
                                         </div>
                                     </div>
+
+
+                                    <div class="form-group py-3">
+                                        <label for="category">Category</label>
+                                        <div>
+                                            <select name="subcategory[]" class="subcategory"  class="form-control" 
+                                                multiple>
+                                                <option></option>
+                                                @foreach ($forumSubCat as $category)
+                                                <option value="{{ $category->id }}" @if($forum->
+                                                    categories->contains($category)) selected @endif>
+                                                    {{ $category->title }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group">
                                         <label for="description">Description</label>
                                         <textarea class="form-control" name="description" id="description" rows="5"

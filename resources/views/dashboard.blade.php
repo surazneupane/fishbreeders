@@ -14,7 +14,7 @@
                 <div class="md:grid md:grid-flow-col md:grid-rows-2 lg:grid-rows-1">
                     <div class="bg-green-500 rounded-2xl  p-4 m-4 ">
                         <div class="text-white font-bold text-xl uppercase">
-                            @lang("Posts")
+                          @if($authUserIsForum) Questions @else  @lang("Posts") @endif
                         </div>
                         <hr class="border-1 w-100 my-4 border-white ">
                         <div class="text-white font-black text-md text-right">
@@ -41,7 +41,7 @@
                     </div>
                     <div class="bg-indigo-500 rounded-2xl  p-4 m-4 ">
                         <div class="text-white font-bold text-xl uppercase">
-                            @lang("Views")
+                        @if($authUserIsForum) Answers  @else  @lang("Views") @endif 
                         </div>
                         <hr class="border-1 w-100 my-4 border-white ">
                         <div class="text-white font-black text-md text-right">

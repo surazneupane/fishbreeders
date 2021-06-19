@@ -57,6 +57,23 @@
                 , multiple: true
                 , theme: "classic"
             });
+            $('#subcategory').select2({
+                placeholder: "Select Categories"
+                , multiple: true
+                , theme: "classic"
+            });
+
+            $('.category').select2({
+                placeholder: "Select Categories"
+                , multiple: true
+                , theme: "classic"
+            });
+
+            $('.subcategory').select2({
+                placeholder: "Select Categories"
+                , multiple: true
+                , theme: "classic"
+            });
             $('#freshfish').select2({
                 placeholder: "Select Fishes"
                 , multiple: true

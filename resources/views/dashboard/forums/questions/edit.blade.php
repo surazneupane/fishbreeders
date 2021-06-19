@@ -53,6 +53,31 @@
                                     @enderror
                                 </div>
 
+
+                                <div class="col-span-6 sm:col-span-6">
+                                    <label for="category"
+                                        class="block text-sm font-medium text-gray-700">{{ _('Question Sub Categories*') }}</label>
+                                    <select type="text" name="subcategory[]" id="subcategory"
+                                        class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('category')border-red-400 @enderror "
+                                        multiple>
+                                        <option></option>
+                                        @foreach ($subCategories as $sub)
+                                        <option value="{{ $sub->id }}"
+                                        @if($question->categories->contains($sub)) selected @endif
+                                        >
+                                            {{ $sub->title }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                    @error('subcategory')
+                                    <span class="text-sm text-red-500">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
+                                </div>
+
+
+
                                 <div class="col-span-6 sm:col-span-6">
                                     <label for="content"
                                         class="block text-sm font-medium text-gray-700">{{ _('Question Description*') }}
@@ -67,6 +92,22 @@
                                         @enderror
 
                                 </div>
+
+
+                                <div class="col-span-6 sm:col-span-6">
+                                                <label for="status" class="block text-sm font-medium text-gray-700">{{ _('Question Status*') }}</label>
+                                                <select name="status" id="status" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
+                                                                                                                                    @error('status')border-red-400 @enderror
+                                                                                                                                    ">
+                                                    <option value="0" @if($question->status == 0) selected @endif>Draft</option>
+                                                    <option value="1" @if($question->status == 1) selected @endif>Publish</option>
+                                                    <option value="2" @if($question->status == 2) selected @endif>Decline</option>
+
+                                                </select> @error('status') <span class="text-sm text-red-500">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
+                                            </div>
 
 
                             </div>
@@ -177,6 +218,11 @@
         };
         $(document).ready(function() {
             $('#category').select2({
+                placeholder: "Select Categories",
+                multiple: true,
+                theme: "classic"
+            });
+            $('#subcategory').select2({
                 placeholder: "Select Categories",
                 multiple: true,
                 theme: "classic"

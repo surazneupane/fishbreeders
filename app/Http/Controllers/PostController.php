@@ -56,9 +56,11 @@ class PostController extends Controller {
         foreach ($request->category as $category) {
             $post->categories()->attach($category);
         }
+        if(!empty($request->subcategory)){
         foreach ($request->subcategory as $sub) {
             $post->categories()->attach($sub);
         }
+    }
         $message = Auth::user()->roles->contains(1) ? "Post Added Sucessfully" : "Thank You for posting! An Admin will review your post before it will be approved and published.";
 
         return redirect()->route('posts.index')->with('success',$message);

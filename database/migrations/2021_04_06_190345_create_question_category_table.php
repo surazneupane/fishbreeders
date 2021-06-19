@@ -13,10 +13,10 @@ class CreateQuestionCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('question_category', function (Blueprint $table) {
+        Schema::create('question_forum_category', function (Blueprint $table) {
             $table->id();
             $table->integer('question_id');
-            $table->integer('category_id');
+            $table->integer('forum_category_id');
             $table->timestamps();
         });
     }

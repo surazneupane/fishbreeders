@@ -106,6 +106,8 @@ class ForumCategoryController extends Controller
     {
         //
         $forumCategory = ForumCategory::findOrFail($id);
+        $forumCategory->questions()->detach();
+
         $forumCategory->children()->delete();
         $forumCategory->delete();
         return redirect()->back()->with('success','Category Deleted Successfully');

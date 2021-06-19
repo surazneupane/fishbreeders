@@ -18,6 +18,8 @@ class CreateQuestionsTable extends Migration
             $table->longText('title');
             $table->longText('description');
             $table->integer('user_id');
+            $table->boolean('status')->default(0);
+
             $table->timestamps();
         });
     }

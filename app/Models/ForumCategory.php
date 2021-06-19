@@ -16,4 +16,9 @@ class ForumCategory extends Model
         return $this->hasMany(ForumCategory::class, 'parent_id');
 
     }
+
+    public function questions() {
+        return $this->belongsToMany(Question::class, 'question_forum_category');
+
+    }
 }

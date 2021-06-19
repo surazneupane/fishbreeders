@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\ForumCategory;
 
 use App\Http\Requests\AnswerReplyRequest;
 use App\Http\Requests\StoreQuestionRequest;
@@ -73,14 +74,14 @@ class ViewController extends Controller {
     public function forum(Request $request) {
         if ((!empty($request->all()))) {
             if (isset($request->name)) {
-                $forums = Category::where('slug', $request->name)->first()->questions()->orderBy('created_at','desc')->paginate(10);
+                $forums = ForumCategory::where('slug', $request->name)->where('status',1)->first()->questions()->where('status',1)->orderBy('created_at','desc')->paginate(10);
             } else if ($request->query) {
-                $forums = Question::where('title', 'like', '%' . $request['query'] . '%')->paginate(10);
+                $forums = Question::where('title', 'like', '%' . $request['query'] . '%')->where('status',1)->paginate(10);
 
             }
         } else {
 
-            $forums = Question::latest()->paginate(10);
+            $forums = Question::where('status',1)->latest()->paginate(10);
         }
 
         return view('frontend.forums', compact('forums'));
@@ -138,8 +139,14 @@ class ViewController extends Controller {
             foreach ($request->category as $category) {
                 $tags[] = $category;
             }
+            if(!empty($request->subcategory))
+            {
+                foreach ($request->subcategory as $category) {
+                    $tags[] = $category;
+                }
+            }
             $question->categories()->sync($tags);
-            return redirect()->route('forums')->with('success', 'Question Posted Sucessfully');
+            return redirect()->route('forums')->with('success', 'Question Posted Sucessfully And Will Be Reviewed By Moderator');
         } catch (Exception $e) {
             return redirect(route('forums'))->with('error', $e->getMessage());
 
@@ -262,6 +269,13 @@ class ViewController extends Controller {
         $tags                  = [];
         foreach ($request->category as $category) {
             $tags[] = $category;
+        }
+
+        if(!empty($request->subcategory))
+        {
+            foreach ($request->subcategory as $category) {
+                $tags[] = $category;
+            }
         }
         $question->categories()->sync($tags);
         $question->update();
