@@ -100,12 +100,16 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'checkauth'], 'prefix
     Route::post('/forumcategory/{id}/store',[ForumCategoryController::class,'storeSubCat'])->name('forumcategory.subcategory.store');
     Route::get('/forumcategory/sub/{id}/edit',[ForumCategoryController::class, 'editSubCategory'])->name('forumcategory.subcategory.edit');
     Route::post('/forumcategory/sub/{id}/update',[ForumCategoryController::class, 'updateSubCategory'])->name('forumcategory.subcategory.update');
-
    
     Route::resource('users', UserController::class);
     Route::get('/siteinfo', [SiteController::class, 'index'])->name('siteinfo.index');
     ROute::post('/siteinfo/store', [SiteController::class, 'store'])->name('siteinfo.store');
     Route::get("/forums", [ForumController::class, 'index'])->name('forums.index');
+    Route::delete('/forums/bulkdelete',[ForumController::class,'bulkDelete'])->name('forums.bulkdelete');
+    Route::delete('/forums/bulkdelete/bydate',[ForumController::class,'bulkDeleteDate'])->name('forums.bulkdeletedate');
+
+
+
     Route::resource("/questions", QuestionController::class);
     Route::get('/feedback', [FeedbackController::class, 'showFeedbacks'])->name('admin.showfeedback');
     Route::post('/feedback/{id}/delete', [FeedbackController::class, 'deleteFeedback'])->name('admin.delete.feedback');

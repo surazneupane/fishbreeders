@@ -13,9 +13,26 @@
                 <a href="{{ route('questions.create') }}" class="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-xl shadow">Add Question</a>
                 <a href="{{route('forumcategory.index')}}" class="py-2 px-4 bg-blue-500 hover:bg-blue-600 text-white rounded-xl shadow">Forum Categories</a>
 
-            </div>
-           
+     </div>
 
+     <div class="block mb-10">
+
+<button class="py-2 px-4 bg-gray-500 hover:bg-red-600 text-white rounded-xl shadow delete_all "  data-url="{{ url('admin/forums/bulkdelete') }}">Delete All Selected</button>
+OR,
+<form style="display:inline" method="post" action="{{route('forums.bulkdeletedate')}}"  onsubmit="return confirm('Are you sure you want to delete ?')">
+@method('DELETE')
+@csrf
+<label>From: </label>
+<input name="from" type="date" required>
+<label>To: </label>
+<input name="to" type="date" required>
+<button class="py-2 px-4 bg-gray-500 hover:bg-red-600 text-white rounded-xl shadow " type="submit" >Delete By Date</button>
+
+</form>
+
+</div>
+
+         
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -23,6 +40,8 @@
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-50">
                                     <tr>
+
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><input type="checkbox" id="master"></th>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Question Title
                                         </th>
@@ -50,7 +69,8 @@
                                     @forelse ($questions as $question )
 
 
-                                    <tr>
+                                    <tr id="tr_{{$question->id}}">
+                                    <td class="px-6 py-4 text-sm text-gray-900 w-96 max-w-sm truncate"><input type="checkbox" class="sub_chk" data-id="{{$question->id}}"></td>
                                         <td class="px-6 py-4 text-sm text-gray-900 w-96 max-w-sm truncate">
                                             {{ $question->title }}
                                         </td>
@@ -118,4 +138,59 @@
           
         </div>
     </div>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#master').on('click', function(e) {
+         if($(this).is(':checked',true))  
+         {
+            $(".sub_chk").prop('checked', true);  
+         } else {  
+            $(".sub_chk").prop('checked',false);  
+         }  
+        });
+        $('.delete_all').on('click', function(e) {
+            var allVals = [];  
+            $(".sub_chk:checked").each(function() {  
+                allVals.push($(this).attr('data-id'));
+            });  
+            if(allVals.length <=0)  
+            {  
+                alert("Please select row.");  
+            }  else {  
+                var check = confirm("Are you sure you want to delete selected row?");  
+                if(check == true){  
+                    var join_selected_values = allVals.join(","); 
+                    console.log(join_selected_values)
+                    $.ajax({
+                        url: $(this).data('url'),
+                        type: 'DELETE',
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        data: 'ids='+join_selected_values,
+                        success: function (data) {
+                            if (data['success']) {
+                              
+                                alert(data['success']);
+                                window.location.href = '/admin/forums';
+                            } else if (data['error']) {
+                                alert(data['error']);
+                            } else {
+                                alert('Whoops Something went wrong!!');
+                            }
+                        },
+                        error: function (data) {
+                            alert(data.responseText);
+                        }
+                    });
+                  $.each(allVals, function( index, value ) {
+                      $('table tr').filter("[data-row-id='" + value + "']").remove();
+                  });
+                }  
+            }  
+        });
+       
+      
+    });
+</script>
+
 </x-app-layout>
