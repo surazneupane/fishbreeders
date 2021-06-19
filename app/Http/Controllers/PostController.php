@@ -118,10 +118,12 @@ class PostController extends Controller {
         foreach ($request->category as $category) {
             $post->categories()->attach($category);
         }
+        if(!empty($request->subcategory)){
 
         foreach ($request->subcategory as $sub) {
             $post->categories()->attach($sub);
         }
+    }
         return redirect(route('posts.index'));
 
     }

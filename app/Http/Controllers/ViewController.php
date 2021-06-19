@@ -296,7 +296,9 @@ class ViewController extends Controller {
     }
 
     public function search(Request $request) {
-        $posts  = Post::where('title', 'like', '%' . $request['search'] . '%')->where('status',1)->get();
+        $posts  = Post::where('posts.status',1)->where('title', 'like', '%' . $request['search'] . '%')->orWhereHas('user',function($q) use ($request){
+            $q->where('name','like',$request['search']);
+        })->where('posts.status',1)->get();
         $search = $request['search'];
         return view('frontend.search_post', compact('posts', 'search'));
     }
