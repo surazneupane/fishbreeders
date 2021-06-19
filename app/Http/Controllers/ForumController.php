@@ -49,7 +49,7 @@ class ForumController extends Controller {
             }
             DB::commit();
 
-            return redirect()->back()->with('success','All Deleted Form:'.$request->from.' to:'.$request->to);
+            return redirect()->back()->with('success','All Deleted Form:'.$request->from.' to:'.$request->to.' And Total Data Deleted : '.count($questions));
 
         }
         catch(Exception $e)
