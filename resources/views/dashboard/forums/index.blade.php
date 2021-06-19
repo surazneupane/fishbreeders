@@ -35,6 +35,9 @@ OR,
 <div class="mt-5 md:mt-0 md:col-span-2">
                         @if(Session::has('success'))
                      <p style="color: green">   {{Session::get('success')}} </p>
+                        @endif       
+                        @if(Session::has('error'))
+                     <p style="color: red">   {{Session::get('error')}} </p>
                         @endif         
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
