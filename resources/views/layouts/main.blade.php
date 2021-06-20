@@ -58,7 +58,7 @@
                 , theme: "classic"
             });
             $('#subcategory').select2({
-                placeholder: "Select Categories"
+                placeholder: "Select Sub Categories"
                 , multiple: true
                 , theme: "classic"
             });

@@ -72,19 +72,36 @@ class ViewController extends Controller {
     }
 
     public function forum(Request $request) {
-        if ((!empty($request->all()))) {
-            if (isset($request->name)) {
-                $forums = ForumCategory::where('slug', $request->name)->where('status',1)->first()->questions()->where('status',1)->orderBy('created_at','desc')->paginate(10);
-            } else if ($request->query) {
-                $forums = Question::where('title', 'like', '%' . $request['query'] . '%')->where('status',1)->paginate(10);
-
-            }
-        } else {
-
-            $forums = Question::where('status',1)->latest()->paginate(10);
+        $forums = Question::where('status',1);
+        if(isset($request['query']) && !empty($request['query'])){
+         $forums = $forums->where('title','like','%'. $request['query'] .'%');
         }
+        if(isset($request->date)&& !empty($request->date))
+        {
+         $forums = $forums->whereDate('created_at','=', $request['date']);
+        }
+        if(isset($request['category']) && !empty($request['category']))
+        {
+            $forums  = $forums->whereHas('categories',function($q) use ($request){
+                $q->whereIn('slug',$request['category']);
+             });
+            }
 
-        return view('frontend.forums', compact('forums'));
+            if(isset($request['subcategory']) && !empty($request['subcategory']))
+            {
+                $forums  = $forums->whereHas('categories',function($q) use ($request){
+                    $q->whereIn('slug',$request['subcategory']);
+                 });
+            }
+            
+            $searchedCategory = !empty($request['category']) ? $request['category'] :[];
+            $searchedSubCategory = !empty($request['subcategory']) ? $request['subcategory'] :[];
+
+
+
+            $forums = $forums->latest()->paginate(10);
+
+        return view('frontend.forums', compact('forums','searchedCategory','searchedSubCategory'));
     }
 
     public function registerUser(StoreUserExternalRequest $request) {

@@ -11,8 +11,41 @@
     @endif
     <div>
         <form method="get" action={{ route('forums') }}>
-            <input value="{{ old('query') }}" type="text" name="query" class="m-0 form-control"
-                placeholder="Search here..." />
+
+        <select type="text" name="category[]" class="category" class="m-1 form-control"  multiple>
+           <option></option>
+                @foreach ($forumMainCat as $category)
+                     <option value="{{ $category->slug }}"
+                     @if(in_array($category->slug,$searchedCategory))
+                      selected
+                     @endif
+                     >
+                       {{ $category->title }}
+                      </option>
+                     @endforeach
+                      </select>
+                      <br>
+                      <br>
+                      <select type="text" name="subcategory[]" class="subcategory" class="form-control" multiple>
+                 <option></option>
+                @foreach ($forumSubCat as $category)
+                     <option value="{{ $category->slug }}"
+                     @if(in_array($category->slug,$searchedSubCategory))
+                      selected
+                     @endif
+                     >
+                       {{ $category->title }}
+                      </option>
+                     @endforeach
+                      </select>
+                      <br>
+                      <br>
+
+            <input value="{{ request('date') }}" type="date" name="date" class=" form-control" placeholder="Search By Date">
+            <br>
+  
+            <input value="{{ request('query') }}" type="text" name="query" class=" form-control"
+                placeholder="Query here..." />
             <div class="d-flex justify-content-end py-1">
                 <button class="btn btn-primary m-0">
                     Search
@@ -20,7 +53,7 @@
             </div>
         </form>
     </div>
-    <div>
+    <!-- <div>
         <h5>Tags</h5>
         <ul class="list-unstyled px-2">
             <li>
@@ -37,7 +70,7 @@
             </li>
             @endforeach
         </ul>
-    </div>
+    </div> -->
 </div>
 
 <!-- Modal -->
