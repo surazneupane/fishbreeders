@@ -15,22 +15,22 @@
 
      </div>
 
-     <div class="block mb-10">
+                        <div class="block mb-10">
 
-<button class="py-2 px-4 bg-gray-500 hover:bg-red-600 text-white rounded-xl shadow delete_all "  data-url="{{ url('admin/forums/bulkdelete') }}">Delete All Selected</button>
-OR,
-<form style="display:inline" method="post" action="{{route('forums.bulkdeletedate')}}"  onsubmit="return confirm('Are you sure you want to delete ?')">
-@method('DELETE')
-@csrf
-<label>From: </label>
-<input name="from" type="date" required>
-<label>To: </label>
-<input name="to" type="date" required>
-<button class="py-2 px-4 bg-gray-500 hover:bg-red-600 text-white rounded-xl shadow " type="submit" >Delete By Date</button>
+                    <button class="py-2 px-4 bg-gray-500 hover:bg-red-600 text-white rounded-xl shadow delete_all "  data-url="{{ url('admin/forums/bulkdelete') }}">Delete All Selected</button>
+                    OR,
+                    <form style="display:inline" method="post" action="{{route('forums.bulkdeletedate')}}"  onsubmit="return confirm('Are you sure you want to delete ?')">
+                    @method('DELETE')
+                    @csrf
+                    <label>From: </label>
+                    <input name="from" type="date" required>
+                    <label>To: </label>
+                    <input name="to" type="date" required>
+                    <button class="py-2 px-4 bg-gray-500 hover:bg-red-600 text-white rounded-xl shadow " type="submit" >Delete By Date</button>
 
-</form>
+                    </form>
 
-</div>
+                    </div>
 
 <div class="mt-5 md:mt-0 md:col-span-2">
                         @if(Session::has('success'))

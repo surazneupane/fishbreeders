@@ -89,6 +89,11 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'checkauth'], 'prefix
     Route::get('/', function () {return redirect(route('dashboard'));});
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('posts', PostController::class);
+    Route::delete('/posts/delete/bulk',[PostController::class,'bulkDelete'])->name('posts.bulkdelete');
+    Route::delete('/posts/delete/bulk/bydate',[PostController::class,'bulkDeleteDate'])->name('posts.bulkdeletedate');
+
+
+
     Route::get('/category/{id}/create', [CategoryController::class, 'createSubCategory'])->name('category.subcategory.create');
     Route::post('/category/{id}/store', [CategoryController::class, 'storeSubCategory'])->name('category.subcategory.store');
     Route::get('/subcat/{id}/edit',[CategoryController::class, 'editSubCategory'])->name('category.subcategory.edit');

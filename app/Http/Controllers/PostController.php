@@ -9,6 +9,8 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+
 
 class PostController extends Controller {
     /**
@@ -138,5 +140,49 @@ class PostController extends Controller {
         $post->categories()->detach();
         $post->delete();
         return redirect()->back();
+    }
+
+
+    public function bulkDelete(Request $request)
+    {
+        try{
+            DB::beginTransaction();
+    
+           $ids = explode(',',$request->ids);
+           foreach($ids as $id){
+            $post = Post::findOrFail($id);
+            $post->categories()->detach();
+            $post->delete();
+           }
+           DB::commit();
+           return response()->json(['success'=>"Post Deleted successfully."]);
+            }
+            catch(Exception $e){
+                DB::rollBack();
+                return response()->json(['error'=>$e->getMessage()]);
+            }
+    }
+
+
+    public function bulkDeleteDate(Request $request)
+    {   
+        try{
+            DB::beginTransaction();
+            $posts = Post::whereBetween('created_at',[$request->from,$request->to])->get();
+            foreach ($posts as $post) {
+                $post->categories()->detach();
+                     $post->delete();
+            }
+            DB::commit();
+
+            return redirect()->back()->with('success','All Deleted Form:'.$request->from.' to:'.$request->to.' And Total Data Deleted : '.count($posts));
+
+        }
+        catch(Exception $e)
+        {
+            DB::rollBack();
+            return redirect()->back()->with('error','Opps Error Occured');
+        }
+
     }
 }
