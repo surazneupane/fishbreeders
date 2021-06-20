@@ -1,5 +1,13 @@
 
-
+<?php
+if(!isset($searchedCategory)){
+  $searchedCategory=[];
+}
+if(!isset($searchedSubCategory))
+{
+  $searchedSubCategory=[];
+}
+?>
 
 <div class="col">
     @if(Auth::check())
@@ -16,10 +24,8 @@
            <option></option>
                 @foreach ($forumMainCat as $category)
                      <option value="{{ $category->slug }}"
-                     @if(isset($searchedCategory))
                      @if(in_array($category->slug,$searchedCategory))
                       selected
-                     @endif
                      @endif
                      >
                        {{ $category->title }}
@@ -32,11 +38,9 @@
                  <option></option>
                 @foreach ($forumSubCat as $category)
                      <option value="{{ $category->slug }}"
-                     @if(isset($searchedSubCategory))
 
                      @if(in_array($category->slug,$searchedSubCategory))
                       selected
-                     @endif
                      @endif
                      >
                        {{ $category->title }}
