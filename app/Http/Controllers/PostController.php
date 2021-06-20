@@ -18,16 +18,66 @@ class PostController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index(Request $request) {
         $user = Auth::user();
         if($user->roles->contains(1))
         {
-        $posts = Post::latest()->paginate(10);
+
+        $posts = Post::latest();
+
+        if(isset($request['year']) && !empty($request['year']) && $request['year']!=0)
+        {
+            $posts = $posts->whereYear('created_at',$request['year']);
+            
+        }
+
+        if(isset($request['month']) && !empty($request['month']) && $request['month']!=0)
+        {
+            $posts = $posts->whereMonth('created_at',$request['month']);
+        }
+        if(isset($request['status']) && !empty($request['status']))
+        {
+            $posts = $posts->whereIn('status',$request['status']);
+        }
+
+        if(isset($request['category'])&& !empty($request['category']))
+        {
+            $posts  = $posts->whereHas('categories',function($q) use ($request){
+                $q->whereIn('slug',$request['category']);
+             });
+        }
+
+
+        if(isset($request['subcategory']) && !empty($request['subcategory']))
+        {
+            $posts  = $posts->whereHas('categories',function($q) use ($request){
+                $q->whereIn('slug',$request['subcategory']);
+             });
+        }
+
+
+        $posts =  $posts->paginate(10);
+        $categories = Category::all()->where('status',1);
+        $mainCategory = $categories->where('parent_id',0);
+        $subCategory  = $categories->where('parent_id','>',0);
+
+
+        $searchedCategory = isset($request['category']) ? $request['category'] : [];
+        $searchedSubCategory = isset($request['subcategory']) ? $request['subcategory'] : [];
+        $searchedYear = isset($request['year']) ? $request['year'] : null;
+        $searchedMonth = isset($request['month']) ? $request['month'] : null;
+
+        $selectedStatus = isset($request['status']) ? $request['status'] :[];
+
+
+        return view('dashboard.posts.index', compact('posts','mainCategory','subCategory','searchedCategory','searchedSubCategory','searchedYear','searchedMonth','selectedStatus'));
+
         }
         else{
            $posts = $user->posts()->paginate(10);
+         return view('dashboard.posts.index', compact('posts'));
+
         }
-        return view('dashboard.posts.index', compact('posts'));
     }
 
     /**

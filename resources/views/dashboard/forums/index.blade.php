@@ -15,6 +15,77 @@
 
      </div>
 
+
+             <div class="block mb-10">
+
+            <form style="display:inline" method="get" action="{{route('forums.index')}}">
+
+
+            <?php
+             $thisYear = (int) date("Y");
+            $months= ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            ?>
+
+            <select type="text" name="category[]" id="category"   multiple>
+                <option></option>
+                @foreach ($forumMainCat as $category)
+                     <option value="{{ $category->slug }}"
+                     @if(in_array($category->slug,$searchedCategory))
+                     selected
+                     @endif
+                     >
+                       {{ $category->title }}
+                      </option>
+                     @endforeach
+                      </select>
+
+                      <select type="text" name="subcategory[]" id="subcategory" class=""  multiple>
+                <option></option>
+                @foreach ($forumSubCat as $category)
+                     <option value="{{ $category->slug }}"
+                     @if(in_array($category->slug,$searchedSubCategory))
+                     selected
+                     @endif
+                     >
+                       {{ $category->title }}
+                      </option>
+                     @endforeach
+                      </select>
+
+            <select type="text" name="status[]" id="status" class=""  multiple>
+                <option></option>
+                     <option value="0" @if(in_array(0,$selectedStatus)) selected @endif >Draft</option>
+                     <option value="1" @if(in_array(1,$selectedStatus)) selected @endif>Published</option>
+                     <option value="2" @if(in_array(2,$selectedStatus)) selected @endif>Declined</option>
+
+                      </select>
+
+
+                      <select type="text" name="year" id="year" >
+                      <option value="0">Select Year </option>
+
+                       @for($i=1990;$i<=$thisYear;$i++)
+                        <option value="{{$i}}" @if($searchedYear == $i) selected @endif>{{$i}}</option>
+                        @endfor
+
+                      </select>
+
+
+                      <select type="text" name="month" id="month" >
+                      <option value="0"> Select Month</option>
+                       @for($i=0;$i<count($months);$i++)
+                        <option value="{{$i+1}}" @if($searchedMonth == $i+1) selected @endif>{{$months[$i]}}</option>
+                        @endfor
+
+                      </select>
+
+            <button class="py-2 px-4 bg-gray-500 hover:bg-white-600 text-white rounded-xl shadow " type="submit" >Filter</button>
+
+            </form>
+
+            </div>
+
+
                         <div class="block mb-10">
 
                     <button class="py-2 px-4 bg-gray-500 hover:bg-red-600 text-white rounded-xl shadow delete_all "  data-url="{{ url('admin/forums/bulkdelete') }}">Delete All Selected</button>
@@ -32,7 +103,11 @@
 
                     </div>
 
-<div class="mt-5 md:mt-0 md:col-span-2">
+
+                 
+                                        
+
+                <div class="mt-5 md:mt-0 md:col-span-2">
                         @if(Session::has('success'))
                      <p style="color: green">   {{Session::get('success')}} </p>
                         @endif       
@@ -138,7 +213,7 @@
                     </div>
                 </div>
                 <div class="my-4">
-                    {{ $questions->links() }}
+                    {{ $questions->appends(request()->input())->links() }}
                 </div>
             </div>
           
@@ -199,4 +274,43 @@
     });
 </script>
 
+<script>
+        $(document).ready(function() {
+            $('#category').select2({
+                width:200,
+                placeholder: "Select Categories"
+                , multiple: true
+                , theme: "classic",
+             
+            });
+            $('#subcategory').select2({
+                width:200,
+
+                placeholder: "Select Sub Categories"
+                , multiple: true
+                , theme: "classic"
+            });
+            $('#status').select2({
+                width:200,
+
+                placeholder: "Select Status"
+                , multiple: true
+                , theme: "classic"
+            });
+            $('#year').select2({
+                width:200,
+
+                placeholder: "Select Year"
+                , theme: "classic"
+            });
+
+            $('#month').select2({
+                width:200,
+
+                placeholder: "Select Month"
+                , theme: "classic"
+            });
+
+        });
+</script>
 </x-app-layout>
