@@ -245,14 +245,14 @@
                     console.log(join_selected_values)
                     $.ajax({
                         url: $(this).data('url'),
-                        type: 'DELETE',
+                        type: 'POST',
                         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                         data: 'ids='+join_selected_values,
                         success: function (data) {
                             if (data['success']) {
                               
                                 alert(data['success']);
-                                window.location.href = '/admin/forums';
+                                location.reload(true);
                             } else if (data['error']) {
                                 alert(data['error']);
                             } else {

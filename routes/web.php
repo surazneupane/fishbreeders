@@ -89,7 +89,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'checkauth'], 'prefix
     Route::get('/', function () {return redirect(route('dashboard'));});
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('posts', PostController::class);
-    Route::delete('/posts/delete/bulk',[PostController::class,'bulkDelete'])->name('posts.bulkdelete');
+    Route::post('/posts/delete/bulk',[PostController::class,'bulkDelete'])->name('posts.bulkdelete');
     Route::delete('/posts/delete/bulk/bydate',[PostController::class,'bulkDeleteDate'])->name('posts.bulkdeletedate');
 
 
@@ -110,7 +110,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'checkauth'], 'prefix
     Route::get('/siteinfo', [SiteController::class, 'index'])->name('siteinfo.index');
     ROute::post('/siteinfo/store', [SiteController::class, 'store'])->name('siteinfo.store');
     Route::get("/forums", [ForumController::class, 'index'])->name('forums.index');
-    Route::delete('/forums/bulkdelete',[ForumController::class,'bulkDelete'])->name('forums.bulkdelete');
+    Route::post('/forums/bulkdelete',[ForumController::class,'bulkDelete'])->name('forums.bulkdelete');
     Route::delete('/forums/bulkdelete/bydate',[ForumController::class,'bulkDeleteDate'])->name('forums.bulkdeletedate');
 
 
